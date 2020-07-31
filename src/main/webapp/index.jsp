@@ -58,18 +58,18 @@
 
 		<div class="row">
 			<div class="col-sm-12" id="livre">
-				<div class="d-flex align-content-start flex-wrap">
-					<%-- <c:forEach items="${}" var="book"> --%>
-						<div class="card" style="width: 18rem;">
-							<img src="static/123.jpg" class="card-img-top" alt="...">
-							<div class="card-body">
-								<h5 class="card-title">Harry Porter</h5>
-								<p class="card-text">J.K Rowling</p>
 
-							</div>
-						</div>
-					<!-- </c:forEach> -->
+				<%-- <c:forEach items="${}" var="book"> --%>
+				<div class="card" style="width: 18rem;">
+					<img src="static/123.jpg" class="card-img-top" alt="...">
+					<div class="card-body">
+						<h5 class="card-title">Harry Porter</h5>
+						<p class="card-text">J.K Rowling</p>
+						
+					</div>
 				</div>
+				<!-- </c:forEach> -->
+
 			</div>
 		</div>
 
