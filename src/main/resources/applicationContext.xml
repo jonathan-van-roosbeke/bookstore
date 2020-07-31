@@ -12,23 +12,25 @@
 		http://www.springframework.org/schema/tx
 		http://www.springframework.org/schema/tx/spring-tx.xsd
 		http://www.springframework.org/schema/data/jpa
-    	http://www.springframework.org/schema/data/jpa/spring-jpa-1.0.xsd
+        http://www.springframework.org/schema/data/jpa/spring-jpa-1.0.xsd
 		">
+
     <context:annotation-config />
-    <jpa:repositories base-package="com.cda.dao"/>
+
     <context:component-scan
             base-package="com.cda">
         <context:include-filter type="regex"
-                                expression="(\..*)*" />
+                                expression="(service|dao|init)\..*" />
     </context:component-scan>
+
+    <jpa:repositories base-package="com.cda.dao" />
+
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="org.mariadb.jdbc.Driver"/>
         <property name="url" value="jdbc:mariadb://localhost:3306/bookstore"/>
         <property name="username" value="root"/>
         <property name="password" value="sgnt5rye"/>
     </bean>
-
-    <!-- <context:property-placeholder location=“classpath:jdbc.properties”/> -->
 
     <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"
           p:packagesToScan="com.cda.entity"
@@ -40,9 +42,12 @@
             </bean>
         </property>
     </bean>
+
     <!-- Transactions -->
     <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
         <property name="entityManagerFactory" ref="entityManagerFactory"/>
     </bean>
     <tx:annotation-driven transaction-manager="transactionManager"/>
+
+
 </beans>

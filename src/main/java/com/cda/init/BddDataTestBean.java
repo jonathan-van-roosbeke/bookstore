@@ -12,6 +12,10 @@ public class BddDataTestBean {
     @Autowired
     private ILivreDao livreDao;
 
+    public BddDataTestBean(){
+        System.out.println("salut test");
+    }
+
     @PostConstruct
     public void initialisation() throws Exception {
         if (livreDao.count() < 10) {
