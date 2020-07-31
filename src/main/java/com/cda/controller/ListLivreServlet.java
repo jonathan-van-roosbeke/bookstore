@@ -14,7 +14,7 @@ import com.cda.dao.ILivreDao;
 import com.cda.entity.Livre;
 
 @WebServlet("/ListLivreServlet")
-public class ListLivreServlet extends AbstractController {
+public class ListLivreServlet extends com.cda.controller.AbstractController {
 	private static final long serialVersionUID = 1L;
 	
 	@Autowired
@@ -29,5 +29,4 @@ public class ListLivreServlet extends AbstractController {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	}
-
 }
