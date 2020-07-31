@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -57,20 +58,20 @@
 		</div>
 
 		<div class="row">
-			<div class="col-sm-12" id="livre">
 
-				<%-- <c:forEach items="${}" var="book"> --%>
-				<div class="card" style="width: 18rem;">
-					<img src="static/123.jpg" class="card-img-top" alt="...">
-					<div class="card-body">
-						<h5 class="card-title">Harry Porter</h5>
-						<p class="card-text">J.K Rowling</p>
-						
+				<c:forEach items="${livres}" var="livres">
+				<div class="col-sm-3" id="livre">
+					<div class="card" style="width: 18rem;">
+						<img src="static/123.jpg" class="card-img-top" alt="...">
+						<div class="card-body">
+							<h5 class="card-title">${livres.titreLivre}</h5>
+							<p class="card-text">${livres.idAuteur}</p>
+
+						</div>
 					</div>
 				</div>
-				<!-- </c:forEach> -->
+			</c:forEach>
 
-			</div>
 		</div>
 
 		<!-- Optional JavaScript -->

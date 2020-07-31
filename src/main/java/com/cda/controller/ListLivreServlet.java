@@ -16,18 +16,25 @@ import com.cda.entity.Livre;
 @WebServlet("/ListLivreServlet")
 public class ListLivreServlet extends AbstractController {
 	private static final long serialVersionUID = 1L;
-	
+
 	@Autowired
 	private ILivreDao iLivreDao;
-	
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+	@Override
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		List<Livre> livres = (List<Livre>) iLivreDao.findAll();
 		for (Livre livre : livres) {
 			System.out.println(livre);
 		}
+		request.setAttribute("livres", livres);
+		request.getRequestDispatcher("/index.jsp").forward(request, response);
+
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	@Override
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 	}
 
 }
