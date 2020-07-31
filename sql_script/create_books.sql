@@ -11,7 +11,7 @@ CREATE TABLE bookstore.t_livre (
 	nombre_page INT NOT NULL,
 	synopsis varchar(300) NOT NULL,
 	nom_image varchar(100) NOT NULL,
-	prix FLOAT NOT NULL,
+	prix_livre Decimal(4,2) NOT NULL,
 	CONSTRAINT t_livre_pk PRIMARY KEY (reference_livre)
 )
 ENGINE=InnoDB
@@ -44,7 +44,7 @@ values (
 	255, 			-- nombre de page
 	"Les requins, squales ou sélachimorphes forment un super-ordre de poissons cartilagineux, possédant cinq à sept fentes branchiales sur les côtés de la tête et les nageoires pectorales qui ne sont pas fusionnées à la tête.", -- synopsis
 	"shark.jpg", 	-- nom de l'image
-	33.2 			-- prix
+	33.20 			-- prix
 );
 
 INSERT into t_livre ()
@@ -56,7 +56,7 @@ values (
 	455, 			-- nombre de page
 	"Denis suit un vendeur de ballons de 78 ans, Carl Fredricksen, au moment où il réalise enfin le rêve de sa vie. Son désir de vivre une grande aventure le pousse à attacher des milliers de ballons à sa maison pour s'envoler vers les régions sauvages de l'Amérique du Sud", -- synopsis
 	"la-haut.jpg", 	-- nom de l'image
-	45 				-- prix
+	45.00 				-- prix
 );
 
 INSERT into t_livre ()
@@ -68,7 +68,7 @@ values (
 	233, 			-- nombre de page
 	"Une saison est une période de l'année qui observe une relative constance du climat et de la température. D'un point de vue astronomique, une saison correspond à l'intervalle de temps durant lequel la Terre occupe une portion de l'espace de sa révolution (rotation) autour du Soleil. ", -- synopsis
 	"saison.jpg", 	-- nom de l'image
-	18.5			-- prix
+	18.50			-- prix
 );
 
 INSERT into t_livre ()
@@ -80,7 +80,7 @@ values (
 	677, 			-- nombre de page
 	"La dénomination « John Doe » apparaît en 17682 dans le droit coutumier anglais, où elle désigne un plaignant inconnu, alors qu'un accusé anonyme est appelé « Richard Roe ».", -- synopsis
 	"jondoe.jpg", 	-- nom de l'image
-	27.2			-- prix
+	27.25			-- prix
 );
 
 INSERT into t_livre ()
@@ -104,7 +104,7 @@ values (
 	273, 			-- nombre de page
 	"un homme nommé Overgard est bloqué dans l’Arctique. Il vit dans la carcasse de son avion et parvient à se nourrir en pêchant du poisson. Alors qu'il se croit sauvé par l'arrivée d'un hélicoptère, celui-ci s'écrase.", -- synopsis
 	"artic.jpg", 	-- nom de l'image
-	15.6			-- prix
+	15.60			-- prix
 );
 
 INSERT into t_livre ()
@@ -116,7 +116,7 @@ values (
 	421, 			-- nombre de page
 	"Le nom Uruguay vient du guarani. Bien que sa signification ne soit pas très claire, Félix de Azara affirma que ce nom désigne un petit oiseau nommé el urú qui vit sur les rives du fleuve Uruguay", -- synopsis
 	"uruguay.jpg", 	-- nom de l'image
-	15.6			-- prix
+	17.10			-- prix
 );
 
 INSERT into t_livre ()
@@ -128,7 +128,7 @@ values (
 	423, 			-- nombre de page
 	"La diversité ordinaire des parcours scolaires du secondaire, les singularités personnelles et la dernière réforme du baccalauréat avec les spécialités et leurs associations complexes.", -- synopsis
 	"reussite.jpg", -- nom de l'image
-	20.3			-- prix
+	20.30			-- prix
 );
 
 INSERT into t_livre ()
@@ -140,7 +140,7 @@ values (
 	652, 			-- nombre de page
 	"Des pirates du ciel, la « bande de Dora », attaquent une forteresse volante ; ils recherchent une « pierre volante » appartenant à une jeune fille, Sheeta, retenue prisonnière. Cette dernière arrive à s'enfuir pour atterrir chez Pazu, un garçon de son âge. ", -- synopsis
 	"chateau.jpg", -- nom de l'image
-	29.3			-- prix
+	29.30			-- prix
 );
 
 INSERT into t_livre ()
@@ -152,7 +152,7 @@ values (
 	512, 			-- nombre de page
 	"Tim passe une bonne partie de ses jeunes années à l'étranger, ce qui lui permet de maîtriser parfaitement l'allemand et le français, grâce au travail de son père comme représentant à l'étranger de la firme britannique d'équipement militaire Vickers. ", -- synopsis
 	"membraneargent.jpg", -- nom de l'image
-	26.2			-- prix
+	26.20			-- prix
 );
 
 INSERT into t_livre ()
@@ -164,7 +164,7 @@ values (
 	429, 			-- nombre de page
 	"La vie d'Aristote n’est connue que dans ses grandes. Son oeuvre ne comporte que très peu de détails biographiques et peu de témoignages de ses contemporains nous sont parvenus ", -- synopsis
 	"aristote.jpg", -- nom de l'image
-	30.5			-- prix
+	30.50			-- prix
 );
 
 INSERT into t_livre ()
