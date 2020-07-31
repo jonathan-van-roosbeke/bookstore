@@ -17,17 +17,17 @@ public class Livre {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "reference_livre")
-    Integer referenceLivre;
+    private Integer referenceLivre;
     @Column(name = "titre_livre")
-    String titreLivre;
+    private String titreLivre;
     @Column(name = "quantite_stock")
-    int quantiteStock;
+    private int quantiteStock;
     @Column(name = "nombre_page")
-    int nombrePage;
+    private int nombrePage;
     @Column(name = "synopsis")
-    String synopsis;
+    private String synopsis;
     @Column(name = "nom_image")
-    String nomImage;
+    private String nomImage;
     @Column(name = "prix_livre")
-    float prixLivre;
+    private float prixLivre;
 }
