@@ -5,19 +5,23 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
+
 import javax.persistence.*;
 
 @Data
-@Table
-@Entity
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@Entity
+@Table(name = "t_livre")
 public class Livre {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "reference_livre")
-    Integer referenceLivre;
+    int referenceLivre;
+    @Column(name = "id_auteur")
+    int idAuteur;
     @Column(name = "titre_livre")
     String titreLivre;
     @Column(name = "quantite_stock")
@@ -29,5 +33,5 @@ public class Livre {
     @Column(name = "nom_image")
     String nomImage;
     @Column(name = "prix_livre")
-    float prixLivre;
+    BigDecimal prixLivre;
 }
