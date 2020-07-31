@@ -193,3 +193,7 @@ buildNumber.properties
 bookstore/.classpath
 
 bookstore/.project
+
+.classpath
+
+.project
