@@ -6,6 +6,5 @@ import org.springframework.data.repository.CrudRepository;
 
 
 public interface IUtilisateurDao extends CrudRepository<Utilisateur, Integer> {
-
     Optional<Utilisateur> findByLoginAndPassword(String pLogin, String pPassword);
 }

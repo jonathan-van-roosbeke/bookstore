@@ -18,15 +18,15 @@ import java.util.Date;
 public class Utilisateur {
     @Id
     @Column(name = "login_utilisateur")
-    private String loginUtilisateur;
+    private String login;
     @Column(name = "nom_utilisateur")
-    private String nomUtilisateur;
+    private String nom;
     @Column(name = "prenom_utilisateur")
-    private String prenomUtilisateur;
+    private String prenom;
     @Column(name = "date_connexion_utilisateur")
-    private Date dateConnexionUtilisateur;
+    private Date dateConnexion;
     @Column(name = "password_utilisateur")
-    private String passwordUtilisateur;
+    private String password;
     @Column(name = "active_utilisateur")
     private boolean active;
 
