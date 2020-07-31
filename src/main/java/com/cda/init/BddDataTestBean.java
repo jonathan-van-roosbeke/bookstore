@@ -11,6 +11,5 @@ public class BddDataTestBean {
     private ILivreDao livreDao;
 
     public BddDataTestBean(){
-        System.out.println("salut test");
     }
 }
