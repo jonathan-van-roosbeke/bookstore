@@ -189,3 +189,11 @@ buildNumber.properties
 .idea/.gitignore
 .idea/compiler.xml
 .idea/misc.xml
+
+bookstore/.classpath
+
+bookstore/.project
+
+.classpath
+
+.project
