@@ -42,16 +42,7 @@
 							</a></li>
 							<li class="nav-item"><a class="nav-link" href="#">S'identifier</a></li>
 							<li class="nav-item"><a class="nav-link" href="#">S'inscrire</a></li>
-							<li class="nav-item dropdown"><a
-								class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
-								role="button" data-toggle="dropdown" aria-haspopup="true"
-								aria-expanded="false"> Panier </a>
-								<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-									<a class="dropdown-item" href="#">Livre 1</a> <a
-										class="dropdown-item" href="#">Livre 2</a>
-									<div class="dropdown-divider"></div>
-									<a class="dropdown-item" href="#">Payer</a>
-								</div></li>
+							<li class="nav-item"><a class="nav-link" href="#">Panier</a></li>
 
 						</ul>
 						<form class="form-inline my-2 my-lg-0">
@@ -66,24 +57,34 @@
 		</div>
 
 		<div class="row">
-			<div class="col-sm-12">Les livres ici</div>
+			<div class="col-sm-12" id="livre">
 
+				<%-- <c:forEach items="${}" var="book"> --%>
+				<div class="card" style="width: 18rem;">
+					<img src="static/123.jpg" class="card-img-top" alt="...">
+					<div class="card-body">
+						<h5 class="card-title">Harry Porter</h5>
+						<p class="card-text">J.K Rowling</p>
+						
+					</div>
+				</div>
+				<!-- </c:forEach> -->
+
+			</div>
 		</div>
-	</div>
 
-	<!-- Optional JavaScript -->
-	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-		integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-		crossorigin="anonymous"></script>
-	<script
-		src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-		integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-		crossorigin="anonymous"></script>
-	<script
-		src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
-		integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
-		crossorigin="anonymous"></script>
-
+		<!-- Optional JavaScript -->
+		<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+		<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+			integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+			crossorigin="anonymous"></script>
+		<script
+			src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+			integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+			crossorigin="anonymous"></script>
+		<script
+			src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+			integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+			crossorigin="anonymous"></script>
 </body>
 </html>
