@@ -28,7 +28,7 @@
 
 			<div class="col-sm-12">
 				<nav class="navbar navbar-expand-lg navbar-light bg-light">
-					<a class="navbar-brand" href="#">Bienvenu !</a>
+					<a class="navbar-brand" >Bienvenu !</a>
 					<button class="navbar-toggler" type="button" data-toggle="collapse"
 						data-target="#navbarSupportedContent"
 						aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -38,12 +38,13 @@
 
 					<div class="collapse navbar-collapse" id="navbarSupportedContent">
 						<ul class="navbar-nav mr-auto">
-							<li class="nav-item active"><a class="nav-link" href="#">Home
+							<li class="nav-item active"><a class="nav-link" href="/bookstore/ListLivreServlet">Home
 									<span class="sr-only">(current)</span>
 							</a></li>
 							<li class="nav-item"><a class="nav-link" href="#">S'identifier</a></li>
 							<li class="nav-item"><a class="nav-link" href="#">S'inscrire</a></li>
-							<li class="nav-item"><a class="nav-link" href="#">Panier</a></li>
+							<li class="nav-item"><a class="nav-link"
+								href="/bookstore/pages/panier.jsp">Panier <c:out value="(${panier.totalQuantite})" default="0"></c:out></a></li>
 
 						</ul>
 						<form class="form-inline my-2 my-lg-0">
@@ -59,14 +60,16 @@
 
 		<div class="row">
 
-				<c:forEach items="${livres}" var="livres">
+			<c:forEach items="${livres}" var="livres">
 				<div class="col-sm-3" id="livre">
 					<div class="card" style="width: 18rem;">
-						<img src="img/${livres.nomImage}" class="card-img-top" alt="${livres.nomImage}">
+						<img src="img/${livres.nomImage}" class="card-img-top"
+							alt="${livres.nomImage}">
 						<div class="card-body">
 							<h5 class="card-title">${livres.titre}</h5>
-							<p class="card-text">${livres.auteur.nom} ${livres.auteur.prenom}</p>
-
+							<p class="card-text">${livres.auteur.nom}
+								${livres.auteur.prenom}</p>
+							<a href="PanierServlet?method=ajouter&id=${livres.id}" class="btn btn-primary">Ajouter au panier</a>
 						</div>
 					</div>
 				</div>
