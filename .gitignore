@@ -197,3 +197,5 @@ bookstore/.project
 .classpath
 
 .project
+
+src/main/resources/jdbc.properties
