@@ -15,11 +15,11 @@ public class Livre {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "reference_livre")
-    int referenceLivre;
+    int id;
     @Column(name = "id_auteur")
     int idAuteur;
     @Column(name = "titre_livre")
-    String titreLivre;
+    String titre;
     @Column(name = "quantite_stock")
     int quantiteStock;
     @Column(name = "nombre_page")
@@ -29,5 +29,8 @@ public class Livre {
     @Column(name = "nom_image")
     String nomImage;
     @Column(name = "prix_livre")
-    BigDecimal prixLivre;
+    BigDecimal prix;
+    @ManyToOne
+    @JoinColumn(name = "id_auteur", nullable = false, insertable = false, updatable = false)
+    Auteur auteur;
 }
