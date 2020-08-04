@@ -62,7 +62,7 @@
 				<c:forEach items="${livres}" var="livres">
 				<div class="col-sm-3" id="livre">
 					<div class="card" style="width: 18rem;">
-						<img src="static/123.jpg" class="card-img-top" alt="...">
+						<img src="img/${livres.nomImage}" class="card-img-top" alt="${livres.nomImage}">
 						<div class="card-body">
 							<h5 class="card-title">${livres.titre}</h5>
 							<p class="card-text">${livres.auteur.nom} ${livres.auteur.prenom}</p>
