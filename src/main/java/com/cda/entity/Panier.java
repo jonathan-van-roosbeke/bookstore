@@ -62,9 +62,16 @@ public class Panier {
 		map.remove(reference);
 	}
 
-	public void updateQuantite(int reference, int quantite) {
-		Article article = map.get(reference);
-		article.setQuantite(quantite);
+	public void updateQuantite(int reference, String quantite) {
+		int q = 1;
+		try {
+			q = Integer.parseInt(quantite);
+		} catch (NumberFormatException e) {
+			e.printStackTrace();
+		} finally {
+			Article article = map.get(reference);
+			article.setQuantite(q);
+		}
 	}
 
 	public void vider() {

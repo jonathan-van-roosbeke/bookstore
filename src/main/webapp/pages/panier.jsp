@@ -7,11 +7,38 @@
 <meta charset="UTF-8">
 <title>Panier</title>
 
+<%
+	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
+			+ request.getContextPath() + "/";
+
+	pageContext.setAttribute("basePath", basePath);
+%>
+
+<base href="<%=basePath%>">
+
 <link type="text/css" rel="stylesheet" href="static/style.css">
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
 	integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
 	crossorigin="anonymous">
+<script type="text/javascript" src="static/jquery-1.7.2.js"></script>
+
+<script type="text/javascript">
+	$(function() {
+		$(".delBtn").click(function() {
+			var titre = $(this).parents("tr").children("td:first").text();
+			if (!confirm("Etre vous sur de supprimer " + titre + " ?")) {
+				return false;
+			}
+		});
+
+		$(".quantite").change(function() {
+			var qte =  $(this).val();
+			var id = $(this).parents("tr").children(":first").text();
+			location.href="PanierServlet?method=modifier&id="+id+"&qte="+qte;
+		})
+	});
+</script>
 
 </head>
 <body>
@@ -59,7 +86,9 @@
 					<div class="jumbotron jumbotron-fluid">
 						<div class="container">
 							<h1 class="display-4">Votre panier est vide</h1>
-							<a class="btn btn-primary btn-lg" href="/bookstore/ListLivreServlet" role="button">Shopping maintenant</a>
+							<a class="btn btn-primary btn-lg"
+								href="/bookstore/ListLivreServlet" role="button">Shopping
+								maintenant</a>
 						</div>
 					</div>
 				</c:if>
@@ -74,7 +103,6 @@
 								<th scope="col">Prix unité</th>
 								<th scope="col">Prix total</th>
 								<th scope="col"></th>
-								<th scope="col"></th>
 							</tr>
 						</thead>
 
@@ -83,11 +111,13 @@
 								<tr>
 									<th scope="row">${article.livre.id}</th>
 									<td>${article.livre.titre}</td>
-									<td>${article.quantite}</td>
+									<td><input class="quantite" type="number" min="1"
+										name="quantite" value="${article.quantite}" /></td>
 									<td>${article.livre.prix}</td>
 									<td>${article.total}</td>
-									<td><a href="#" class="btn btn-primary">Modifier</a></td>
-									<td><a href="#" class="btn btn-primary">Supprimer</a></td>
+									<td><a class="delBtn"
+										href="PanierServlet?method=supprimer&id=${article.livre.id}"
+										class="btn btn-primary">Supprimer</a></td>
 								</tr>
 							</tbody>
 						</c:forEach>

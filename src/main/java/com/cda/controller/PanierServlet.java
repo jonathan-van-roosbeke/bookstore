@@ -31,7 +31,6 @@ public class PanierServlet extends com.cda.controller.AbstractController {
 	 */
 	public PanierServlet() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	/**
@@ -41,9 +40,15 @@ public class PanierServlet extends com.cda.controller.AbstractController {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-		ajouter(request, response);
+		String methodName = request.getParameter("method");
+		System.out.println(methodName);
+		if ("ajouter".equals(methodName)) {
+			ajouter(request, response);
+		} else if ("supprimer".equals(methodName)) {
+			supprimer(request, response);
+		} else if ("modifier".contentEquals(methodName)) {
+			modifier(request, response);
+		}
 	}
 
 	/**
@@ -77,4 +82,23 @@ public class PanierServlet extends com.cda.controller.AbstractController {
 		response.sendRedirect(request.getContextPath() + "/ListLivreServlet");
 	}
 
+	protected void supprimer(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		HttpSession session = request.getSession();
+		Panier panier = (Panier) session.getAttribute("panier");
+
+		System.out.println(request.getParameter("id"));
+		panier.supprimerLivre(Integer.parseInt(request.getParameter("id")));
+
+		response.sendRedirect(request.getContextPath() + "/pages/panier.jsp");
+	}
+
+	private void modifier(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		HttpSession session = request.getSession();
+		Panier panier = (Panier) session.getAttribute("panier");
+
+		panier.updateQuantite(Integer.parseInt(request.getParameter("id")), request.getParameter("qte"));
+		response.sendRedirect(request.getContextPath() + "/pages/panier.jsp");
+	}
 }
