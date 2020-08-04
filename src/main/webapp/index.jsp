@@ -64,8 +64,8 @@
 					<div class="card" style="width: 18rem;">
 						<img src="static/123.jpg" class="card-img-top" alt="...">
 						<div class="card-body">
-							<h5 class="card-title">${livres.titreLivre}</h5>
-							<p class="card-text">${livres.idAuteur}</p>
+							<h5 class="card-title">${livres.titre}</h5>
+							<p class="card-text">${livres.auteur.nom} ${livres.auteur.prenom}</p>
 
 						</div>
 					</div>
