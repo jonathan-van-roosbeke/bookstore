@@ -8,7 +8,7 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>index</title>
 
-<link type="text/css" rel="stylesheet" href="static/style.css">
+<link type="text/css" rel="stylesheet" href="resources/css/style.css">
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
 	integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
@@ -44,7 +44,7 @@
 							<li class="nav-item"><a class="nav-link" href="#">S'identifier</a></li>
 							<li class="nav-item"><a class="nav-link" href="#">S'inscrire</a></li>
 							<li class="nav-item"><a class="nav-link"
-								href="/bookstore/pages/panier.jsp">Panier <c:out value="(${panier.totalQuantite})" default="0"></c:out></a></li>
+								href="/bookstore/panier.jsp">Panier <c:out value="(${panier.totalQuantite})" default="0"></c:out></a></li>
 
 						</ul>
 						<form class="form-inline my-2 my-lg-0">
@@ -63,7 +63,7 @@
 			<c:forEach items="${livres}" var="livres">
 				<div class="col-sm-3" id="livre">
 					<div class="card" style="width: 18rem;">
-						<img src="img/${livres.nomImage}" class="card-img-top"
+						<img src="resources/images/img-couverture-livre/${livres.nomImage}" class="card-img-top"
 							alt="${livres.nomImage}">
 						<div class="card-body">
 							<h5 class="card-title">${livres.titre}</h5>
