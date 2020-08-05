@@ -64,13 +64,22 @@ public class Panier {
 
 	public void updateQuantite(int reference, String quantite) {
 		int q = 1;
-		try {
-			q = Integer.parseInt(quantite);
-		} catch (NumberFormatException e) {
-			e.printStackTrace();
-		} finally {
+
+		if ("".equals(quantite) || quantite == null) {
 			Article article = map.get(reference);
+			q = q > 0 ? q : 1;
 			article.setQuantite(q);
+		} else {
+
+			try {
+				q = Integer.parseInt(quantite);
+				q = q > 0 ? q : 1;
+			} catch (NumberFormatException e) {
+				e.printStackTrace();
+			} finally {
+				Article article = map.get(reference);
+				article.setQuantite(q);
+			}
 		}
 	}
 
