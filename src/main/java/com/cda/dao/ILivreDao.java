@@ -1,7 +1,13 @@
 package com.cda.dao;
 
 import com.cda.entity.Livre;
+
+import java.util.List;
+
 import org.springframework.data.repository.CrudRepository;
 
 public interface ILivreDao extends CrudRepository<Livre, Integer> {
+	
+	List<Livre> findAll();
+	
 }

@@ -1,0 +1,63 @@
+@import "commons/mixn.scss";
+
+$vert: #5bdf94;
+$bleu: #66b0c8;
+
+%reset-style {
+    margin: 0px;
+    padding: 0px;
+}
+
+html,
+body,
+.container-fluid,
+.row {
+    height: 100%;
+}
+
+.btn-primary {
+    
+    @include border-radius(20px);
+    border-color: $bleu;
+    margin-top: 30px;
+    padding: 7px 40px;
+
+    transition: 0.5s;
+    background: linear-gradient(90deg, var(--c1, $vert), var(--c2, $bleu) 51%, var(--c1, $vert)) var(--x, 0)/ 200%;
+    color: white;
+
+    &:hover {
+        border-color: $vert;
+        background-position:200px; 
+    }
+}
+
+.container-fluid {
+    @extend %reset-style;
+}
+
+.col-sm-12 {
+    @extend %reset-style;
+}
+
+.bg-image {
+    background: url("../images/img-page/lib.jpg") no-repeat;
+    max-height: 100%;
+    background-size: cover!important;
+    background-position: center center;
+}
+
+.inscription {
+    padding: 100px 0px 100px 0px;
+    padding-left: 100px;
+
+    form {
+        max-width: 278px;
+    }
+
+    h1 {
+        font-weight: bold;
+        font-size: 22px;
+        margin-bottom: 40px;
+    }
+}

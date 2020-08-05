@@ -12,18 +12,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.cda.dao.ILivreDao;
 import com.cda.entity.Livre;
+import com.cda.service.ILivreService;
 
 @WebServlet("/ListLivreServlet")
 public class ListLivreServlet extends com.cda.controller.AbstractController {
 	private static final long serialVersionUID = 1L;
 
 	@Autowired
-	private ILivreDao iLivreDao;
+	private ILivreService iLivreService;
 
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		List<Livre> livres = (List<Livre>) iLivreDao.findAll();
+		List<Livre> livres = iLivreService.findAll();
 		for (Livre livre : livres) {
 			System.out.println(livre);
 		}
