@@ -8,6 +8,8 @@ $bleu: #66b0c8;
     padding: 0px;
 }
 
+// inscription jsp
+
 html,
 body,
 .container-fluid,
@@ -60,4 +62,15 @@ body,
         font-size: 22px;
         margin-bottom: 40px;
     }
+}
+
+// ------------- pannier jsp
+
+.card {
+	margin-bottom: 20px;
+	margin-top: 20px;
+}
+
+.quantite{
+	width: 80px;
 }
