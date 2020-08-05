@@ -2,7 +2,7 @@ package com.cda.test;
 
 import java.math.BigDecimal;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import com.cda.entity.Auteur;
 import com.cda.entity.Livre;
@@ -35,7 +35,7 @@ public class PanierTest {
 		System.out.println("Les articles : " + panier.getAll());
 
 		System.out.println("\n\nUpdate un livre...");
-		panier.updateQuantite(2, 5);
+		panier.updateQuantite(2, String.valueOf(5));
 		System.out.println("Qte : " + panier.getTotalQuantite());
 		System.out.println("Prix total de livre : " + panier.getTotalPrix());
 		System.out.println("Les articles : " + panier.getAll());

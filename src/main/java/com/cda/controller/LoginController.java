@@ -28,7 +28,7 @@ public class LoginController extends AbstractController {
             //  redirection vers dashboard
             this.getServletContext().getRequestDispatcher("/list.do").forward(req, resp);
         } else {
-            this.getServletContext().getRequestDispatcher("/WEB-INF/login.jsp").forward(req, resp);
+            this.getServletContext().getRequestDispatcher("/login.jsp").forward(req, resp);
         }
     }
 
@@ -50,7 +50,7 @@ public class LoginController extends AbstractController {
             this.getServletContext().getRequestDispatcher("/list.do").forward(request, response);
         } else {
             request.setAttribute("erreurs", "identifiants incorrects");
-            this.getServletContext().getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
+            this.getServletContext().getRequestDispatcher("/login.jsp").forward(request, response);
         }
     }
 }
