@@ -40,4 +40,11 @@ body,
     font-size: 22px;
     margin-bottom: 40px; }
 
-/*# sourceMappingURL=stylesheet-inscription.css.map */
+.card {
+  margin-bottom: 20px;
+  margin-top: 20px; }
+
+.quantite {
+  width: 80px; }
+
+/*# sourceMappingURL=stylesheet.css.map */

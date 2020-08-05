@@ -1,5 +1,4 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,68 +7,35 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>index</title>
 
+<<<<<<< HEAD
 <link type="text/css" rel="stylesheet" href="resources/css/style-panier.css">
+=======
+>>>>>>> dev
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
 	integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
 	crossorigin="anonymous">
-
-<script
-	src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
-	integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
-	crossorigin="anonymous"></script>
-</head>
-
+	
+<link type="text/css" rel="stylesheet" href="./resources/css/stylesheet.css">
 
 <body>
 
 	<div class="container-fluid">
-		<div class="row">
-
-			<div class="col-sm-12">
-				<nav class="navbar navbar-expand-lg navbar-light bg-light">
-					<a class="navbar-brand" >Bienvenu !</a>
-					<button class="navbar-toggler" type="button" data-toggle="collapse"
-						data-target="#navbarSupportedContent"
-						aria-controls="navbarSupportedContent" aria-expanded="false"
-						aria-label="Toggle navigation">
-						<span class="navbar-toggler-icon"></span>
-					</button>
-
-					<div class="collapse navbar-collapse" id="navbarSupportedContent">
-						<ul class="navbar-nav mr-auto">
-							<li class="nav-item active"><a class="nav-link" href="/bookstore/ListLivreServlet">Home
-									<span class="sr-only">(current)</span>
-							</a></li>
-							<li class="nav-item"><a class="nav-link" href="#">S'identifier</a></li>
-							<li class="nav-item"><a class="nav-link" href="#">S'inscrire</a></li>
-							<li class="nav-item"><a class="nav-link"
-								href="/bookstore/panier.jsp">Panier <c:out value="(${panier.totalQuantite})" default="0"></c:out></a></li>
-
-						</ul>
-						<form class="form-inline my-2 my-lg-0">
-							<input class="form-control mr-sm-2" type="search"
-								placeholder="Search" aria-label="Search">
-							<button class="btn btn-outline-success my-2 my-sm-0"
-								type="submit">Search</button>
-						</form>
-					</div>
-				</nav>
-			</div>
-		</div>
-
+		<%@ include file="include/common/menu.html" %> 
 		<div class="row">
 
 			<c:forEach items="${livres}" var="livres">
 				<div class="col-sm-3" id="livre">
 					<div class="card" style="width: 18rem;">
-						<img src="resources/images/img-couverture-livre/${livres.nomImage}" class="card-img-top"
-							alt="${livres.nomImage}">
+						<img
+							src="resources/images/img-couverture-livre/${livres.nomImage}"
+							class="card-img-top" alt="${livres.nomImage}">
 						<div class="card-body">
 							<h5 class="card-title">${livres.titre}</h5>
 							<p class="card-text">${livres.auteur.nom}
 								${livres.auteur.prenom}</p>
-							<a href="PanierServlet?method=ajouter&id=${livres.id}" class="btn btn-primary">Ajouter au panier</a>
+							<a href="PanierServlet?method=ajouter&id=${livres.id}"
+								class="btn btn-primary">Ajouter au panier</a>
 						</div>
 					</div>
 				</div>

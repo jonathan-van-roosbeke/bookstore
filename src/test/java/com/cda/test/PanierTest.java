@@ -2,7 +2,7 @@ package com.cda.test;
 
 import java.math.BigDecimal;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import com.cda.entity.Auteur;
 import com.cda.entity.Livre;
