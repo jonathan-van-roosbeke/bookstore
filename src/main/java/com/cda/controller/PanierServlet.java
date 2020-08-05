@@ -16,27 +16,13 @@ import com.cda.dao.ILivreDao;
 import com.cda.entity.Livre;
 import com.cda.entity.Panier;
 
-/**
- * Servlet implementation class PanierServlet
- */
 @WebServlet("/PanierServlet")
-public class PanierServlet extends com.cda.controller.AbstractController {
+public class PanierServlet extends AbstractController {
 	private static final long serialVersionUID = 1L;
 
 	@Autowired
 	private ILivreDao iLivreDao;
 
-	/**
-	 * @see HttpServlet#HttpServlet()
-	 */
-	public PanierServlet() {
-		super();
-	}
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -51,14 +37,9 @@ public class PanierServlet extends com.cda.controller.AbstractController {
 		}
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 
@@ -90,7 +71,7 @@ public class PanierServlet extends com.cda.controller.AbstractController {
 		System.out.println(request.getParameter("id"));
 		panier.supprimerLivre(Integer.parseInt(request.getParameter("id")));
 
-		response.sendRedirect(request.getContextPath() + "/pages/panier.jsp");
+		response.sendRedirect(request.getContextPath() + "panier.jsp");
 	}
 
 	private void modifier(HttpServletRequest request, HttpServletResponse response)
@@ -99,6 +80,6 @@ public class PanierServlet extends com.cda.controller.AbstractController {
 		Panier panier = (Panier) session.getAttribute("panier");
 
 		panier.updateQuantite(Integer.parseInt(request.getParameter("id")), request.getParameter("qte"));
-		response.sendRedirect(request.getContextPath() + "/pages/panier.jsp");
+		response.sendRedirect(request.getContextPath() + "panier.jsp");
 	}
 }

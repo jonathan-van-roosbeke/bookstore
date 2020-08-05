@@ -1,0 +1,43 @@
+.container-fluid, .col-sm-12 {
+  margin: 0px;
+  padding: 0px; }
+
+html,
+body,
+.container-fluid,
+.row {
+  height: 100%; }
+
+.btn-primary {
+  border-radius: 20px;
+  -moz-border-radius: 20px;
+  -webkit-border-radius: 20px;
+  -o-border-radius: 20px;
+  -ms-border-radius: 20px;
+  border-color: #66b0c8;
+  margin-top: 30px;
+  padding: 7px 40px;
+  transition: 0.5s;
+  background: linear-gradient(90deg, var(--c1, #5bdf94), var(--c2, #66b0c8) 51%, var(--c1, #5bdf94)) var(--x, 0)/200%;
+  color: white; }
+  .btn-primary:hover {
+    border-color: #5bdf94;
+    background-position: 200px; }
+
+.bg-image {
+  background: url("../images/img-page/lib.jpg") no-repeat;
+  max-height: 100%;
+  background-size: cover !important;
+  background-position: center center; }
+
+.inscription {
+  padding: 100px 0px 100px 0px;
+  padding-left: 100px; }
+  .inscription form {
+    max-width: 278px; }
+  .inscription h1 {
+    font-weight: bold;
+    font-size: 22px;
+    margin-bottom: 40px; }
+
+/*# sourceMappingURL=stylesheet-inscription.css.map */
