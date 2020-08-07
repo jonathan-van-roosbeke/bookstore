@@ -1,6 +1,7 @@
-.container-fluid, .col-sm-12, .row,
+.row,
+.livre,
 .left,
-.right {
+.right, .container-fluid, .col-sm-12 {
   margin: 0px;
   padding: 0px; }
 
@@ -11,8 +12,7 @@ body {
 
 .container-fluid,
 .row {
-  height: 96.8%;
-  margin: 0; }
+  height: 96.8%; }
 
 .btn-primary {
   border-radius: 20px;

@@ -4,12 +4,11 @@ $vert: #5bdf94;
 $bleu: #66b0c8;
 
 %reset-style {
-    
     margin: 0px;
     padding: 0px;
 }
 
-// inscription jsp
+// ------------- inscription jsp
 
 html,
 body {
@@ -20,9 +19,14 @@ body {
 .container-fluid,
 .row {
     height: 96.8%;
-    margin: 0;
 }
 
+.row,
+.livre,
+.left,
+.right {
+    @extend %reset-style;
+}
 
 .btn-primary {
     
@@ -116,12 +120,6 @@ body {
 .center_prix,
 .info_complementaire {
     margin-top: 100px;
-}
-
-.row,
-.left,
-.right {
-    @extend %reset-style;
 }
 
 .right {

@@ -7,10 +7,6 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>index</title>
 
-<<<<<<< HEAD
-<link type="text/css" rel="stylesheet" href="resources/css/style-panier.css">
-=======
->>>>>>> dev
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
 	integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
@@ -25,7 +21,7 @@
 		<div class="row">
 
 			<c:forEach items="${livres}" var="livres">
-				<div class="col-sm-3" id="livre">
+				<div class="col-sm-3 livre" id="${livres.id}">
 					<div class="card" style="width: 18rem;">
 						<img
 							src="resources/images/img-couverture-livre/${livres.nomImage}"
@@ -56,5 +52,6 @@
 			src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
 			integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
 			crossorigin="anonymous"></script>
+		<script src="resources/js/select-livre.js"></script>
 </body>
 </html>
