@@ -39,6 +39,6 @@ public class Commande {
 	private double totalCmd;
 
 	@ManyToOne
-	@JoinColumn(name = "login_utilisateur", nullable = false, insertable = false, updatable = false)
-	private Utilisateur u;
+	@JoinColumn(name = "uid", nullable = false, insertable = false, updatable = false)
+	private Utilisateur utilisateur;
 }

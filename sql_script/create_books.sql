@@ -215,7 +215,7 @@ JOIN T_AUTEUR TA ON tl.ID_AUTEUR = ta.ID_AUTEUR;
 DROP TABLE IF EXISTS t_adresse;
 CREATE TABLE bookstore.t_adresse (
 	id_adresse INT not null primary key auto_increment,
-   	numero SMALLINT NOT NULL,
+   	numero INT NOT NULL,
    	rue VARCHAR(50),
    	ville VARCHAR(50) NOT NULL,
    	cp VARCHAR(10) NOT NULL,
@@ -285,7 +285,7 @@ COLLATE=utf8_general_ci;
 
 
 INSERT INTO t_adresse 
-values (1,100,"rue de paris",59000,"Lille");
+values (1,100,"rue de paris","Lille",59000,"France");
 
 insert into t_utilisateur()
 values (1, "admin","admin","admin","admin","admin@afpa.fr",2,1);
