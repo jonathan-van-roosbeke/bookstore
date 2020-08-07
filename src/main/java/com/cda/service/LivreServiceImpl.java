@@ -1,5 +1,3 @@
-package com.cda.service;
-
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +11,7 @@ public class LivreServiceImpl implements ILivreService {
 
 	@Autowired
 	ILivreDao livreDao;
-	
+
 	@Override
 	public List<Livre> findAll() {
 		return livreDao.findAll();
