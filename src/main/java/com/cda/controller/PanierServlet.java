@@ -5,7 +5,6 @@ import java.util.Optional;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -71,7 +70,7 @@ public class PanierServlet extends AbstractController {
 		System.out.println(request.getParameter("id"));
 		panier.supprimerLivre(Integer.parseInt(request.getParameter("id")));
 
-		response.sendRedirect(request.getContextPath() + "panier.jsp");
+		response.sendRedirect(request.getContextPath() + "/panier.jsp");
 	}
 
 	private void modifier(HttpServletRequest request, HttpServletResponse response)
@@ -80,6 +79,6 @@ public class PanierServlet extends AbstractController {
 		Panier panier = (Panier) session.getAttribute("panier");
 
 		panier.updateQuantite(Integer.parseInt(request.getParameter("id")), request.getParameter("qte"));
-		response.sendRedirect(request.getContextPath() + "panier.jsp");
+		response.sendRedirect(request.getContextPath() + "/panier.jsp");
 	}
 }

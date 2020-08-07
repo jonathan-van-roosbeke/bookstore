@@ -206,3 +206,92 @@ SELECT * FROM T_AUTEUR;
 
 SELECT * FROM T_LIVRE TL
 JOIN T_AUTEUR TA ON tl.ID_AUTEUR = ta.ID_AUTEUR;
+
+
+
+-- -----------------------------
+-- CREATION ADRESSE ------------
+-- -----------------------------
+DROP TABLE IF EXISTS t_adresse;
+CREATE TABLE bookstore.t_adresse (
+	id_adresse INT not null primary key auto_increment,
+   	numero SMALLINT NOT NULL,
+   	rue VARCHAR(50),
+   	ville VARCHAR(50) NOT NULL,
+   	cp VARCHAR(10) NOT NULL,
+	pays VARCHAR(50) NOT NULL
+	
+)
+ENGINE=InnoDB
+DEFAULT CHARSET=utf8
+COLLATE=utf8_general_ci;
+
+
+
+-- -----------------------------
+-- CREATION UTILISATEUR --------
+-- -----------------------------
+DROP TABLE IF EXISTS t_utilisateur;
+CREATE TABLE bookstore.t_utilisateur (
+	uid int(50) NOT NULL primary key auto_increment,
+	login varchar(30) not null,
+	motdepasse varchar(30) not null,
+	nom varchar(100) not null,
+	prenom varchar(100) not null,
+	email varchar(200) not null,
+	status_utilisateur int(2) not null,
+	id_adresse int not null,
+	Foreign key (id_adresse) references t_adresse(id_adresse)
+)
+ENGINE=InnoDB
+DEFAULT CHARSET=utf8
+COLLATE=utf8_general_ci;
+
+
+
+-- -----------------------------
+-- CREATION COMMANDE -----------
+-- -----------------------------
+DROP TABLE IF EXISTS t_commande;
+CREATE TABLE bookstore.t_commande (
+	numero_cmd varchar(50) NOT NULL primary key,
+	date_creation datetime NOT NULL,
+	status_cmd INT(2) NOT NULL,
+	total_cmd Decimal(11,2) NOT NULL,
+	uid int(50) NOT NULL,
+	Foreign key (uid) references t_utilisateur(uid)
+)
+ENGINE=InnoDB
+DEFAULT CHARSET=utf8
+COLLATE=utf8_general_ci;
+
+
+-- -----------------------------
+-- CREATION ACTICLE COMMANDE ---
+-- -----------------------------
+DROP TABLE IF EXISTS t_article_cmd;
+CREATE TABLE bookstore.t_article_cmd (
+	id_article int not null primary key auto_increment,
+ 	titre varchar(100) NOT NULL,
+	quantite int NOT NULL,
+	prix Decimal(11,2) NOT NULL,
+	total_prix Decimal(11,2) NOT NULL,
+	numero_cmd varchar(50) not null,
+	Foreign key (numero_cmd) references t_commande(numero_cmd)
+)
+ENGINE=InnoDB
+DEFAULT CHARSET=utf8
+COLLATE=utf8_general_ci;
+
+
+INSERT INTO t_adresse 
+values (1,100,"rue de paris",59000,"Lille");
+
+insert into t_utilisateur()
+values (1, "admin","admin","admin","admin","admin@afpa.fr",2,1);
+
+INSERT INTO t_commande ()
+VALUES ("123", '2015-11-05 14:29:36', 1, 1.2, 1);
+
+
+

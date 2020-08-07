@@ -1,17 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Panier</title>
-
+<title>Mes commandes</title>
 <%
 	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
 			+ request.getContextPath() + "/";
 
 	pageContext.setAttribute("basePath", basePath);
-	/* System.out.println(basePath); */
 %>
 
 <base href="<%=basePath%>">
@@ -36,7 +34,7 @@
 		<div class="row">
 			<div class="col-sm-12">
 
-				<c:if test="${empty panier.all}">
+				<%-- <c:if test="${empty panier.all}">
 					<div class="jumbotron jumbotron-fluid">
 						<div class="container">
 							<h1 class="display-4">Votre panier est vide</h1>
@@ -45,16 +43,15 @@
 								maintenant</a>
 						</div>
 					</div>
-				</c:if>
+				</c:if> --%>
 
-				<c:if test="${!empty panier.all}">
+				<%-- <c:if test="${!empty panier.all}"> --%>
 					<table class="table">
 						<thead>
 							<tr>
-								<th scope="col">Ref</th>
-								<th scope="col">Nom</th>
-								<th scope="col">Quantité</th>
-								<th scope="col">Prix unité</th>
+								<th scope="col">Numero de commande</th>
+								<th scope="col">Date</th>
+								<th scope="col">Status</th>
 								<th scope="col">Prix total</th>
 								<th scope="col"></th>
 							</tr>
@@ -71,7 +68,7 @@
 									<td>${article.total}</td>
 									<td><a class="delBtn"
 										href="PanierServlet?method=supprimer&id=${article.livre.id}"
-										class="btn btn-primary">Supprimer</a></td>
+										class="btn btn-primary">Voir la detaile</a></td>
 								</tr>
 							</tbody>
 						</c:forEach>
@@ -89,7 +86,7 @@
 							</tr>
 						</tbody>
 					</table>
-				</c:if>
+				<%-- </c:if> --%>
 			</div>
 		</div>
 	</div>

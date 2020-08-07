@@ -15,36 +15,32 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@Table
+@Table(name = "t_article_cmd")
 @Entity
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Utilisateur {
+public class ArticleCmd {
+
 	@Id
-	@Column(name = "uid")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	@Column(name = "id_article")
+	private Integer id;
 
-	@Column(name = "login")
-	private String login;
+	@Column(name = "titre")
+	private String titre;
 
-	@Column(name = "motdepasse")
-	private String motdepasse;
+	@Column(name = "quantite")
+	private int quantite;
 
-	@Column(name = "nom")
-	private String nom;
+	@Column(name = "prix")
+	private double prix;
 
-	@Column(name = "prenom")
-	private String prenom;
-
-	@Column(name = "email")
-	private String email;
-
-	@Column(name = "status_utilisateur")
-	private int statusUtilisateur;
+	@Column(name = "total_prix")
+	private double totalPrix;
 
 	@ManyToOne
-	@JoinColumn(name = "id_adresse", nullable = false, insertable = false, updatable = false)
-	private Adresse adresse;
+	@JoinColumn(name = "numero_cmd", nullable = false, insertable = false, updatable = false)
+	private Commande commande;
+
 }
