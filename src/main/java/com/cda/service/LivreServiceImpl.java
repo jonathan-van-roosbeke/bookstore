@@ -18,4 +18,10 @@ public class LivreServiceImpl implements ILivreService {
 	public List<Livre> findAll() {
 		return livreDao.findAll();
 	}
+
+	@Override
+	public Livre findById(Integer id) {
+		System.out.println("coucou");
+		return livreDao.findById(id).get();
+	}
 }

@@ -7,5 +7,6 @@ import com.cda.entity.Livre;
 public interface ILivreService {
 
 	List<Livre> findAll();
-
+	
+	Livre findById(Integer id);
 }
