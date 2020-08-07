@@ -254,7 +254,7 @@ COLLATE=utf8_general_ci;
 -- -----------------------------
 DROP TABLE IF EXISTS t_commande;
 CREATE TABLE bookstore.t_commande (
-	numero_cmd varchar(50) NOT NULL primary key,
+	numero_cmd int NOT NULL primary key auto_increment,
 	date_creation datetime NOT NULL,
 	status_cmd INT(2) NOT NULL,
 	total_cmd Decimal(11,2) NOT NULL,
@@ -276,7 +276,7 @@ CREATE TABLE bookstore.t_article_cmd (
 	quantite int NOT NULL,
 	prix Decimal(11,2) NOT NULL,
 	total_prix Decimal(11,2) NOT NULL,
-	numero_cmd varchar(50) not null,
+	numero_cmd int not null,
 	Foreign key (numero_cmd) references t_commande(numero_cmd)
 )
 ENGINE=InnoDB
