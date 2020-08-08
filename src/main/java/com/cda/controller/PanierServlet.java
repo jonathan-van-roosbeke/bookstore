@@ -1,27 +1,25 @@
 package com.cda.controller;
 
 import java.io.IOException;
-import java.util.Optional;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.cda.dao.ILivreDao;
 import com.cda.entity.Livre;
 import com.cda.entity.Panier;
+import com.cda.service.ILivreService;
 
 @WebServlet("/PanierServlet")
 public class PanierServlet extends AbstractController {
 	private static final long serialVersionUID = 1L;
 
 	@Autowired
-	private ILivreDao iLivreDao;
+	private ILivreService livreService;
 
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -53,12 +51,8 @@ public class PanierServlet extends AbstractController {
 
 		}
 		System.out.println(request.getParameter("id"));
-		Optional<Livre> optionalLivre = iLivreDao.findById(Integer.parseInt(request.getParameter("id")));
-		Livre livre = new Livre();
-		if (optionalLivre.isPresent()) {
-			livre = optionalLivre.get();
-			panier.ajouterLivre(livre);
-		}
+		Livre livre = livreService.findById(Integer.parseInt(request.getParameter("id")));
+		panier.ajouterLivre(livre);
 
 		response.sendRedirect(request.getContextPath() + "/ListLivreServlet");
 	}
@@ -71,7 +65,7 @@ public class PanierServlet extends AbstractController {
 		System.out.println(request.getParameter("id"));
 		panier.supprimerLivre(Integer.parseInt(request.getParameter("id")));
 
-		response.sendRedirect(request.getContextPath() + "panier.jsp");
+		response.sendRedirect(request.getContextPath() + "/panier.jsp");
 	}
 
 	private void modifier(HttpServletRequest request, HttpServletResponse response)
@@ -80,6 +74,6 @@ public class PanierServlet extends AbstractController {
 		Panier panier = (Panier) session.getAttribute("panier");
 
 		panier.updateQuantite(Integer.parseInt(request.getParameter("id")), request.getParameter("qte"));
-		response.sendRedirect(request.getContextPath() + "panier.jsp");
+		response.sendRedirect(request.getContextPath() + "/panier.jsp");
 	}
 }

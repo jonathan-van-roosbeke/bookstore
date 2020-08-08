@@ -1,5 +1,7 @@
 package com.cda.entity;
 
+import java.time.LocalDateTime;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,36 +17,28 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@Table(name = "t_utilisateur")
-@Entity
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Utilisateur {
+@Entity
+@Table(name = "t_commande")
+public class Commande {
+
 	@Id
-	@Column(name = "uid")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	@Column(name = "numero_cmd")
+	private String numero;
 
-	@Column(name = "login")
-	private String login;
+	@Column(name = "date_creation")
+	private LocalDateTime date;
 
-	@Column(name = "motdepasse")
-	private String motdepasse;
+	@Column(name = "status_cmd")
+	private int status;
 
-	@Column(name = "nom")
-	private String nom;
-
-	@Column(name = "prenom")
-	private String prenom;
-
-	@Column(name = "email")
-	private String email;
-
-	@Column(name = "status_utilisateur")
-	private int statusUtilisateur;
+	@Column(name = "total_cmd")
+	private double totalCmd;
 
 	@ManyToOne
-	@JoinColumn(name = "id_adresse", nullable = false, insertable = false, updatable = false)
-	private Adresse adresse;
+	@JoinColumn(name = "uid", nullable = false, insertable = false, updatable = false)
+	private Utilisateur utilisateur;
 }
