@@ -1,5 +1,8 @@
 package com.cda.service;
 
+import com.cda.entity.Utilisateur;
+
 public interface IUtilisateurService {
-    boolean exists(String login, String password);
+    
+    public Utilisateur connexion(String login, String password);
 }
