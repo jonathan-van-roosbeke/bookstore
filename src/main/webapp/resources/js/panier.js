@@ -9,6 +9,6 @@ $(function() {
 		$(".quantite").change(function() {
 			var qte =  $(this).val();
 			var id = $(this).parents("tr").children(":first").text();
-			location.href="PanierServlet?method=modifier&id="+id+"&qte="+qte;
+			location.href="panier?method=modifier&id="+id+"&qte="+qte;
 		})
 	});

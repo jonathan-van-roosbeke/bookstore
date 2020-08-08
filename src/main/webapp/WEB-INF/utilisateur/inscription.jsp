@@ -11,7 +11,7 @@
     <body>
 
         <div class="container-fluid">
-            <%@ include file="include/common/menu.html" %>  
+            <%@ include file="../include/common/menu.html" %>  
             
             <div class="container-fluid">
                 <div class="row">

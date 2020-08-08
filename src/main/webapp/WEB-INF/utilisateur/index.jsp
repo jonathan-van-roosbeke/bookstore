@@ -17,7 +17,7 @@
 <body>
 
 	<div class="container-fluid">
-		<%@ include file="include/common/menu.html" %> 
+		<%@ include file="../include/common/menu.html" %> 
 		<div class="row">
 
 			<c:forEach items="${livres}" var="livres">
