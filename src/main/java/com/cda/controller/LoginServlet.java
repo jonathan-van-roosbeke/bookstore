@@ -7,9 +7,17 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.cda.entity.Utilisateur;
+import com.cda.service.IUtilisateurService;
+
 @WebServlet(urlPatterns = {"/login"})
 public class LoginServlet extends AbstractController {
     private static final long serialVersionUID = 1L;
+    
+    @Autowired
+    IUtilisateurService utilisateurServiceImpl;
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -20,5 +28,9 @@ public class LoginServlet extends AbstractController {
     @Override
     protected void doPost(HttpServletRequest request, javax.servlet.http.HttpServletResponse response)
             throws ServletException, IOException {
+    	
+    	String login = request.getParameter("login");
+    	String password = request.getParameter("password");
+    	Utilisateur utilisateur = utilisateurServiceImpl.connexion(login, password);
     }
 }

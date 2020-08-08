@@ -200,15 +200,6 @@ VALUES (4, "Sandrine", "Ledoux");
 INSERT INTO	T_AUTEUR ()
 VALUES (5, "Romeo", "Tutzani");
 
-
-SELECT * FROM T_LIVRE;
-SELECT * FROM T_AUTEUR;
-
-SELECT * FROM T_LIVRE TL
-JOIN T_AUTEUR TA ON tl.ID_AUTEUR = ta.ID_AUTEUR;
-
-
-
 -- -----------------------------
 -- CREATION ADRESSE ------------
 -- -----------------------------
@@ -233,9 +224,9 @@ COLLATE=utf8_general_ci;
 -- -----------------------------
 DROP TABLE IF EXISTS t_utilisateur;
 CREATE TABLE bookstore.t_utilisateur (
-	uid int(50) NOT NULL primary key auto_increment,
-	login varchar(30) not null,
-	motdepasse varchar(30) not null,
+	login varchar(30) not NULL PRIMARY key,
+	motdepasse varchar(200) not null,
+	uid int(50) NOT NULL,
 	nom varchar(100) not null,
 	prenom varchar(100) not null,
 	email varchar(200) not null,
@@ -258,8 +249,8 @@ CREATE TABLE bookstore.t_commande (
 	date_creation datetime NOT NULL,
 	status_cmd INT(2) NOT NULL,
 	total_cmd Decimal(11,2) NOT NULL,
-	uid int(50) NOT NULL,
-	Foreign key (uid) references t_utilisateur(uid)
+	login varchar(30) NOT NULL,
+	Foreign key (login) references t_utilisateur(login)
 )
 ENGINE=InnoDB
 DEFAULT CHARSET=utf8
@@ -287,11 +278,35 @@ COLLATE=utf8_general_ci;
 INSERT INTO t_adresse 
 values (1,100,"rue de paris","Lille",59000,"France");
 
+INSERT INTO t_adresse 
+values (2,59,"rue de lille","Lille",59000,"France");
+
 insert into t_utilisateur()
-values (1, "admin","admin","admin","admin","admin@afpa.fr",2,1);
+values ("admin", md5("admin"), 1, "kayne","boby","admin@afpa.fr",2,1);
+
+INSERT into t_utilisateur()
+VALUES ("client", md5("client"), 2,  "dupond", "jean", "dj@client.fr", 1, 2);
 
 INSERT INTO t_commande ()
-VALUES ("123", '2015-11-05 14:29:36', 1, 1.2, 1);
+VALUES ("123", '2015-11-05 14:29:36', 1, 1.2, "client");
+
+
+-- -----------------------------
+-- VERIFICATION ----------------
+-- -----------------------------
+
+SELECT * FROM T_LIVRE;
+SELECT * FROM T_AUTEUR;
+
+SELECT * FROM T_LIVRE TL
+JOIN T_AUTEUR TA ON tl.ID_AUTEUR = ta.ID_AUTEUR;
+
+SELECT * FROM t_adresse;
+
+SELECT * FROM t_utilisateur;
+
+
+
 
 
 
