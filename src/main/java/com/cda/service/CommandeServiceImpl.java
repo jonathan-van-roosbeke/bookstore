@@ -46,6 +46,10 @@ public class CommandeServiceImpl implements ICommandeService {
 		commandeDao.save(commande);
 		articlCmdDao.saveAll(cmdArticles);
 
+		for (ArticleCmd articleCmd : cmdArticles) {
+			livreDao.findById(articleCmd.getId());
+		}
+
 		return numeroCmd;
 	}
 
