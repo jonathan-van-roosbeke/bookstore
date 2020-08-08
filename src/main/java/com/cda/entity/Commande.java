@@ -27,7 +27,7 @@ public class Commande {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "numero_cmd")
-	private String numero;
+	private String numeroCmd;
 
 	@Column(name = "date_creation")
 	private LocalDateTime date;

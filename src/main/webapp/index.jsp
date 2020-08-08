@@ -11,13 +11,13 @@
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
 	integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
 	crossorigin="anonymous">
-	
-<link type="text/css" rel="stylesheet" href="./resources/css/stylesheet.css">
 
+<link type="text/css" rel="stylesheet"
+	href="./resources/css/stylesheet.css">
 <body>
 
 	<div class="container-fluid">
-		<%@ include file="include/common/menu.html" %> 
+		<%@ include file="include/common/menu.html"%>
 		<div class="row">
 
 			<c:forEach items="${livres}" var="livres">
@@ -30,6 +30,7 @@
 							<h5 class="card-title">${livres.titre}</h5>
 							<p class="card-text">${livres.auteur.nom}
 								${livres.auteur.prenom}</p>
+							<h6 class="card-text">${livres.prix} €</h6>
 							<a href="PanierServlet?method=ajouter&id=${livres.id}"
 								class="btn btn-primary">Ajouter au panier</a>
 						</div>
