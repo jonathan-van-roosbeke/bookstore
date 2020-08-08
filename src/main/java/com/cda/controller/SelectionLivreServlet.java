@@ -15,7 +15,7 @@ import com.cda.dao.ILivreDao;
 import com.cda.entity.Livre;
 import com.cda.service.ILivreService;
 
-@WebServlet("/SelectionLivreServlet")
+@WebServlet("/select")
 public class SelectionLivreServlet extends AbstractController {
 	private static final long serialVersionUID = 1L;
 
@@ -43,9 +43,9 @@ public class SelectionLivreServlet extends AbstractController {
 		if (idLivre != null && exists) {
 			livre = livreService.findById(Integer.parseInt(idLivre));
 			request.setAttribute("livre", livre);
-			request.getRequestDispatcher("/selection-livre.jsp").forward(request, response);
+			request.getRequestDispatcher("WEB-INF/utilisateur/selection-livre.jsp").forward(request, response);
 		} else {
-			request.getRequestDispatcher("/ListLivreServlet").forward(request, response);
+			request.getRequestDispatcher("/index").forward(request, response);
 		}
 	}
 

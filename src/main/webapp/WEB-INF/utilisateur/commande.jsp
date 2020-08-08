@@ -18,7 +18,7 @@
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
 	integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
 	crossorigin="anonymous">
-<link type="text/css" rel="stylesheet" href="static/style.css">
+<link rel="stylesheet" href="./resources/css/stylesheet.css">
 
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"
 	integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
@@ -29,7 +29,7 @@
 <body>
 	<div class="container-fluid">
 
-		<%@ include file="include/common/menu.html"%>
+		<%@ include file="../include/common/menu.html"%>
 
 		<div class="row">
 			<div class="col-sm-12">

@@ -14,7 +14,7 @@ import com.cda.dao.ILivreDao;
 import com.cda.entity.Livre;
 import com.cda.service.ILivreService;
 
-@WebServlet("/ListLivreServlet")
+@WebServlet("/index")
 public class ListLivreServlet extends com.cda.controller.AbstractController {
 	private static final long serialVersionUID = 1L;
 
@@ -29,7 +29,7 @@ public class ListLivreServlet extends com.cda.controller.AbstractController {
 			System.out.println(livre);
 		}
 		request.setAttribute("livres", livres);
-		request.getRequestDispatcher("/index.jsp").forward(request, response);
+		request.getRequestDispatcher("WEB-INF/utilisateur/index.jsp").forward(request, response);
 
 	}
 

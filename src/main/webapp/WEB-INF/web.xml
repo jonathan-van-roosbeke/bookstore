@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xmlns="http://xmlns.jcp.org/xml/ns/javaee"
-         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
-         id="WebApp_ID" version="4.0">
-    <display-name>Bookstore</display-name>
-    <welcome-file-list>
-        <!-- Lien de lancement de l'appli -->
-        <welcome-file>init.do</welcome-file>
-    </welcome-file-list>
+	xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
+	id="WebApp_ID" version="4.0">
+	<display-name>Bookstore</display-name>
+	
+	<welcome-file-list>
+		<welcome-file>index</welcome-file>
+	</welcome-file-list>
 
     <!-- 	declaration de l'application context dans le serveur -->
     <listener>
@@ -26,7 +26,7 @@
     <jsp-config>
 		<jsp-property-group>
 			<url-pattern>*.jsp</url-pattern>
-			<include-prelude>/WEB-INF/jstlLib.jsp</include-prelude>
+			<include-prelude>/WEB-INF/lib/jstlLib.jsp</include-prelude>
 		</jsp-property-group>
 	</jsp-config>
 	

@@ -15,14 +15,14 @@
 <body>
 
 	<div class="container-fluid">
-		<%@ include file="include/common/menu.html" %> 
+		<%@ include file="../include/common/menu.html" %> 
 		
 		<div class="row">
 			<div class="col-xl-5 col-lg-5 col-md-5 col-sm-5 left">
 				<div class="center_img">
 					<img src="./resources/images/img-couverture-livre/${livre.nomImage}"
 						alt="couverture de livre"> <a
-						href="PanierServlet?method=ajouter&id=${livre.id}"
+						href="panier?method=ajouter&id=${livre.id}"
 						class="btn btn-primary">Ajouter au panier</a>
 				</div>
 			</div>

@@ -14,7 +14,7 @@ import com.cda.entity.Livre;
 import com.cda.entity.Panier;
 import com.cda.service.ILivreService;
 
-@WebServlet("/PanierServlet")
+@WebServlet("/panier")
 public class PanierServlet extends AbstractController {
 	private static final long serialVersionUID = 1L;
 
@@ -26,9 +26,11 @@ public class PanierServlet extends AbstractController {
 			throws ServletException, IOException {
 		String methodName = request.getParameter("method");
 		System.out.println(methodName);
-		if ("ajouter".equals(methodName)) {
+		if (methodName == null) {
+			request.getRequestDispatcher("WEB-INF/utilisateur/panier.jsp").forward(request, response);
+		} else if ("ajouter".equals(methodName)) {
 			ajouter(request, response);
-		} else if ("supprimer".equals(methodName)) {
+		}else if ("supprimer".equals(methodName)) {
 			supprimer(request, response);
 		} else if ("modifier".contentEquals(methodName)) {
 			modifier(request, response);
@@ -54,7 +56,7 @@ public class PanierServlet extends AbstractController {
 		Livre livre = livreService.findById(Integer.parseInt(request.getParameter("id")));
 		panier.ajouterLivre(livre);
 
-		response.sendRedirect(request.getContextPath() + "/ListLivreServlet");
+		response.sendRedirect(request.getContextPath() + "/index");
 	}
 
 	protected void supprimer(HttpServletRequest request, HttpServletResponse response)
@@ -65,7 +67,7 @@ public class PanierServlet extends AbstractController {
 		System.out.println(request.getParameter("id"));
 		panier.supprimerLivre(Integer.parseInt(request.getParameter("id")));
 
-		response.sendRedirect(request.getContextPath() + "/panier.jsp");
+		response.sendRedirect(request.getContextPath() + "WEB-INF/utilisateur/panier.jsp");
 	}
 
 	private void modifier(HttpServletRequest request, HttpServletResponse response)
@@ -74,6 +76,6 @@ public class PanierServlet extends AbstractController {
 		Panier panier = (Panier) session.getAttribute("panier");
 
 		panier.updateQuantite(Integer.parseInt(request.getParameter("id")), request.getParameter("qte"));
-		response.sendRedirect(request.getContextPath() + "/panier.jsp");
+		response.sendRedirect(request.getContextPath() + "WEB-INF/utilisateur/panier.jsp");
 	}
 }
