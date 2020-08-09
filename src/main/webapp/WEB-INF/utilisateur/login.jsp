@@ -18,7 +18,7 @@
                       
                   </div>
                   <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 inscription">
-                      <form action="login.do" method="post">
+                      <form action="login" method="post">
                           <h1>Login</h1>
                           <input type="text" class="form-control" id="login" placeholder="login" required>
                           <br/>

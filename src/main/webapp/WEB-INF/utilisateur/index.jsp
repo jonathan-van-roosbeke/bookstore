@@ -31,7 +31,7 @@
 							<p class="card-text">${livres.auteur.nom}
 								${livres.auteur.prenom}</p>
 							<h6 class="card-text">${livres.prix} €</h6>
-							<a href="PanierServlet?method=ajouter&id=${livres.id}"
+							<a href="panier?method=ajouter&id=${livres.id}"
 								class="btn btn-primary">Ajouter au panier</a>
 						</div>
 					</div>

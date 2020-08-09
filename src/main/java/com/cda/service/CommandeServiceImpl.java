@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.cda.dao.IArticleCmdDao;
 import com.cda.dao.ICommandeDao;
@@ -12,14 +13,16 @@ import com.cda.dao.ILivreDao;
 import com.cda.entity.Article;
 import com.cda.entity.ArticleCmd;
 import com.cda.entity.Commande;
+import com.cda.entity.Livre;
 import com.cda.entity.Panier;
 import com.cda.entity.Utilisateur;
 
+@Service
 public class CommandeServiceImpl implements ICommandeService {
 
 	@Autowired
 	ICommandeDao commandeDao;
-	IArticleCmdDao articlCmdDao;
+	IArticleCmdDao articleCmdDao;
 	ILivreDao livreDao;
 
 	@Override
@@ -41,13 +44,17 @@ public class CommandeServiceImpl implements ICommandeService {
 			ArticleCmd articleCmd = new ArticleCmd(article.getLivre().getId(), article.getLivre().getTitre(),
 					article.getQuantite(), article.getLivre().getPrix().doubleValue(), article.getTotal(), commande);
 			cmdArticles.add(articleCmd);
+			articleCmdDao.save(articleCmd);
 		}
 
 		commandeDao.save(commande);
-		articlCmdDao.saveAll(cmdArticles);
+//		articleCmdDao.saveAll(cmdArticles);
 
-		for (ArticleCmd articleCmd : cmdArticles) {
-			livreDao.findById(articleCmd.getId());
+		for (Article article : allArticles) {
+			Livre tempLivre = livreDao.findById(article.getLivre().getId()).get();
+			int qteAchete = article.getQuantite();
+			tempLivre.setQuantiteStock(tempLivre.getQuantiteStock() - qteAchete);
+			livreDao.save(tempLivre);
 		}
 
 		return numeroCmd;
@@ -55,8 +62,8 @@ public class CommandeServiceImpl implements ICommandeService {
 
 	@Override
 	public void updateStatus(String numeroCmd, String status) {
-		int numero = Integer.parseInt(numeroCmd);
-		Commande temp = commandeDao.findById(numero).get();
+
+		Commande temp = commandeDao.findById(numeroCmd).get();
 		int statusFinal = Integer.parseInt(status);
 		temp.setStatus(statusFinal);
 		commandeDao.save(temp);
@@ -68,8 +75,8 @@ public class CommandeServiceImpl implements ICommandeService {
 	}
 
 	@Override
-	public List<Commande> mesCommandes(Iterable<Integer> uid) {
-		return (List<Commande>) commandeDao.findAllById(uid);
+	public List<Commande> mesCommandes(Iterable<String> login) {
+		return (List<Commande>) commandeDao.findAllById(login);
 	}
 
 }
