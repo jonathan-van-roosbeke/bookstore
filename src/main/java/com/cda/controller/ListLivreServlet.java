@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.cda.dao.ILivreDao;
 import com.cda.entity.Livre;
+import com.cda.entity.Utilisateur;
 import com.cda.service.ILivreService;
 
 @WebServlet("/index")
@@ -36,5 +37,11 @@ public class ListLivreServlet extends com.cda.controller.AbstractController {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		List<Livre> livres = iLivreService.findAll();
+		Utilisateur utlisateur = (Utilisateur) request.getAttribute("utilisateur");
+
+		request.setAttribute("livres", livres);
+		request.setAttribute("utilisateur", utlisateur);
+		request.getRequestDispatcher("WEB-INF/utilisateur/index.jsp").forward(request, response);
 	}
 }

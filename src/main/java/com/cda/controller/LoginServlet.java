@@ -31,11 +31,13 @@ public class LoginServlet extends AbstractController {
 
 		String login = request.getParameter("login");
 		String password = request.getParameter("password");
-		Utilisateur loginUtilisateur = utilisateurService.connexion(login, password);
+		Utilisateur utilisateur = utilisateurService.connexion(login, password);
 
-		if (loginUtilisateur == null) {
-			request.getRequestDispatcher("/WEB-INF/utilisateur/login.jsp").forward(request, response);
+		if (utilisateur == null) {
+			request.setAttribute("error", true);
+			request.getRequestDispatcher("WEB-INF/utilisateur/login.jsp").forward(request, response);
 		} else {
+			request.setAttribute("utilisateur", utilisateur);
 			request.getRequestDispatcher("/index").forward(request, response);
 		}
 	}
