@@ -31,7 +31,17 @@
 <body>
 	<div class="container-fluid">
 
-		<%@ include file="../include/common/menu.html"%>
+		<c:choose>
+			<c:when test="${utilisateur.status_utilisateur == 1}">
+   				<%@ include file="../include/common/menu-admin.html"%>
+  			</c:when>
+			<c:when test="${utilisateur.status_utilisateur == 2}">
+    			<%@ include file="../include/common/menu-admin.html"%>
+			</c:when>
+			<c:otherwise>
+    			<%@ include file="../include/common/menu-utilisateur.html"%>
+  			</c:otherwise>
+		</c:choose>
 
 		<div class="row">
 			<div class="col-sm-12">

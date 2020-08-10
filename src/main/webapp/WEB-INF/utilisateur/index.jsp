@@ -17,9 +17,33 @@
 <body>
 
 	<div class="container-fluid">
-		<%@ include file="../include/common/menu.html" %> 
+		<c:choose>
+			<c:when test="${utilisateur.statusUtilisateur == 1}">
+   				<%@ include file="../include/common/menu-client.html"%>
+  			</c:when>
+			<c:when test="${utilisateur.statusUtilisateur == 2}">
+    			<%@ include file="../include/common/menu-admin.html"%>
+			</c:when>
+			<c:otherwise>
+    			<%@ include file="../include/common/menu-utilisateur.html"%>
+  			</c:otherwise>
+		</c:choose>
+		
+		<c:choose>
+			    <c:when test="${empty utilisateur}">
+					<div class="user">
+						<h3>Bonjour</h3>
+					</div>
+			    </c:when>
+			    <c:otherwise>
+					<div class="user">
+						<h3>Bonjour ${utilisateur.prenom }</h3>
+					</div>
+			    </c:otherwise>
+			</c:choose>
+		
 		<div class="row">
-
+			
 			<c:forEach items="${livres}" var="livres">
 				<div class="col-sm-3 livre" id="${livres.id}">
 					<div class="card" style="width: 18rem;">
@@ -30,7 +54,7 @@
 							<h5 class="card-title">${livres.titre}</h5>
 							<p class="card-text">${livres.auteur.nom}
 								${livres.auteur.prenom}</p>
-							<h6 class="card-text">${livres.prix} €</h6>
+							<h6 class="card-text">${livres.prix}€</h6>
 							<a href="panier?method=ajouter&id=${livres.id}"
 								class="btn btn-primary">Ajouter au panier</a>
 						</div>

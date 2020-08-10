@@ -4,5 +4,5 @@ import com.cda.entity.Utilisateur;
 
 public interface IUtilisateurService {
 
-	public Utilisateur connexion(String login, String password);
+	public Utilisateur connexion(String login, String motdepasse);
 }

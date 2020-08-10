@@ -13,12 +13,9 @@ public class UtilisateurServiceImpl implements IUtilisateurService {
 	private IUtilisateurDao utilisateurDao;
 
 	@Override
-	public Utilisateur connexion(String login, String password) {
-		Utilisateur utilisateur = utilisateurDao.findById(login).get();
-		if (utilisateur.getMotdepasse().equals(password)) {
-			return utilisateur;
-		} else {
-			return null;
-		}
+	public Utilisateur connexion(String login, String motdepasse) {
+		Utilisateur utilisateur = utilisateurDao.connexion(login, motdepasse);
+		System.out.println(utilisateur);
+		return utilisateur;
 	}
 }
