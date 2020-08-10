@@ -1,10 +1,18 @@
 package com.cda.service;
 
+import java.util.List;
+
+import com.cda.entity.Commande;
 import com.cda.entity.Panier;
+import com.cda.entity.Utilisateur;
 
 public interface ICommandeService {
 
-	public String checkout(Panier panier);
+	String checkout(Panier panier, Utilisateur utilisateur);
 
-	public void updateStatus(String numeroCmd);
+	void updateStatus(String numeroCmd, String status);
+
+	List<Commande> getCommandes();
+
+	List<Commande> mesCommandes(Iterable<String> login);
 }

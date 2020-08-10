@@ -27,7 +27,7 @@ public class Commande {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "numero_cmd")
-	private String numero;
+	private String numeroCmd;
 
 	@Column(name = "date_creation")
 	private LocalDateTime date;
@@ -39,6 +39,6 @@ public class Commande {
 	private double totalCmd;
 
 	@ManyToOne
-	@JoinColumn(name = "uid", nullable = false, insertable = false, updatable = false)
+	@JoinColumn(name = "login", nullable = false, insertable = false, updatable = false)
 	private Utilisateur utilisateur;
 }

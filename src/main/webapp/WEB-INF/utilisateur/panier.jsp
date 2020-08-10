@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <title>Panier</title>
 
-<%
+<%-- <%
 	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
 			+ request.getContextPath() + "/";
 
@@ -14,7 +14,7 @@
 	/* System.out.println(basePath); */
 %>
 
-<base href="<%=basePath%>">
+<base href="<%=basePath%>"> --%>
 
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
@@ -41,7 +41,7 @@
 						<div class="container">
 							<h1 class="display-4">Votre panier est vide</h1>
 							<a class="btn btn-primary btn-lg"
-								href="/bookstore/ListLivreServlet" role="button">Shopping
+								href="/bookstore" role="button">Shopping
 								maintenant</a>
 						</div>
 					</div>
@@ -70,7 +70,7 @@
 									<td>${article.livre.prix}</td>
 									<td>${article.total}</td>
 									<td><a class="delBtn"
-										href="PanierServlet?method=supprimer&id=${article.livre.id}"
+										href="panier?method=supprimer&id=${article.livre.id}"
 										class="btn btn-primary">Supprimer</a></td>
 								</tr>
 							</tbody>
@@ -82,8 +82,8 @@
 								<td></td>
 								<td>${panier.totalQuantite}</td>
 								<td></td>
-								<td>${panier.totalPrix}€</td>
-								<td><a href="#" class="btn btn-primary">Passer la
+								<td>${panier.totalPrix} €</td>
+								<td><a href="commande-client?method=checkout" class="btn btn-primary">Passer la
 										commande</a></td>
 								<td></td>
 							</tr>

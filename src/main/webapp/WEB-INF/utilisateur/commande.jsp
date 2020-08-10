@@ -5,14 +5,6 @@
 <head>
 <meta charset="UTF-8">
 <title>Mes commandes</title>
-<%
-	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
-			+ request.getContextPath() + "/";
-
-	pageContext.setAttribute("basePath", basePath);
-%>
-
-<base href="<%=basePath%>">
 
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"

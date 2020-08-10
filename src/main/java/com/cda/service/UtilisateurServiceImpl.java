@@ -12,10 +12,13 @@ public class UtilisateurServiceImpl implements IUtilisateurService {
 	@Autowired
 	private IUtilisateurDao utilisateurDao;
 
-
 	@Override
 	public Utilisateur connexion(String login, String password) {
-		// TODO Auto-generated method stub
-		return null;
+		Utilisateur utilisateur = utilisateurDao.findById(login).get();
+		if (utilisateur.getMotdepasse().equals(password)) {
+			return utilisateur;
+		} else {
+			return null;
+		}
 	}
 }
