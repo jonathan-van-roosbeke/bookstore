@@ -49,6 +49,14 @@ body {
     @extend %reset-style;
 }
 
+.user
+{
+    h3{
+        margin-left: 20px;
+        margin-top: 20px;
+    }
+}
+
 .col-sm-12 {
     @extend %reset-style;
 }

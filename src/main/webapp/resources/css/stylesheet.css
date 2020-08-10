@@ -30,6 +30,10 @@ body {
     border-color: #5bdf94;
     background-position: 200px; }
 
+.user h3 {
+  margin-left: 20px;
+  margin-top: 20px; }
+
 .bg-image {
   background: url("../images/img-page/lib.jpg") no-repeat;
   max-height: 100%;
