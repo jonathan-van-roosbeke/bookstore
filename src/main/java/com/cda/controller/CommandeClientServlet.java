@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.cda.dao.ICommandeDao;
 import com.cda.entity.Panier;
 import com.cda.entity.Utilisateur;
 import com.cda.service.ICommandeService;
@@ -20,6 +21,8 @@ public class CommandeClientServlet extends AbstractController {
 
 	@Autowired
 	ICommandeService commandeService;
+	@Autowired
+	ICommandeDao commandeDao;
 
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -49,7 +52,7 @@ public class CommandeClientServlet extends AbstractController {
 				session.setAttribute("panier", panier);
 			}
 			String numeroCmd = commandeService.checkout(panier, loginUtilisateur);
-
+			System.out.println(numeroCmd);
 			session.setAttribute("numeroCmd", numeroCmd);
 
 			response.sendRedirect(request.getContextPath() + "/WEB-INF/utilisateur/checkout.jsp");

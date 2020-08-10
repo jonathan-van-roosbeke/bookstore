@@ -1,11 +1,15 @@
 package com.cda.test;
 
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.cda.dao.IArticleCmdDao;
 import com.cda.dao.ICommandeDao;
 import com.cda.dao.ILivreDao;
+import com.cda.entity.Livre;
+import com.cda.service.ILivreService;
 
 public class CommandeServiceTest {
 
@@ -15,10 +19,14 @@ public class CommandeServiceTest {
 	IArticleCmdDao articleCmdDao;
 	@Autowired
 	ILivreDao livreDao;
+	@Autowired
+	ILivreService livreService;
 
 	@Test
 	public void test() {
-		System.out.println(livreDao.count());
+//		System.out.println(livreDao.count());
+		List<Livre> list = livreService.findAll();
+		System.out.println(list);
 	}
 
 //	@Test

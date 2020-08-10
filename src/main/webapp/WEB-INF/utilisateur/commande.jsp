@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -38,46 +38,35 @@
 				</c:if> --%>
 
 				<%-- <c:if test="${!empty panier.all}"> --%>
-					<table class="table">
-						<thead>
-							<tr>
-								<th scope="col">Numero de commande</th>
-								<th scope="col">Date</th>
-								<th scope="col">Status</th>
-								<th scope="col">Prix total</th>
-								<th scope="col"></th>
-							</tr>
-						</thead>
+				<table class="table">
+					<thead>
+						<tr>
+							<th scope="col">Numero de commande</th>
+							<th scope="col">Date</th>
+							<th scope="col">Status</th>
+							<th scope="col">Prix total</th>
+							<th scope="col"></th>
+						</tr>
+					</thead>
 
-						<c:forEach items="${panier.all}" var="article">
-							<tbody>
-								<tr>
-									<th scope="row">${article.livre.id}</th>
-									<td>${article.livre.titre}</td>
-									<td><input class="quantite" type="number" min="1"
-										name="quantite" value="${article.quantite}" /></td>
-									<td>${article.livre.prix}</td>
-									<td>${article.total}</td>
-									<td><a class="delBtn"
-										href="PanierServlet?method=supprimer&id=${article.livre.id}"
-										class="btn btn-primary">Voir la detaile</a></td>
-								</tr>
-							</tbody>
-						</c:forEach>
-
+					<c:forEach items="${panier.all}" var="article">
 						<tbody>
 							<tr>
-								<th scope="row"></th>
-								<td></td>
-								<td>${panier.totalQuantite}</td>
-								<td></td>
-								<td>${panier.totalPrix}€</td>
-								<td><a href="#" class="btn btn-primary">Passer la
-										commande</a></td>
-								<td></td>
+								<th scope="row">${article.livre.id}</th>
+								<td>${article.livre.titre}</td>
+								<td><input class="quantite" type="number" min="1"
+									name="quantite" value="${article.quantite}" /></td>
+								<td>${article.livre.prix}</td>
+								<td>${article.total}</td>
+								<td><a class="delBtn"
+									href="PanierServlet?method=supprimer&id=${article.livre.id}"
+									class="btn btn-primary">Voir la detaile</a></td>
 							</tr>
 						</tbody>
-					</table>
+					</c:forEach>
+
+
+				</table>
 				<%-- </c:if> --%>
 			</div>
 		</div>

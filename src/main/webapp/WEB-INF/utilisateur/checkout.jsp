@@ -28,8 +28,7 @@
 						<h1 class="display-4">Merci pour votre achat !</h1>
 						<h3>${numeroCmd}</h3>
 						<a class="btn btn-primary btn-lg"
-							href="/bookstore/ListLivreServlet" role="button">Shopping
-							maintenant</a>
+							href="/bookstore/ListLivreServlet" role="button">Home</a>
 					</div>
 				</div>
 

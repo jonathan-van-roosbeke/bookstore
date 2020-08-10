@@ -36,7 +36,7 @@ public class LoginServlet extends AbstractController {
 		if (loginUtilisateur == null) {
 			request.getRequestDispatcher("/WEB-INF/utilisateur/login.jsp").forward(request, response);
 		} else {
-			request.getRequestDispatcher("/WEB-INF/utilisateur/index.jsp").forward(request, response);
+			request.getRequestDispatcher("/index").forward(request, response);
 		}
 	}
 }
