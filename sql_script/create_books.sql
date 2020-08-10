@@ -1,9 +1,13 @@
-
+DROP TABLE IF EXISTS t_article_cmd;
+DROP TABLE IF EXISTS t_commande;
+DROP TABLE IF EXISTS t_utilisateur;
+DROP TABLE IF EXISTS t_adresse;
+DROP TABLE IF EXISTS t_livre;
+DROP TABLE IF EXISTS t_auteur;
 -- -----------------------------
 -- CREATION LIVRE --------------
 -- -----------------------------
-DROP TABLE IF EXISTS t_livre;
-CREATE TABLE bookstore.t_livre (
+CREATE TABLE t_livre (
 	reference_livre INT auto_increment NOT NULL,
 	id_auteur INT NOT NULL,
 	titre_livre varchar(100) NOT NULL,
@@ -21,8 +25,7 @@ COLLATE=utf8_general_ci;
 -- -----------------------------
 -- CREATION AUTEUR -------------
 -- -----------------------------
-DROP TABLE IF EXISTS t_auteur;
-CREATE TABLE bookstore.t_auteur (
+CREATE TABLE t_auteur (
 	id_auteur INT auto_increment NOT NULL REFERENCES t_livre(id_auteur),
 	nom_auteur varchar(100) NOT NULL,
 	prenom_auteur varchar(100) NOT NULL,
@@ -185,26 +188,25 @@ values (
 -- INSERT AUTEUR----------------
 -- -----------------------------
 
-INSERT INTO	T_AUTEUR ()
+INSERT INTO	t_auteur ()
 VALUES (1, "Michel", "Dupont");
 
-INSERT INTO	T_AUTEUR ()
+INSERT INTO	t_auteur ()
 VALUES (2, "Robin", "Desbois");
 
-INSERT INTO	T_AUTEUR ()
+INSERT INTO	t_auteur ()
 VALUES (3, "Maxime", "Chattam");
 
-INSERT INTO	T_AUTEUR ()
+INSERT INTO	t_auteur ()
 VALUES (4, "Sandrine", "Ledoux");
 
-INSERT INTO	T_AUTEUR ()
+INSERT INTO	t_auteur ()
 VALUES (5, "Romeo", "Tutzani");
 
 -- -----------------------------
 -- CREATION ADRESSE ------------
 -- -----------------------------
-DROP TABLE IF EXISTS t_adresse;
-CREATE TABLE bookstore.t_adresse (
+CREATE TABLE t_adresse (
 	id_adresse INT not null primary key auto_increment,
    	numero INT NOT NULL,
    	rue VARCHAR(50),
@@ -222,8 +224,7 @@ COLLATE=utf8_general_ci;
 -- -----------------------------
 -- CREATION UTILISATEUR --------
 -- -----------------------------
-DROP TABLE IF EXISTS t_utilisateur;
-CREATE TABLE bookstore.t_utilisateur (
+CREATE TABLE t_utilisateur (
 	login varchar(30) not NULL PRIMARY key,
 	motdepasse varchar(200) not null,
 	uid int(50) NOT NULL,
@@ -243,8 +244,7 @@ COLLATE=utf8_general_ci;
 -- -----------------------------
 -- CREATION COMMANDE -----------
 -- -----------------------------
-DROP TABLE IF EXISTS t_commande;
-CREATE TABLE bookstore.t_commande (
+CREATE TABLE t_commande (
 	numero_cmd varchar(50) NOT NULL primary key,
 	date_creation datetime NOT NULL,
 	status_cmd INT(2) NOT NULL,
@@ -260,8 +260,7 @@ COLLATE=utf8_general_ci;
 -- -----------------------------
 -- CREATION ACTICLE COMMANDE ---
 -- -----------------------------
-DROP TABLE IF EXISTS t_article_cmd;
-CREATE TABLE bookstore.t_article_cmd (
+CREATE TABLE t_article_cmd (
 	id_article int not null primary key auto_increment,
  	titre varchar(100) NOT NULL,
 	quantite int NOT NULL,
@@ -295,18 +294,13 @@ VALUES ("123", '2015-11-05 14:29:36', 1, 1.2, "client");
 -- VERIFICATION ----------------
 -- -----------------------------
 
-SELECT * FROM T_LIVRE;
-SELECT * FROM T_AUTEUR;
+SELECT * FROM t_livre;
+SELECT * FROM t_auteur;
 
-SELECT * FROM T_LIVRE TL
-JOIN T_AUTEUR TA ON tl.ID_AUTEUR = ta.ID_AUTEUR;
+SELECT * FROM t_livre tl
+JOIN t_auteur ta ON tl.id_auteur = ta.id_auteur;
 
 SELECT * FROM t_adresse;
 
 SELECT * FROM t_utilisateur;
-
-
-
-
-
 
