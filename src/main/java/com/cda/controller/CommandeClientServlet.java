@@ -55,8 +55,8 @@ public class CommandeClientServlet extends AbstractController {
 			System.out.println(numeroCmd);
 			session.setAttribute("numeroCmd", numeroCmd);
 
-			response.sendRedirect(request.getContextPath() + "/WEB-INF/utilisateur/checkout.jsp");
-//			request.getRequestDispatcher("/WEB-INF/utilisateur/checkout.jsp").forward(request, response);
+//			response.sendRedirect(request.getContextPath() + "/WEB-INF/utilisateur/checkout.jsp");
+			request.getRequestDispatcher("/WEB-INF/utilisateur/checkout.jsp").forward(request, response);
 		} else {
 			request.getRequestDispatcher("/WEB-INF/utilisateur/login.jsp").forward(request, response);
 		}

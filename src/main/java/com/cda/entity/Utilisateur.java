@@ -1,7 +1,12 @@
 package com.cda.entity;
 
+import java.io.Serializable;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -18,14 +23,16 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Utilisateur {
+public class Utilisateur implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@Column(name = "login")
 	private String login;
 
 	@Column(name = "uid")
-//	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 
 	@Column(name = "motdepasse")
@@ -43,7 +50,8 @@ public class Utilisateur {
 	@Column(name = "status_utilisateur")
 	private int statusUtilisateur;
 
-	@ManyToOne
-	@JoinColumn(name = "id_adresse", nullable = false, insertable = false, updatable = false)
+	@ManyToOne(cascade = { CascadeType.ALL })
+	@JoinColumn(name = "id_adresse", referencedColumnName = "id_adresse", nullable = false, insertable = false, updatable = false)
 	private Adresse adresse;
+
 }

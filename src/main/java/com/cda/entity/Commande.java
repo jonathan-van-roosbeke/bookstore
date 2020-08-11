@@ -2,10 +2,9 @@ package com.cda.entity;
 
 import java.time.LocalDateTime;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -25,7 +24,6 @@ import lombok.NoArgsConstructor;
 public class Commande {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "numero_cmd")
 	private String numeroCmd;
 
@@ -38,7 +36,9 @@ public class Commande {
 	@Column(name = "total_cmd")
 	private double totalCmd;
 
-	@ManyToOne
-	@JoinColumn(name = "login", nullable = false, insertable = false, updatable = false)
+	@ManyToOne(targetEntity = Utilisateur.class, cascade = { CascadeType.ALL })
+	@JoinColumn(name = "login", referencedColumnName = "login", nullable = false, insertable = false, updatable = false)
 	private Utilisateur utilisateur;
+
+	private String login;
 }

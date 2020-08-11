@@ -16,10 +16,10 @@
 
 	<div class="container-fluid">
 		<c:choose>
-			<c:when test="${utilisateur.status_utilisateur == 1}">
+			<c:when test="${utilisateur.statusUtilisateur == 1}">
 				<%@ include file="../include/common/menu-admin.html"%>
 			</c:when>
-			<c:when test="${utilisateur.status_utilisateur == 2}">
+			<c:when test="${utilisateur.statusUtilisateur == 2}">
 				<%@ include file="../include/common/menu-admin.html"%>
 			</c:when>
 			<c:otherwise>

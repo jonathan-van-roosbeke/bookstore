@@ -1,7 +1,10 @@
 package com.cda.entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -21,7 +24,7 @@ import lombok.NoArgsConstructor;
 public class ArticleCmd {
 
 	@Id
-//	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_article")
 	private Integer id;
 
@@ -37,8 +40,10 @@ public class ArticleCmd {
 	@Column(name = "total_prix")
 	private double totalPrix;
 
-	@ManyToOne
-	@JoinColumn(name = "numero_cmd", nullable = false, insertable = false, updatable = false)
+	@ManyToOne(targetEntity = Commande.class, cascade = { CascadeType.ALL })
+	@JoinColumn(name = "numero_cmd", referencedColumnName = "numero_cmd", nullable = false, insertable = false, updatable = false)
 	private Commande commande;
+
+	private String numeroCmd;
 
 }

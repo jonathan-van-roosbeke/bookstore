@@ -19,10 +19,10 @@
 	<div class="container-fluid">
 
 		<c:choose>
-			<c:when test="${utilisateur.status_utilisateur == 1}">
+			<c:when test="${utilisateur.statusUtilisateur == 1}">
    				<%@ include file="../include/common/menu-admin.html"%>
   			</c:when>
-			<c:when test="${utilisateur.status_utilisateur == 2}">
+			<c:when test="${utilisateur.statusUtilisateur == 2}">
     			<%@ include file="../include/common/menu-admin.html"%>
 			</c:when>
 			<c:otherwise>
@@ -36,9 +36,9 @@
 				<div class="jumbotron jumbotron-fluid">
 					<div class="container">
 						<h1 class="display-4">Merci pour votre achat !</h1>
-						<h3>${numeroCmd}</h3>
+						<h3>Numero de commande : ${numeroCmd}</h3>
 						<a class="btn btn-primary btn-lg"
-							href="/bookstore/ListLivreServlet" role="button">Home</a>
+							href="/bookstore/" role="button">Home</a>
 					</div>
 				</div>
 

@@ -22,7 +22,9 @@ public class CommandeServiceImpl implements ICommandeService {
 
 	@Autowired
 	ICommandeDao commandeDao;
+	@Autowired
 	IArticleCmdDao articleCmdDao;
+	@Autowired
 	ILivreDao livreDao;
 
 	@Override
@@ -35,20 +37,21 @@ public class CommandeServiceImpl implements ICommandeService {
 		commande.setNumeroCmd(numeroCmd);
 		commande.setTotalCmd(panier.getTotalPrix());
 		commande.setStatus(0);
-		commande.setUtilisateur(utilisateur);
+		commande.setLogin(utilisateur.getLogin());
+//		commande.setUtilisateur(utilisateur);
 
 		List<Article> allArticles = panier.getAll();
 		List<ArticleCmd> cmdArticles = new ArrayList<>();
 
 		for (Article article : allArticles) {
 			ArticleCmd articleCmd = new ArticleCmd(article.getLivre().getId(), article.getLivre().getTitre(),
-					article.getQuantite(), article.getLivre().getPrix().doubleValue(), article.getTotal(), commande);
+					article.getQuantite(), article.getLivre().getPrix().doubleValue(), article.getTotal(), commande,
+					commande.getNumeroCmd());
 			cmdArticles.add(articleCmd);
-			articleCmdDao.save(articleCmd);
 		}
 
 		commandeDao.save(commande);
-//		articleCmdDao.saveAll(cmdArticles);
+		articleCmdDao.saveAll(cmdArticles);
 
 		for (Article article : allArticles) {
 			Livre tempLivre = livreDao.findById(article.getLivre().getId()).get();
