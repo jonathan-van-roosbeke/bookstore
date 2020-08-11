@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.cda.entity.ArticleCmd;
 import com.cda.entity.Commande;
 import com.cda.entity.Panier;
 import com.cda.entity.Utilisateur;
@@ -34,6 +35,8 @@ public class CommandeClientServlet extends AbstractController {
 			checkout(request, response);
 		} else if ("afficher".contentEquals(methodName)) {
 			afficher(request, response);
+		} else if ("detail".contentEquals(methodName)) {
+			detail(request, response);
 		}
 	}
 
@@ -83,14 +86,27 @@ public class CommandeClientServlet extends AbstractController {
 			throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		Utilisateur loginUtilisateur = (Utilisateur) session.getAttribute("utilisateur");
-//		List<Commande> mesCommandes = commandeService.mesCommandes(loginUtilisateur.getLogin());
 		List<Commande> mesCommandes = commandeService.mesCmds(loginUtilisateur.getLogin());
-		for (Commande c : mesCommandes) {
-			System.out.println(c);
-		}
-		System.out.println(mesCommandes.isEmpty());
 		request.setAttribute("commandes", mesCommandes);
 		request.getRequestDispatcher("/WEB-INF/utilisateur/commande.jsp").forward(request, response);
+	}
+
+	/**
+	 * afficher la detail d'une commande
+	 * 
+	 * @param request
+	 * @param response
+	 * @throws ServletException
+	 * @throws IOException
+	 */
+	protected void detail(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		HttpSession session = request.getSession();
+		Utilisateur loginUtilisateur = (Utilisateur) session.getAttribute("utilisateur");
+		String numeroCmd = request.getParameter("id");
+		List<ArticleCmd> detailCmd = commandeService.detailCmd(numeroCmd);
+		request.setAttribute("detailCmd", detailCmd);
+		request.getRequestDispatcher("/WEB-INF/utilisateur/detail.jsp").forward(request, response);
 	}
 
 }

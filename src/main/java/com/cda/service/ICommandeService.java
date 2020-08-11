@@ -14,8 +14,8 @@ public interface ICommandeService {
 
 	List<Commande> getCommandes();
 
-	List<Commande> mesCommandes(Iterable<String> login);
-
 	List<Commande> mesCmds(String login);
+
+//	List<ArticleCmd> detailCmd(String numeroCmd);
 
 }

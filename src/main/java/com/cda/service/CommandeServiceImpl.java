@@ -73,18 +73,17 @@ public class CommandeServiceImpl implements ICommandeService {
 	}
 
 	@Override
-	public List<Commande> getCommandes() {
-		return (List<Commande>) commandeDao.findAll();
-	}
-
-	@Override
-	public List<Commande> mesCommandes(Iterable<String> login) {
-		return (List<Commande>) commandeDao.findAllById(login);
-	}
-
-	@Override
 	public List<Commande> mesCmds(String login) {
 		return commandeDao.mesCmds(login);
 	}
 
+//	@Override
+//	public List<ArticleCmd> detailCmd(String numeroCmd) {
+//		return commandeDao.detailCmd(numeroCmd);
+//	}
+
+	@Override
+	public List<Commande> getCommandes() {
+		return (List<Commande>) commandeDao.findAll();
+	}
 }

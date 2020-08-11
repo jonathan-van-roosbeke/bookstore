@@ -61,7 +61,7 @@
 										</c:choose></td>
 									<td>${commande.totalCmd}</td>
 									<td><a class="delBtn"
-										href="commande-client?method=detail&id=${article.livre.id}"
+										href="commande-client?method=detail&id=${commande.numeroCmd}"
 										class="btn btn-primary">Voir la détail</a></td>
 								</tr>
 							</tbody>

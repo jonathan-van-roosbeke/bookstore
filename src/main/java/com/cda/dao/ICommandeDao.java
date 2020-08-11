@@ -11,4 +11,8 @@ public interface ICommandeDao extends CrudRepository<Commande, String> {
 
 	@Query("SELECT c FROM Commande c WHERE login = ?1")
 	List<Commande> mesCmds(String login);
+
+//	@Query("SELECT a FROM article_cmd WHERE numero_cmd = ?1")
+//	List<ArticleCmd> detailCmd(String numeroCmd);
+
 }
