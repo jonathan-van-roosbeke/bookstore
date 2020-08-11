@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Checkout</title>
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
 	integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
@@ -18,17 +18,7 @@
 <body>
 	<div class="container-fluid">
 
-		<c:choose>
-			<c:when test="${utilisateur.statusUtilisateur == 1}">
-   				<%@ include file="../include/common/menu-admin.html"%>
-  			</c:when>
-			<c:when test="${utilisateur.statusUtilisateur == 2}">
-    			<%@ include file="../include/common/menu-admin.html"%>
-			</c:when>
-			<c:otherwise>
-    			<%@ include file="../include/common/menu-utilisateur.html"%>
-  			</c:otherwise>
-		</c:choose>
+		<%@ include file="../include/common/menu-utilisateur.html"%>
 
 		<div class="row">
 			<div class="col-sm-12">

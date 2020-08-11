@@ -82,4 +82,9 @@ public class CommandeServiceImpl implements ICommandeService {
 		return (List<Commande>) commandeDao.findAllById(login);
 	}
 
+	@Override
+	public List<Commande> mesCmds(String login) {
+		return commandeDao.mesCmds(login);
+	}
+
 }
