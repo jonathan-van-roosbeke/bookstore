@@ -20,14 +20,13 @@
         <div class="row">
             <div class="col-xl-5 col-lg-5 col-md-5 col-sm-5 left">
                 <div class="center_img">
-                    <img src="./resources/images/img-couverture-livre/arctic.jpg" alt="couverture de livre">
+                    <img src="./resources/images/img-couverture-livre/${livre.nomImage}" alt="couverture de livre">
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
                         </div>
                         <div class="custom-file">
-                            <input type="file" class="custom-file-input" id="inputGroupFile01"
-                                aria-describedby="inputGroupFileAddon01">
+                            <input type="file" class="custom-file-input" id="inputGroupFile01">
                             <label class="custom-file-label" for="inputGroupFile01">Mettre à jour votre image</label>
                         </div>
                     </div>
@@ -41,8 +40,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text" id="inputGroup-sizing-lg">Titre du Livre</span>
                             </div>
-                            <input type="text" class="form-control" aria-label="Sizing example input"
-                                aria-describedby="inputGroup-sizing-lg" placeholder="Titre livre">
+                            <input type="text" class="form-control" placeholder="${livre.titre}">
                         </div>
 
                         <!-- --------------------------Nom Prenom Auteur-------------------------- -->
@@ -50,17 +48,16 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text">Nom et Prénom auteur</span>
                             </div>
-                            <input type="text" aria-label="First name" class="form-control" placeholder="nom">
-                            <input type="text" aria-label="Last name" class="form-control" placeholder="prenom">
+                            <input type="text" class="form-control" placeholder="${livre.auteur.nom}">
+                            <input type="text" class="form-control" placeholder="${livre.auteur.prenom}">
                         </div>
 
                         <!-- --------------------------Synopsys-------------------------- -->
                         <div class="input-group">
                             <div class="input-group-prepend">
-                                <span class="input-group-text">Synopsys</span>
+                                <span class="input-group-text">Synopsis</span>
                             </div>
-                            <textarea class="form-control" aria-label="With textarea"
-                                placeholder="Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression. Le Lorem Ipsum est le faux "></textarea>
+                            <textarea class="form-control" placeholder="${livre.synopsis}"></textarea>
                         </div>
 
                     </div>
@@ -71,8 +68,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text" id="inputGroup-sizing-sm">nombre de page du livre</span>
                             </div>
-                            <input type="number" class="form-control" aria-label="Sizing example input"
-                                aria-describedby="inputGroup-sizing-sm">
+                            <input type="number" class="form-control" placeholder="${livre.nombrePage}">
                         </div>
                         <!-- -------------------------Quantite-------------------------- -->
                         <div class="input-group input-group-sm mb-3">
@@ -80,8 +76,7 @@
                                 <span class="input-group-text" id="inputGroup-sizing-sm">quantitée restante en
                                     stock</span>
                             </div>
-                            <input type="number" class="form-control" aria-label="Sizing example input"
-                                aria-describedby="inputGroup-sizing-sm">
+                            <input type="number" class="form-control" placeholder="${livre.quantiteStock}">
                         </div>
                     </div>
                     <div class="center_prix">
@@ -89,8 +84,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text" id="inputGroup-sizing-default">Prix</span>
                             </div>
-                            <input type="number" class="form-control" aria-label="Sizing example input"
-                                aria-describedby="inputGroup-sizing-default">
+                            <input type="number" class="form-control" placeholder="${livre.prix}">
                         </div>
                     </div>
                 </div>

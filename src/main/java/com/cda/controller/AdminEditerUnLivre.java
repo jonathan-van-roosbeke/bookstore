@@ -7,11 +7,23 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.cda.entity.Livre;
+import com.cda.service.ILivreService;
+
 @WebServlet("/editer-livre")
-public class AdminEditerUnLivre extends HttpServlet {
+public class AdminEditerUnLivre extends AbstractController {
 	private static final long serialVersionUID = 1L;
 	
+	@Autowired
+	ILivreService livreService;
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String idLivre = request.getParameter("id");
+		Livre livre = livreService.findById(Integer.parseInt(idLivre));
+		
+		request.setAttribute("livre", livre);
 		request.getRequestDispatcher("WEB-INF/admin/editer-livre.jsp").forward(request, response);
 	}
 
