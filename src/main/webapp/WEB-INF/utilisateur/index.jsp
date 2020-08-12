@@ -56,7 +56,7 @@
 
 		<div class="row">
 			<c:forEach items="${livres}" var="livres">
-				<div class="col-sm-3 livre" id="${livres.id}">
+				<div class="col-sm-3 livre" name="id-livre" value="${livres.id}">
 					<div class="card" style="width: 18rem;">
 						<img src="resources/images/img-couverture-livre/${livres.nomImage}" class="card-img-top"
 							alt="${livres.nomImage}">
@@ -70,7 +70,7 @@
 
 							<c:choose>
 								<c:when test="${utilisateur.statusUtilisateur == 2}">
-									<a href="editer-livre" class="btn btn-primary">Editer</a>
+									<a href="editer-livre?id=${livres.id}" class="btn btn-primary">Editer</a>
 								</c:when>
 								<c:otherwise>
 									<a href="panier?method=ajouter&id=${livres.id}" class="btn btn-primary">Ajouter au

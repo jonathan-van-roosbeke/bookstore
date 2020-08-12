@@ -26,5 +26,9 @@ public class Auteur {
 	private String nom;
 	@Column(name = "prenom_auteur")
 	private String prenom;
-
+	
+	public Auteur(String nom, String prenom) {
+		this.nom = nom;
+		this.prenom = prenom;
+	}
 }

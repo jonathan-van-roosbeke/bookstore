@@ -21,8 +21,12 @@ public class LivreServiceImpl implements ILivreService {
 
 	@Override
 	public Livre findById(Integer id) {
-		System.out.println("coucou");
 		return livreDao.findById(id).get();
+	}
+
+	@Override
+	public Livre save(Livre livre) {
+		return livreDao.save(livre);
 	}
 
 }

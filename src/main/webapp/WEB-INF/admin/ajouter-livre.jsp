@@ -19,19 +19,18 @@
 
         <div class="row">
             <div class="col-xl-5 col-lg-5 col-md-5 col-sm-5 left">
-                <div class="center_img">
-                    <img src="../resources/images/img-couverture-livre/arctic.jpg" alt="couverture de livre">
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
-                        </div>
-                        <div class="custom-file">
-                            <input type="file" class="custom-file-input" id="inputGroupFile01"
-                                aria-describedby="inputGroupFileAddon01">
-                            <label class="custom-file-label" for="inputGroupFile01">Mettre à jour votre image</label>
+                <form method="POST" action="ajouter-livre" enctype="multipart/form-data">
+                    <div class="center_img">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
+                            </div>
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" id="file" name="file">
+                                <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                            </div>
                         </div>
                     </div>
-                </div>
             </div>
             <div class="col-xl-7 col-lg-7 col-md-7 col-sm-7 right">
                 <div class="center_info">
@@ -41,8 +40,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text" id="inputGroup-sizing-lg">Titre du Livre</span>
                             </div>
-                            <input type="text" class="form-control" aria-label="Sizing example input"
-                                aria-describedby="inputGroup-sizing-lg" placeholder="Titre livre">
+                            <input type="text" class="form-control" name="titre" placeholder="Titre livre">
                         </div>
 
                         <!-- --------------------------Nom Prenom Auteur-------------------------- -->
@@ -50,16 +48,16 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text">Nom et Prénom auteur</span>
                             </div>
-                            <input type="text" aria-label="First name" class="form-control" placeholder="nom">
-                            <input type="text" aria-label="Last name" class="form-control" placeholder="prenom">
+                            <input type="text" class="form-control" name="nom" placeholder="nom">
+                            <input type="text" class="form-control" name="prenom" placeholder="prenom">
                         </div>
 
                         <!-- --------------------------Synopsys-------------------------- -->
                         <div class="input-group">
                             <div class="input-group-prepend">
-                                <span class="input-group-text">Synopsys</span>
+                                <span class="input-group-text">Synopsis</span>
                             </div>
-                            <textarea class="form-control" aria-label="With textarea"
+                            <textarea class="form-control" name="synopsis"
                                 placeholder="Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression. Le Lorem Ipsum est le faux "></textarea>
                         </div>
 
@@ -69,10 +67,10 @@
                         <!-- --------------------------Nombre page-------------------------- -->
                         <div class="input-group input-group-sm mb-3">
                             <div class="input-group-prepend">
-                                <span class="input-group-text" id="inputGroup-sizing-sm">nombre de page du livre</span>
+                                <span class="input-group-text" id="inputGroup-sizing-sm">nombre de page du
+                                    livre</span>
                             </div>
-                            <input type="number" class="form-control" aria-label="Sizing example input"
-                                aria-describedby="inputGroup-sizing-sm">
+                            <input type="number" class="form-control" name="nombre-page" min="0" step=".1">
                         </div>
                         <!-- -------------------------Quantite-------------------------- -->
                         <div class="input-group input-group-sm mb-3">
@@ -80,8 +78,7 @@
                                 <span class="input-group-text" id="inputGroup-sizing-sm">quantitée restante en
                                     stock</span>
                             </div>
-                            <input type="number" class="form-control" aria-label="Sizing example input"
-                                aria-describedby="inputGroup-sizing-sm">
+                            <input type="number" class="form-control" name="quantitee-stock">
                         </div>
                     </div>
                     <div class="center_prix">
@@ -89,11 +86,14 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text" id="inputGroup-sizing-default">Prix</span>
                             </div>
-                            <input type="number" class="form-control" aria-label="Sizing example input"
-                                aria-describedby="inputGroup-sizing-default">
+                            <input type="number" class="form-control" name="prix">
                         </div>
                     </div>
+                    <div class="btn-validation">
+                        <input type="submit" value="Ajouter" class="btn btn-primary" onclick="submitForms()" />
+                    </div>
                 </div>
+                </form>
             </div>
         </div>
 
@@ -107,6 +107,7 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.1/js/bootstrap.min.js"
             integrity="sha384-XEerZL0cuoUbHE4nZReLT7nx9gQrQreJekYhJD9WNWhH8nEW+0c5qq7aIo2Wl30J"
             crossorigin="anonymous"></script>
+        <script src="resources/js/image-upload.js"></script>
 </body>
 
 </html>

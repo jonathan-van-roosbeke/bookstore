@@ -9,5 +9,7 @@ public interface ILivreService {
 	List<Livre> findAll();
 
 	Livre findById(Integer id);
+	
+	Livre save(Livre livre);
 
 }
