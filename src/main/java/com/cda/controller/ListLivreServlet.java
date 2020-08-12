@@ -16,7 +16,7 @@ import com.cda.entity.Utilisateur;
 import com.cda.service.ILivreService;
 
 @WebServlet("/index")
-public class ListLivreServlet extends com.cda.controller.AbstractController {
+public class ListLivreServlet extends AbstractController {
 	private static final long serialVersionUID = 1L;
 
 	@Autowired

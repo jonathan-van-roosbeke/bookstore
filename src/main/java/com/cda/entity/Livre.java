@@ -44,4 +44,15 @@ public class Livre {
 	@ManyToOne
 	@JoinColumn(name = "id_auteur", nullable = false, insertable = false, updatable = false)
 	Auteur auteur;
+	
+	public Livre(int idAuteur, String titre, int quantiteStock, int nombrePage, String synopsis, String nomImage, BigDecimal prix) {
+		super();
+		this.idAuteur = idAuteur;
+		this.titre = titre;
+		this.quantiteStock = quantiteStock;
+		this.nombrePage = nombrePage;
+		this.synopsis = synopsis;
+		this.nomImage = nomImage;
+		this.prix = prix;
+	}
 }

@@ -60,8 +60,7 @@
                             <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
                         </div>
                         <div class="custom-file">
-                            <input type="file" class="custom-file-input" id="inputGroupFile01"
-                                aria-describedby="inputGroupFileAddon01">
+                            <input type="file" class="custom-file-input" id="inputGroupFile01">
                             <label class="custom-file-label" for="inputGroupFile01">Mettre à jour votre image</label>
                         </div>
                     </div>
@@ -69,66 +68,68 @@
             </div>
             <div class="col-xl-7 col-lg-7 col-md-7 col-sm-7 right">
                 <div class="center_info">
-                    <div class="info_livre">
-                        <div class="input-group input-group-lg">
-                            <!-- --------------------------titre livre-------------------------- -->
-                            <div class="input-group-prepend">
-                                <span class="input-group-text" id="inputGroup-sizing-lg">Titre du Livre</span>
+                    <form action="ajouter-livre" method="post">
+                        <div class="info_livre">
+                            <div class="input-group input-group-lg">
+                                <!-- --------------------------titre livre-------------------------- -->
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="inputGroup-sizing-lg">Titre du Livre</span>
+                                </div>
+                                <input type="text" class="form-control" name="titre" placeholder="Titre livre">
                             </div>
-                            <input type="text" class="form-control" aria-label="Sizing example input"
-                                aria-describedby="inputGroup-sizing-lg" placeholder="Titre livre">
-                        </div>
-
-                        <!-- --------------------------Nom Prenom Auteur-------------------------- -->
-                        <div class="input-group">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text">Nom et Prénom auteur</span>
+                            
+                            <!-- --------------------------Nom Prenom Auteur-------------------------- -->
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">Nom et Prénom auteur</span>
+                                </div>
+                                <input type="text" class="form-control" name="nom" placeholder="nom">
+                                <input type="text" class="form-control" name="prenom" placeholder="prenom">
                             </div>
-                            <input type="text" aria-label="First name" class="form-control" placeholder="nom">
-                            <input type="text" aria-label="Last name" class="form-control" placeholder="prenom">
-                        </div>
-
-                        <!-- --------------------------Synopsys-------------------------- -->
-                        <div class="input-group">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text">Synopsys</span>
-                            </div>
-                            <textarea class="form-control" aria-label="With textarea"
+                            
+                            <!-- --------------------------Synopsys-------------------------- -->
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">Synopsis</span>
+                                </div>
+                                <textarea class="form-control" name="synopsis"
                                 placeholder="Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression. Le Lorem Ipsum est le faux "></textarea>
+                            </div>
+                            
                         </div>
-
-                    </div>
-                    <div class="info_complementaire">
-                        <h3>Information complementaire :</h3>
-                        <!-- --------------------------Nombre page-------------------------- -->
+                        <div class="info_complementaire">
+                            <h3>Information complementaire :</h3>
+                            <!-- --------------------------Nombre page-------------------------- -->
                         <div class="input-group input-group-sm mb-3">
                             <div class="input-group-prepend">
-                                <span class="input-group-text" id="inputGroup-sizing-sm">nombre de page du livre</span>
+                                <span class="input-group-text" id="inputGroup-sizing-sm">nombre de page du
+                                    livre</span>
+                                </div>
+                                <input type="number" class="form-control" name="nombre-page">
                             </div>
-                            <input type="number" class="form-control" aria-label="Sizing example input"
-                                aria-describedby="inputGroup-sizing-sm">
-                        </div>
-                        <!-- -------------------------Quantite-------------------------- -->
-                        <div class="input-group input-group-sm mb-3">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text" id="inputGroup-sizing-sm">quantitée restante en
-                                    stock</span>
+                            <!-- -------------------------Quantite-------------------------- -->
+                            <div class="input-group input-group-sm mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="inputGroup-sizing-sm">quantitée restante en
+                                        stock</span>
+                                    </div>
+                                    <input type="number" class="form-control" name="quantitee-stock">
+                                </div>
                             </div>
-                            <input type="number" class="form-control" aria-label="Sizing example input"
-                                aria-describedby="inputGroup-sizing-sm">
-                        </div>
-                    </div>
-                    <div class="center_prix">
-                        <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text" id="inputGroup-sizing-default">Prix</span>
+                            <div class="center_prix">
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="inputGroup-sizing-default">Prix</span>
+                                    </div>
+                                    <input type="number" class="form-control" name="prix">
+                                </div>
                             </div>
-                            <input type="number" class="form-control" aria-label="Sizing example input"
-                                aria-describedby="inputGroup-sizing-default">
+                            <div class="btn-validation">
+                                <input type="submit" value="Submit" class="btn btn-primary">
+                            </div>
                         </div>
-                    </div>
+                    </form>
                 </div>
-            </div>
         </div>
 
 
