@@ -44,6 +44,6 @@ public class ArticleCmd {
 	@JoinColumn(name = "numero_cmd", referencedColumnName = "numero_cmd", nullable = false, insertable = false, updatable = false)
 	private Commande commande;
 
-	private String numeroCmd;
+	private String numero_cmd;
 
 }

@@ -50,8 +50,10 @@ public class Utilisateur implements Serializable {
 	@Column(name = "status_utilisateur")
 	private int statusUtilisateur;
 
-	@ManyToOne(cascade = { CascadeType.ALL })
+	@ManyToOne(targetEntity = Adresse.class, cascade = { CascadeType.ALL })
 	@JoinColumn(name = "id_adresse", referencedColumnName = "id_adresse", nullable = false, insertable = false, updatable = false)
 	private Adresse adresse;
+
+	private int idAdresse;
 
 }

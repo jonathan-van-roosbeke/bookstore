@@ -6,16 +6,6 @@
 <meta charset="UTF-8">
 <title>Panier</title>
 
-<%-- <%
-	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
-			+ request.getContextPath() + "/";
-
-	pageContext.setAttribute("basePath", basePath);
-	/* System.out.println(basePath); */
-%>
-
-<base href="<%=basePath%>"> --%>
-
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
 	integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
@@ -33,14 +23,14 @@
 
 		<c:choose>
 			<c:when test="${utilisateur.statusUtilisateur == 1}">
-   				<%@ include file="../include/common/menu-admin.html"%>
-  			</c:when>
+				<%@ include file="../include/common/menu-admin.html"%>
+			</c:when>
 			<c:when test="${utilisateur.statusUtilisateur == 2}">
-    			<%@ include file="../include/common/menu-admin.html"%>
+				<%@ include file="../include/common/menu-client.html"%>
 			</c:when>
 			<c:otherwise>
-    			<%@ include file="../include/common/menu-utilisateur.html"%>
-  			</c:otherwise>
+				<%@ include file="../include/common/menu-utilisateur.html"%>
+			</c:otherwise>
 		</c:choose>
 
 		<div class="row">
@@ -50,8 +40,7 @@
 					<div class="jumbotron jumbotron-fluid">
 						<div class="container">
 							<h1 class="display-4">Votre panier est vide</h1>
-							<a class="btn btn-primary btn-lg"
-								href="/bookstore" role="button">Shopping
+							<a class="btn btn-primary btn-lg" href="/bookstore" role="button">Shopping
 								maintenant</a>
 						</div>
 					</div>
@@ -92,9 +81,9 @@
 								<td></td>
 								<td>${panier.totalQuantite}</td>
 								<td></td>
-								<td>${panier.totalPrix} €</td>
-								<td><a href="commande-client?method=checkout" class="btn btn-primary">Passer la
-										commande</a></td>
+								<td>${panier.totalPrix}€</td>
+								<td><a href="commande-client?method=checkout"
+									class="btn btn-primary">Passer la commande</a></td>
 								<td></td>
 							</tr>
 						</tbody>
