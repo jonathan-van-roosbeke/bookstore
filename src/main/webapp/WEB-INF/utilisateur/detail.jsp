@@ -27,7 +27,7 @@
 				<table class="table">
 					<thead>
 						<tr>
-							<th scope="col" rowspan="5">Numero de commande : ${}</th>
+							<th scope="col" rowspan="5">Numero de commande : ${numeroCmd}</th>
 							<th scope="col"></th>
 							<th scope="col"></th>
 							<th scope="col"></th>
@@ -39,8 +39,8 @@
 						<tr>
 							<th scope="col">No.</th>
 							<th scope="col">Nom</th>
-							<th scope="col">QuantitÃ©</th>
-							<th scope="col">Prix unitÃ©</th>
+							<th scope="col">Quantité</th>
+							<th scope="col">Prix unité</th>
 							<th scope="col">Prix total</th>
 						</tr>
 					</thead>
@@ -48,7 +48,7 @@
 					<c:forEach items="${detailCmd}" var="article">
 						<tbody>
 							<tr>
-								<th scope="row">${article.idArticle}</th>
+								<th scope="row">${article.id}</th>
 								<td>${article.titre}</td>
 								<td>${article.quantite}</td>
 								<td>${article.prix}</td>

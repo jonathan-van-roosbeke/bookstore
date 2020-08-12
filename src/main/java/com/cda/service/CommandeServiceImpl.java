@@ -77,10 +77,10 @@ public class CommandeServiceImpl implements ICommandeService {
 		return commandeDao.mesCmds(login);
 	}
 
-//	@Override
-//	public List<ArticleCmd> detailCmd(String numeroCmd) {
-//		return commandeDao.detailCmd(numeroCmd);
-//	}
+	@Override
+	public List<ArticleCmd> detailCmd(String numeroCmd) {
+		return commandeDao.detailCmd(numeroCmd);
+	}
 
 	@Override
 	public List<Commande> getCommandes() {

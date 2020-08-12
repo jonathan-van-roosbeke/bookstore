@@ -106,6 +106,7 @@ public class CommandeClientServlet extends AbstractController {
 		String numeroCmd = request.getParameter("id");
 		List<ArticleCmd> detailCmd = commandeService.detailCmd(numeroCmd);
 		request.setAttribute("detailCmd", detailCmd);
+		request.setAttribute("numeroCmd", numeroCmd);
 		request.getRequestDispatcher("/WEB-INF/utilisateur/detail.jsp").forward(request, response);
 	}
 

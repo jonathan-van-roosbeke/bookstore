@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
+import com.cda.entity.ArticleCmd;
 import com.cda.entity.Commande;
 
 public interface ICommandeDao extends CrudRepository<Commande, String> {
@@ -12,7 +13,7 @@ public interface ICommandeDao extends CrudRepository<Commande, String> {
 	@Query("SELECT c FROM Commande c WHERE login = ?1")
 	List<Commande> mesCmds(String login);
 
-//	@Query("SELECT a FROM article_cmd WHERE numero_cmd = ?1")
-//	List<ArticleCmd> detailCmd(String numeroCmd);
+	@Query("SELECT a FROM ArticleCmd a WHERE numero_cmd = ?1")
+	List<ArticleCmd> detailCmd(String numeroCmd);
 
 }

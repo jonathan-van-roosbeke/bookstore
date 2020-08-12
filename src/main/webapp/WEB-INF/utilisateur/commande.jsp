@@ -60,7 +60,7 @@
 											<c:when test="${commande.status==2 }"> Livré</c:when>
 										</c:choose></td>
 									<td>${commande.totalCmd}</td>
-									<td><a class="delBtn"
+									<td><a
 										href="commande-client?method=detail&id=${commande.numeroCmd}"
 										class="btn btn-primary">Voir la détail</a></td>
 								</tr>
