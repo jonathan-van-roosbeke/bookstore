@@ -56,7 +56,7 @@
 
 		<div class="row">
 			<c:forEach items="${livres}" var="livres">
-				<div class="col-sm-3 livre" name="id-livre" value="${livres.id}">
+				<div class="col-sm-3 livre" name="id-livre" id="${livres.id}">
 					<div class="card" style="width: 18rem;">
 						<img src="resources/images/img-couverture-livre/${livres.nomImage}" class="card-img-top"
 							alt="${livres.nomImage}">
