@@ -19,6 +19,7 @@
 
         <div class="row">
             <div class="col-xl-5 col-lg-5 col-md-5 col-sm-5 left">
+                <form method="POST" action="editer-livre">
                 <div class="center_img">
                     <img src="./resources/images/img-couverture-livre/${livre.nomImage}" alt="couverture de livre">
                     <div class="input-group mb-3">
@@ -27,12 +28,14 @@
                         </div>
                         <div class="custom-file">
                             <input type="file" class="custom-file-input" id="inputGroupFile01">
-                            <label class="custom-file-label" for="inputGroupFile01">Mettre à jour votre image</label>
+                            <label class="custom-file-label" for="inputGroupFile01">Mettre à jour votre
+                                image</label>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="col-xl-7 col-lg-7 col-md-7 col-sm-7 right">
+
                 <div class="center_info">
                     <div class="info_livre">
                         <div class="input-group input-group-lg">
@@ -40,7 +43,8 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text" id="inputGroup-sizing-lg">Titre du Livre</span>
                             </div>
-                            <input type="text" class="form-control" placeholder="${livre.titre}">
+                            <input type="text" class="form-control" id="titre" name="titre" value="${livre.titre}"
+                                placeholder="${livre.titre}">
                         </div>
 
                         <!-- --------------------------Nom Prenom Auteur-------------------------- -->
@@ -48,8 +52,10 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text">Nom et Prénom auteur</span>
                             </div>
-                            <input type="text" class="form-control" placeholder="${livre.auteur.nom}">
-                            <input type="text" class="form-control" placeholder="${livre.auteur.prenom}">
+                            <input type="text" class="form-control" id="nom" name="nom" value="${livre.auteur.nom}"
+                                placeholder="${livre.auteur.nom}">
+                            <input type="text" class="form-control" id="prenom" name="prenom"
+                                value="${livre.auteur.prenom}" placeholder="${livre.auteur.prenom}">
                         </div>
 
                         <!-- --------------------------Synopsys-------------------------- -->
@@ -57,7 +63,8 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text">Synopsis</span>
                             </div>
-                            <textarea class="form-control" placeholder="${livre.synopsis}"></textarea>
+                            <textarea class="form-control" id="synopsis" name="synopsis"
+                                value="${livre.synopsis}">${livre.synopsis}</textarea>
                         </div>
 
                     </div>
@@ -66,9 +73,11 @@
                         <!-- --------------------------Nombre page-------------------------- -->
                         <div class="input-group input-group-sm mb-3">
                             <div class="input-group-prepend">
-                                <span class="input-group-text" id="inputGroup-sizing-sm">nombre de page du livre</span>
+                                <span class="input-group-text" id="inputGroup-sizing-sm">nombre de page du
+                                    livre</span>
                             </div>
-                            <input type="number" class="form-control" placeholder="${livre.nombrePage}">
+                            <input type="number" class="form-control" id="nombre-page" name="nombre-page"
+                                value="${livre.nombrePage}" placeholder="${livre.nombrePage}">
                         </div>
                         <!-- -------------------------Quantite-------------------------- -->
                         <div class="input-group input-group-sm mb-3">
@@ -76,7 +85,8 @@
                                 <span class="input-group-text" id="inputGroup-sizing-sm">quantitée restante en
                                     stock</span>
                             </div>
-                            <input type="number" class="form-control" placeholder="${livre.quantiteStock}">
+                            <input type="number" class="form-control" id="quantitee-stock" name="quantitee-stock"
+                                value="${livre.quantiteStock}" placeholder="${livre.quantiteStock}">
                         </div>
                     </div>
                     <div class="center_prix">
@@ -84,10 +94,15 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text" id="inputGroup-sizing-default">Prix</span>
                             </div>
-                            <input type="number" class="form-control" placeholder="${livre.prix}">
+                            <input type="number" class="form-control" id="prix" name="prix" value="${livre.prix}"
+                                placeholder="${livre.prix}">
                         </div>
                     </div>
+                    <div class="btn-validation">
+                        <input type="submit" value="Editer" class="btn btn-primary" />
+                    </div>
                 </div>
+                </form>
             </div>
         </div>
 
