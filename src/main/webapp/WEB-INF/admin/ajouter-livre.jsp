@@ -90,7 +90,7 @@
                         </div>
                     </div>
                     <div class="btn-validation">
-                        <input type="submit" value="Ajouter" class="btn btn-primary" onclick="submitForms()" />
+                        <input type="submit" value="Ajouter" class="btn btn-primary"/>
                     </div>
                 </div>
                 </form>
