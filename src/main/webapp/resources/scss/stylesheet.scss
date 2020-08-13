@@ -4,168 +4,181 @@ $vert: #5bdf94;
 $bleu: #66b0c8;
 
 %reset-style {
-    margin: 0px;
-    padding: 0px;
+  margin: 0px;
+  padding: 0px;
 }
 
 // ------------- inscription jsp
 
 html,
 body {
-    height: 100%;
-    margin: 0;
+  height: 100%;
+  margin: 0;
 }
 
 .container-fluid,
 .row {
-    height: 96.8%;
+  height: 96.8%;
 }
 
 .row,
 .livre,
 .left,
 .right {
-    @extend %reset-style;
+  @extend %reset-style;
 }
 
 .btn-primary {
-    
-    @include border-radius(20px);
-    border-color: $bleu;
-    margin-top: 30px;
-    padding: 7px 40px;
+  @include border-radius(20px);
+  border-color: $bleu;
+  margin-top: 30px;
+  padding: 7px 40px;
 
-    transition: 0.5s;
-    background: linear-gradient(90deg, var(--c1, $vert), var(--c2, $bleu) 51%, var(--c1, $vert)) var(--x, 0)/ 200%;
-    color: white;
+  transition: 0.5s;
+  background: linear-gradient(
+      90deg,
+      var(--c1, $vert),
+      var(--c2, $bleu) 51%,
+      var(--c1, $vert)
+    )
+    var(--x, 0) / 200%;
+  color: white;
 
-    &:hover {
-        border-color: $vert;
-        background-position:200px; 
-    }
+  &:hover {
+    border-color: $vert;
+    background-position: 200px;
+  }
 }
 
 .container-fluid {
-    @extend %reset-style;
+  @extend %reset-style;
 }
 
-.user
-{
-    h3{
-        margin-left: 20px;
-        margin-top: 20px;
-    }
+.user {
+  h3 {
+    margin-left: 20px;
+    margin-top: 20px;
+  }
 }
 
 .col-sm-12 {
-    @extend %reset-style;
+  @extend %reset-style;
 }
 
 .bg-image {
-    background: url("../images/img-page/lib.jpg") no-repeat;
-    max-height: 100%;
-    background-size: cover!important;
-    background-position: center center;
+  background: url("../images/img-page/lib.jpg") no-repeat;
+  max-height: 100%;
+  background-size: cover !important;
+  background-position: center center;
 }
 
 .inscription {
-    padding: 100px 0px 100px 0px;
-    padding-left: 100px;
+  padding: 100px 0px 100px 0px;
+  padding-left: 100px;
 
-    form {
-        max-width: 278px;
-    }
+  form {
+    max-width: 278px;
+  }
 
-    h1 {
-        font-weight: bold;
-        font-size: 22px;
-        margin-bottom: 40px;
-    }
+  h1 {
+    font-weight: bold;
+    font-size: 22px;
+    margin-bottom: 40px;
+  }
 }
 
 // ------------- pannier jsp
 
 .card {
-	margin-bottom: 20px;
-	margin-top: 20px;
+  margin-bottom: 20px;
+  margin-top: 20px;
 }
 
-.quantite{
-	width: 80px;
+.quantite {
+  width: 80px;
 }
 
 // ------------- affichage livre
 
 .center_img {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  .btn-primary {
+    left: 50%;
+    -ms-transform: translate(50%);
+    transform: translate(50%);
+  }
+}
+
+.center_info {
+  margin-left: 40px;
+  position: absolute;
+  top: 15%;
+  img {
+    border-radius: 18px;
+    max-width: 100%;
+    height: auto;
+  }
+  p {
+    margin-top: 40px;
+  }
+}
+
+.center_prix,
+.info_complementaire {
+  margin-top: 100px;
+}
+
+.right {
+  background-color: #f5f5f5;
+}
+
+.input-group {
+  margin-top: 20px;
+}
+
+.container-table {
+  margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 80%;
+  h1,
+  h3 {
+    margin-bottom: 20px;
+  }
+}
+
+.ajout-livre {
+  height: 80px;
+  position: relative;
+  .btn,
+  .btn-primary {
     margin: 0;
     position: absolute;
     top: 50%;
     left: 50%;
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
-    .btn-primary {
-        left: 50%;
-        -ms-transform: translate(50%);
-        transform: translate(50%);
-    }
-}
-
-.center_info {
-    
-    margin-left: 40px;
-    position: absolute;
-    top: 15%;
-    img{
-        border-radius: 18px;
-        max-width: 100%;
-        height: auto;
-    }
-    p {
-        margin-top: 40px;
-    }
-}
-
-.center_prix,
-.info_complementaire {
-    margin-top: 100px;
-}
-
-.right {
-    background-color: #f5f5f5;
-}
-
-.input-group {
-    margin-top: 20px;
-}
-
-.container-table {
-    margin-top: 20px;
-    margin-left: auto;
-    margin-right: auto;
-    width: 80%;
-    h1,
-    h3 {
-        margin-bottom: 20px;
-    }
-}
-
-.ajout-livre {
-    height: 80px;
-    position: relative;
-    .btn,
-    .btn-primary {
-        margin: 0;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        -ms-transform: translate(-50%, -50%);
-        transform: translate(-50%, -50%);
-    }
+  }
 }
 
 .error {
-    h6 {
-        margin-top: 20px;
-        color : rgb(247, 14, 25);
-    }
+  h6 {
+    margin-top: 20px;
+    color: rgb(247, 14, 25);
+  }
 }
+
+.bi-trash {
+  margin-top: 30px;
+  margin-left: 20px;
+}
+
+svg {
+    /* doesn't work in IE/ older Edge */
+    transform: translate(10px, 0px);
+  }

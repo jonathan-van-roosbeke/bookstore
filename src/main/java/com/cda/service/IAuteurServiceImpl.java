@@ -17,4 +17,9 @@ public class IAuteurServiceImpl implements IAuteurService {
 		return auteurDao.save(auteur);
 	}
 
+	@Override
+	public Auteur findByNomPrenom(String nom, String prenom) {
+		return auteurDao.findByNomPrenom(nom, prenom);
+	}
+
 }

@@ -11,5 +11,7 @@ public interface ILivreService {
 	Livre findById(Integer id);
 	
 	Livre save(Livre livre);
+	
+	void deleteById(Integer id);
 
 }
