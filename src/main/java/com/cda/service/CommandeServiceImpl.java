@@ -46,7 +46,7 @@ public class CommandeServiceImpl implements ICommandeService {
 		for (Article article : allArticles) {
 			ArticleCmd articleCmd = new ArticleCmd(article.getLivre().getId(), article.getLivre().getTitre(),
 					article.getQuantite(), article.getLivre().getPrix().doubleValue(), article.getTotal(), commande,
-					commande.getNumeroCmd());
+					commande.getNumeroCmd(), article.getLivre());
 			cmdArticles.add(articleCmd);
 		}
 

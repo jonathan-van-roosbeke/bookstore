@@ -31,7 +31,7 @@
 						<div class="container">
 							<h1 class="display-4">Vous n'avez pas encore de commandes</h1>
 							<a class="btn btn-primary btn-lg"
-								href="/bookstore/ListLivreServlet" role="button">Shopping
+								href="/bookstore/index" role="button">Shopping
 								maintenant</a>
 						</div>
 					</div>
@@ -56,7 +56,7 @@
 									<td>${commande.date}</td>
 									<td><c:choose>
 											<c:when test="${commande.status==0 }"> En cours de préparation</c:when>
-											<c:when test="${commande.status==1 }"> En cours de livraison</c:when>
+											<c:when test="${commande.status==1 }"> En cours de livraison<a href="#" class="btn btn-primary">Reçu</a></c:when>
 											<c:when test="${commande.status==2 }"> Livré</c:when>
 										</c:choose></td>
 									<td>${commande.totalCmd}</td>

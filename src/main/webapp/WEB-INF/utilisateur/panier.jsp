@@ -40,7 +40,7 @@
 					<div class="jumbotron jumbotron-fluid">
 						<div class="container">
 							<h1 class="display-4">Votre panier est vide</h1>
-							<a class="btn btn-primary btn-lg" href="/bookstore" role="button">Shopping
+							<a class="btn btn-primary btn-lg" href="/bookstore/index" role="button">Shopping
 								maintenant</a>
 						</div>
 					</div>
