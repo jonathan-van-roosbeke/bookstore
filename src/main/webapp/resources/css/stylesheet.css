@@ -115,4 +115,12 @@ body {
   margin-top: 20px;
   color: #f70e19; }
 
+.bi-trash {
+  margin-top: 30px;
+  margin-left: 20px; }
+
+svg {
+  /* doesn't work in IE/ older Edge */
+  transform: translate(20px, 15px); }
+
 /*# sourceMappingURL=stylesheet.css.map */
