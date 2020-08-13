@@ -26,6 +26,8 @@ public class AdminEditerUnLivre extends AbstractController {
 	IAuteurService auteurService;
 	
 	private int id;
+	private Auteur auteur;
+	private Livre livre;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -40,8 +42,8 @@ public class AdminEditerUnLivre extends AbstractController {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// livre actuel
-		Livre livreActuel = livreService.findById(id);
-		Auteur auteurActuel = auteurService.findByNomPrenom(livreActuel.getAuteur().getNom(), livreActuel.getAuteur().getPrenom());
+		livre = livreService.findById(id);
+		Auteur auteurActuel = auteurService.findByNomPrenom(livre.getAuteur().getNom(), livre.getAuteur().getPrenom());
 		
 		// infos livre input
 		String titre = request.getParameter("titre");
@@ -52,25 +54,30 @@ public class AdminEditerUnLivre extends AbstractController {
 		String quantiteStock = request.getParameter("quantitee-stock");
 		String prix = request.getParameter("prix");
 		
-		// update infos
-		Auteur auteurUpdate = auteurActuel.builder()
-							  .id(auteurActuel.getId())
-							  .nom(nom)
-							  .prenom(prenom)
-							  .build();
+		// update infos auteur
+		if (auteurActuel.getNom().equalsIgnoreCase(nom) &&
+			auteurActuel.getPrenom().equalsIgnoreCase(prenom)) {
+			auteur = auteurActuel;
+		} else {
+			auteur = auteurActuel.builder()
+					  .nom(nom)
+					  .prenom(prenom)
+					  .build();
+			
+			auteurService.save(auteur);
+		}
 		
-		auteurService.save(auteurUpdate);
-		
-		Livre livreUpdate = livreActuel.builder()
-							.id(livreActuel.getId())
-							.idAuteur(auteurUpdate.getId())
+		// update infos livre
+		Livre livreUpdate = livre.builder()
+							.id(livre.getId())
+							.idAuteur(auteur.getId())
 							.titre(titre)
 							.quantiteStock(Integer.parseInt(quantiteStock))
 							.nombrePage(Integer.parseInt(nombrePage))
 							.synopsis(synopsis)
-							.nomImage(livreActuel.getNomImage())
+							.nomImage(livre.getNomImage())
 							.prix(new BigDecimal(prix))
-							.auteur(auteurUpdate)
+							.auteur(auteur)
 							.build();
 
 		livreService.save(livreUpdate);
