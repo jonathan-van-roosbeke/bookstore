@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.cda.entity.ArticleCmd;
 import com.cda.entity.Commande;
+import com.cda.entity.Constant;
 import com.cda.entity.Panier;
 import com.cda.entity.Utilisateur;
 import com.cda.service.ICommandeService;
@@ -37,6 +38,8 @@ public class CommandeClientServlet extends AbstractController {
 			afficher(request, response);
 		} else if ("detail".contentEquals(methodName)) {
 			detail(request, response);
+		} else if ("updateStatus".contentEquals(methodName)) {
+			updateStatus(request, response);
 		}
 	}
 
@@ -108,6 +111,23 @@ public class CommandeClientServlet extends AbstractController {
 		request.setAttribute("detailCmd", detailCmd);
 		request.setAttribute("numeroCmd", numeroCmd);
 		request.getRequestDispatcher("/WEB-INF/utilisateur/detail.jsp").forward(request, response);
+	}
+
+	/**
+	 * Client peut modifier le status de commande en livre
+	 * 
+	 * @param request
+	 * @param response
+	 * @throws ServletException
+	 * @throws IOException
+	 */
+	protected void updateStatus(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		String numeroCmd = request.getParameter("numeroCmd");
+		commandeService.updateStatus(numeroCmd, Constant.LIVRE + "");
+
+		String refer = request.getHeader("referer");
+		response.sendRedirect(refer);
 	}
 
 }

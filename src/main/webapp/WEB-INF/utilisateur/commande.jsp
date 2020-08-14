@@ -47,6 +47,7 @@
 								<th scope="col">Status</th>
 								<th scope="col">Prix total</th>
 								<th scope="col">Détail</th>
+								<th scope="col">Action</th>
 							</tr>
 						</thead>
 
@@ -57,15 +58,18 @@
 									<td>${commande.date}</td>
 									<td><c:choose>
 											<c:when test="${commande.status==0 }"> En cours de préparation</c:when>
-											<c:when test="${commande.status==1 }"> En cours de livraison<a
-													href="#" class="btn btn-primary">Reçu</a>
-											</c:when>
+											<c:when test="${commande.status==1 }"> En cours de livraison</c:when>
 											<c:when test="${commande.status==2 }"> Livré</c:when>
 										</c:choose></td>
 									<td>${commande.totalCmd}</td>
 									<td><a
 										href="commande-client?method=detail&id=${commande.numeroCmd}">Voir
 											la détail</a></td>
+									<td><c:choose>
+											<c:when test="${commande.status==1 }">
+												<a href="commande-client?method=updateStatus&numeroCmd=${commande.numeroCmd}">J'ai reçu la commande !</a>
+											</c:when>
+										</c:choose></td>
 								</tr>
 							</tbody>
 						</c:forEach>

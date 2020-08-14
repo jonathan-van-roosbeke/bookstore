@@ -36,12 +36,11 @@ public class LoginServlet extends AbstractController {
 
 		if (utilisateur == null) {
 			request.setAttribute("error", true);
-
+			request.getRequestDispatcher("WEB-INF/utilisateur/login.jsp").forward(request, response);
+		} else {
 			Cookie cookie = new Cookie("login", login);
 			cookie.setMaxAge(60 * 60 * 24 * 7);
 			response.addCookie(cookie);
-			request.getRequestDispatcher("WEB-INF/utilisateur/login.jsp").forward(request, response);
-		} else {
 			request.getSession().setAttribute("utilisateur", utilisateur);
 			request.getRequestDispatcher("/index").forward(request, response);
 		}
