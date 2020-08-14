@@ -59,7 +59,7 @@
 										</c:choose></td>
 									<td>${commande.totalCmd}</td>
 									<td><a
-										href="commande-client?method=detail&id=${commande.numeroCmd}">Voir
+										href="commande-admin?method=detail&id=${commande.numeroCmd}">Voir
 											la détail</a></td>
 									<td><c:choose>
 											<c:when test="${commande.status==0 }">

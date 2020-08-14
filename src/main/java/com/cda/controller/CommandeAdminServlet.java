@@ -78,7 +78,7 @@ public class CommandeAdminServlet extends AbstractController {
 		List<ArticleCmd> detailCmd = commandeService.detailCmd(numeroCmd);
 		request.setAttribute("detailCmd", detailCmd);
 		request.setAttribute("numeroCmd", numeroCmd);
-		request.getRequestDispatcher("/WEB-INF/utilisateur/detail.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/admin/detail.jsp").forward(request, response);
 	}
 
 	/**
