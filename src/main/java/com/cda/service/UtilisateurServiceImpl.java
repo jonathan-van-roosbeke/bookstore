@@ -18,4 +18,9 @@ public class UtilisateurServiceImpl implements IUtilisateurService {
 		System.out.println(utilisateur);
 		return utilisateur;
 	}
+
+	@Override
+	public Utilisateur save(Utilisateur utilisateur) {
+		return utilisateurDao.save(utilisateur);
+	}
 }

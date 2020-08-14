@@ -39,4 +39,13 @@ public class Adresse {
 
 	@Column(name = "pays")
 	private String pays;
+
+	public Adresse(int numero, String rue, String ville, String cp, String pays) {
+		super();
+		this.numero = numero;
+		this.rue = rue;
+		this.ville = ville;
+		this.cp = cp;
+		this.pays = pays;
+	}
 }

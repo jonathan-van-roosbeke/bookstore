@@ -73,7 +73,7 @@ body {
 }
 
 .inscription {
-  padding: 100px 0px 100px 0px;
+  padding: 10px 0px 50px 0px;
   padding-left: 100px;
 
   form {
@@ -179,6 +179,8 @@ body {
 }
 
 svg {
-    /* doesn't work in IE/ older Edge */
-    transform: translate(10px, 0px);
-  }
+  /* doesn't work in IE/ older Edge */
+  transform: translate(10px, 0px);
+}
+
+
