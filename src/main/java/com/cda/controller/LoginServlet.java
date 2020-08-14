@@ -36,7 +36,10 @@ public class LoginServlet extends AbstractController {
 		if (utilisateur == null) {
 			request.setAttribute("error", true);
 			request.getRequestDispatcher("WEB-INF/utilisateur/login.jsp").forward(request, response);
-		} else {
+		} else if (utilisateur.getStatusUtilisateur() == 0){
+			request.setAttribute("en_attente", true);
+			request.getRequestDispatcher("WEB-INF/utilisateur/login.jsp").forward(request, response);
+		}else {
 			request.getSession().setAttribute("utilisateur", utilisateur);
 			request.getRequestDispatcher("/index").forward(request, response);
 		}

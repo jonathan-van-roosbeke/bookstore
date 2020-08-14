@@ -1,5 +1,8 @@
 package com.cda.service;
 
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,5 +25,19 @@ public class UtilisateurServiceImpl implements IUtilisateurService {
 	@Override
 	public Utilisateur save(Utilisateur utilisateur) {
 		return utilisateurDao.save(utilisateur);
+	}
+
+	@Override
+	public List<Utilisateur> findCompteEnAttente() {
+		return utilisateurDao.findCompteEnAttente();
+	}
+
+	@Override
+	public Utilisateur findById(String login) {
+		Optional<Utilisateur> utilisateurOp = utilisateurDao.findById(login);
+		if(utilisateurOp.isPresent()) {
+			return utilisateurOp.get();
+		}
+		return null;
 	}
 }

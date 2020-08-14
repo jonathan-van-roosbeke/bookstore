@@ -23,6 +23,7 @@
                 <thead class="thead-dark">
                     <tr>
                         <th scope="col">Id client</th>
+                        <th scope="col">login</th>
                         <th scope="col">nom</th>
                         <th scope="col">prenom</th>
                         <th scope="col">date de la demande</th>
@@ -30,36 +31,23 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Jon</td>
-                        <td>Doe</td>
-                        <td>20/06/2020</td>
-                        <td>
-                            <input type="button" class="btn btn-success" value="Valider">
-                            <input type="button" class="btn btn-danger" value="Supprimer">
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Jon</td>
-                        <td>Doe</td>
-                        <td>20/06/2020</td>
-                        <td>
-                            <input type="button" class="btn btn-success" value="Valider">
-                            <input type="button" class="btn btn-danger" value="Supprimer">
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Jon</td>
-                        <td>Doe</td>
-                        <td>20/06/2020</td>
-                        <td>
-                            <input type="button" class="btn btn-success" value="Valider">
-                            <input type="button" class="btn btn-danger" value="Supprimer">
-                        </td>
-                    </tr>
+                    <c:forEach items="${utilisateurs}" var="utilisateur">
+                        <tr>
+                            <th scope="row">${utilisateur.id}</th>
+                            <td>${utilisateur.login}</td>
+                            <td>${utilisateur.prenom}</td>
+                            <td>${utilisateur.nom}</td>
+                            <td>20/06/2020</td>
+                            <td>
+                                <form class="btn-val-compte" action="valider-compte" method="post">
+                                    <input type="submit" class="btn btn-success" id="${utilisateur.login}" value="Envoyer">
+                                </form>
+                                <form action="supprimer-compte" method="post">
+                                    <input type="button" class="btn btn-danger" value="Supprimer">
+                                </form>
+                            </td>
+                        </tr>
+                    </c:forEach>
                 </tbody>
             </table>
         </div>
@@ -74,6 +62,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.1/js/bootstrap.min.js"
         integrity="sha384-XEerZL0cuoUbHE4nZReLT7nx9gQrQreJekYhJD9WNWhH8nEW+0c5qq7aIo2Wl30J"
         crossorigin="anonymous"></script>
+        <script src="resources/js/select-compte.js"></script>
 </body>
 
 </html>

@@ -27,11 +27,20 @@
                         <br />
                         <input type="password" class="form-control" name="password" placeholder="password" required>
                         <button type="submit" class="btn btn-primary">Login</button>
-                        <c:if test="${error}">
-                            <div class="error">
-                                <h6>une erreur s'est produite</h6>
-                            </div>
-                        </c:if>
+
+                        <c:choose>
+                            <c:when test="${error}">
+                                <div class="error">
+                                    <h6>une erreur s'est produite</h6>
+                                </div>
+                            </c:when>
+                            <c:when test="${en_attente}">
+                                <div class="error">
+                                    <h6>Compte en attente de validation</h6>
+                                </div>
+                            </c:when>
+                        </c:choose>
+
                     </form>
                 </div>
             </div>

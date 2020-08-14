@@ -7,6 +7,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.cda.entity.Adresse;
@@ -48,7 +49,7 @@ public class InscriptionServlet extends AbstractController {
     	Adresse adresse = new Adresse(Integer.parseInt(numero), rue, ville, cp, pays);
     	Adresse adresseInscription = adresseService.save(adresse);
     	
-    	Utilisateur utilisateur = new Utilisateur(login, password, nom, prenom, email, 0, adresseInscription.getIdAdresse());
+    	Utilisateur utilisateur = new Utilisateur(login, DigestUtils.md5Hex(password), nom, prenom, email, 0, adresseInscription.getIdAdresse());
     	utilisateurService.save(utilisateur);
     	
     	response.sendRedirect(request.getContextPath() + "/index");

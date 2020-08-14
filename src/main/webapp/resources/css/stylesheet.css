@@ -123,4 +123,7 @@ svg {
   /* doesn't work in IE/ older Edge */
   transform: translate(10px, 0px); }
 
+.btn-val-compte {
+  float: right; }
+
 /*# sourceMappingURL=stylesheet.css.map */

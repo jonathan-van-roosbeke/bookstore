@@ -1,16 +1,3 @@
-// $(function () {
-//     $('.trash').on('click', function (event) {
-//         var id = this.id;
-//         console.log(id);
-//         event.preventDefault();
-//         bootbox.confirm("Etes-vous sur de vouloir supprimer le livre?", function (result) {
-//             if (result) {
-//                 window.location = 'supprimer-livre?id=' + id;
-//             }
-//         });
-//     });
-// });
-
 $(function () {
     $('.trash').on('click', function (event) {
         var id = this.id;
