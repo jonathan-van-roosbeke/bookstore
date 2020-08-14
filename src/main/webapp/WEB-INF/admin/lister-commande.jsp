@@ -38,11 +38,12 @@
 						<h1>Tous les commandes</h1>
 						<thead class="thead-dark">
 							<tr>
-								<th scope="col">Numero de commande</th>
+								<th scope="col">Numéro de commande</th>
 								<th scope="col">Date</th>
 								<th scope="col">Status</th>
 								<th scope="col">Prix total</th>
-								<th scope="col"></th>
+								<th scope="col">Détail</th>
+								<th scope="col">Action</th>
 							</tr>
 						</thead>
 
@@ -53,15 +54,21 @@
 									<td>${commande.date}</td>
 									<td><c:choose>
 											<c:when test="${commande.status==0 }"> En cours de préparation</c:when>
-											<c:when test="${commande.status==1 }"> En cours de livraison<a
-													href="#" class="btn btn-primary">Reçu</a>
-											</c:when>
+											<c:when test="${commande.status==1 }"> En cours de livraison</c:when>
 											<c:when test="${commande.status==2 }"> Livré</c:when>
 										</c:choose></td>
 									<td>${commande.totalCmd}</td>
 									<td><a
 										href="commande-client?method=detail&id=${commande.numeroCmd}">Voir
 											la détail</a></td>
+									<td><c:choose>
+											<c:when test="${commande.status==0 }">
+												<a href="commande-admin?method=updateStatus&numeroCmd=${commande.numeroCmd}">Envoyer la commande</a>
+											</c:when>
+											<c:when test="${commande.status==1 }"> Attendre la confirmation de client</c:when>
+											<c:when test="${commande.status==2 }"> Terminer</c:when>
+
+										</c:choose></td>
 								</tr>
 							</tbody>
 						</c:forEach>

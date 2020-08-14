@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.cda.entity.ArticleCmd;
 import com.cda.entity.Commande;
+import com.cda.entity.Constant;
 import com.cda.entity.Utilisateur;
 import com.cda.service.ICommandeService;
 
@@ -34,6 +35,8 @@ public class CommandeAdminServlet extends AbstractController {
 			afficherAll(request, response);
 		} else if ("detail".contentEquals(methodName)) {
 			detail(request, response);
+		} else if ("updateStatus".contentEquals(methodName)) {
+			updateStatus(request, response);
 		}
 	}
 
@@ -76,6 +79,24 @@ public class CommandeAdminServlet extends AbstractController {
 		request.setAttribute("detailCmd", detailCmd);
 		request.setAttribute("numeroCmd", numeroCmd);
 		request.getRequestDispatcher("/WEB-INF/utilisateur/detail.jsp").forward(request, response);
+	}
+
+	/**
+	 * Admin change le status de commande de 'en cour de preparation(0)' a 'en cours
+	 * de livraison(1)'
+	 * 
+	 * @param request
+	 * @param response
+	 * @throws ServletException
+	 * @throws IOException
+	 */
+	protected void updateStatus(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		String numeroCmd = request.getParameter("numeroCmd");
+		commandeService.updateStatus(numeroCmd, Constant.ENVOYE + "");
+
+		String refer = request.getHeader("referer");
+		response.sendRedirect(refer);
 	}
 
 }

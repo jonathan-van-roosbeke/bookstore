@@ -65,11 +65,11 @@ public class CommandeServiceImpl implements ICommandeService {
 
 	@Override
 	public void updateStatus(String numeroCmd, String status) {
-
 		Commande temp = commandeDao.findById(numeroCmd).get();
 		int statusFinal = Integer.parseInt(status);
 		temp.setStatus(statusFinal);
 		commandeDao.save(temp);
+		System.out.println(temp);
 	}
 
 	@Override
