@@ -46,7 +46,7 @@ public class CommandeServiceImpl implements ICommandeService {
 		for (Article article : allArticles) {
 			ArticleCmd articleCmd = new ArticleCmd(article.getLivre().getId(), article.getLivre().getTitre(),
 					article.getQuantite(), article.getLivre().getPrix().doubleValue(), article.getTotal(), commande,
-					commande.getNumeroCmd());
+					commande.getNumeroCmd(), article.getLivre(), article.getLivre().getId());
 			cmdArticles.add(articleCmd);
 		}
 
@@ -73,13 +73,17 @@ public class CommandeServiceImpl implements ICommandeService {
 	}
 
 	@Override
-	public List<Commande> getCommandes() {
-		return (List<Commande>) commandeDao.findAll();
+	public List<Commande> mesCmds(String login) {
+		return commandeDao.mesCmds(login);
 	}
 
 	@Override
-	public List<Commande> mesCommandes(Iterable<String> login) {
-		return (List<Commande>) commandeDao.findAllById(login);
+	public List<ArticleCmd> detailCmd(String numeroCmd) {
+		return commandeDao.detailCmd(numeroCmd);
 	}
 
+	@Override
+	public List<Commande> getCommandes() {
+		return (List<Commande>) commandeDao.findAll();
+	}
 }

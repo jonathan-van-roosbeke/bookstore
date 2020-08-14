@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Checkout</title>
+<title>Datail d'une commande</title>
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
 	integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
@@ -18,20 +18,59 @@
 <body>
 	<div class="container-fluid">
 
-		<%@ include file="../include/common/menu-utilisateur.html"%>
+		<%@ include file="../include/common/menu-client.html"%>
 
 		<div class="row">
 			<div class="col-sm-12">
 
-				<div class="jumbotron jumbotron-fluid">
-					<div class="container">
-						<h1 class="display-4">Merci pour votre achat !</h1>
-						<h3>Numero de commande : ${numeroCmd}</h3>
-						<a class="btn btn-primary btn-lg"
-							href="/bookstore/" role="button">Home</a>
-					</div>
-				</div>
 
+				<table class="table">
+					<thead>
+						<tr>
+							<th scope="col" rowspan="5">Numero de commande : ${numeroCmd}</th>
+							<th scope="col"></th>
+							<th scope="col"></th>
+							<th scope="col"></th>
+							<th scope="col"></th>
+						</tr>
+					</thead>
+
+					<thead>
+						<tr>
+							<th scope="col">No.</th>
+							<th scope="col">Nom</th>
+							<th scope="col">Quantité</th>
+							<th scope="col">Prix unité</th>
+							<th scope="col">Prix total</th>
+						</tr>
+					</thead>
+
+					<c:forEach items="${detailCmd}" var="article">
+						<tbody>
+							<tr>
+								<th scope="row">${article.id}</th>
+								<td>${article.titre}</td>
+								<td>${article.quantite}</td>
+								<td>${article.prix}</td>
+								<td>${article.totalPrix}</td>
+							</tr>
+						</tbody>
+					</c:forEach>
+					
+					<tbody>
+							<tr>
+								<th scope="row"></th>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td><a href="commande-client?method=afficher"
+									class="btn btn-primary">Retour</a></td>
+								<td></td>
+							</tr>
+						</tbody>
+					
+				</table>
 			</div>
 		</div>
 	</div>

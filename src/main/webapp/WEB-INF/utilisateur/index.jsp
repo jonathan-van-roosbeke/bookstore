@@ -56,7 +56,7 @@
 
 		<div class="row">
 			<c:forEach items="${livres}" var="livres">
-				<div class="col-sm-3 livre" name="id-livre" value="${livres.id}">
+				<div class="col-sm-3 livre" name="id-livre" id="${livres.id}">
 					<div class="card" style="width: 18rem;">
 						<img src="resources/images/img-couverture-livre/${livres.nomImage}" class="card-img-top"
 							alt="${livres.nomImage}">
@@ -64,7 +64,7 @@
 							<h5 class="card-title">${livres.titre}</h5>
 							<p class="card-text">${livres.auteur.nom}
 								${livres.auteur.prenom}</p>
-							<h6 class="card-text">${livres.prix}€</h6>
+							<h6 class="card-text">${livres.prix} €</h6>
 
 							<!-- Si admin = editer, si non ajouter livre -->
 

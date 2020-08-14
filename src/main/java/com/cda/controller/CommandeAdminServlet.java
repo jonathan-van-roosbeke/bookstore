@@ -13,12 +13,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.cda.entity.ArticleCmd;
 import com.cda.entity.Commande;
-import com.cda.entity.Panier;
 import com.cda.entity.Utilisateur;
 import com.cda.service.ICommandeService;
 
-@WebServlet("/commande-client")
-public class CommandeClientServlet extends AbstractController {
+@WebServlet("/commande-admin")
+public class CommandeAdminServlet extends AbstractController {
 	private static final long serialVersionUID = 1L;
 
 	@Autowired
@@ -31,10 +30,8 @@ public class CommandeClientServlet extends AbstractController {
 		System.out.println(methodName);
 		if (methodName == null) {
 			request.getRequestDispatcher("/WEB-INF/utilisateur/commande.jsp").forward(request, response);
-		} else if ("checkout".equals(methodName)) {
-			checkout(request, response);
-		} else if ("afficher".contentEquals(methodName)) {
-			afficher(request, response);
+		} else if ("afficherAll".contentEquals(methodName)) {
+			afficherAll(request, response);
 		} else if ("detail".contentEquals(methodName)) {
 			detail(request, response);
 		}
@@ -46,43 +43,14 @@ public class CommandeClientServlet extends AbstractController {
 	}
 
 	/**
-	 * Generer une commande, midifier la qte de stock
+	 * lister toutes les commandes
 	 * 
 	 * @param request
 	 * @param response
 	 * @throws ServletException
 	 * @throws IOException
 	 */
-	protected void checkout(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		HttpSession session = request.getSession();
-		Utilisateur loginUtilisateur = (Utilisateur) session.getAttribute("utilisateur");
-		if (loginUtilisateur != null) {
-			Panier panier = (Panier) session.getAttribute("panier");
-			if (panier == null) {
-				panier = new Panier();
-				session.setAttribute("panier", panier);
-			}
-			String numeroCmd = commandeService.checkout(panier, loginUtilisateur);
-			System.out.println(numeroCmd);
-			session.setAttribute("numeroCmd", numeroCmd);
-
-//			response.sendRedirect(request.getContextPath() + "/WEB-INF/utilisateur/checkout.jsp");
-			request.getRequestDispatcher("/WEB-INF/utilisateur/checkout.jsp").forward(request, response);
-		} else {
-			request.getRequestDispatcher("/WEB-INF/utilisateur/login.jsp").forward(request, response);
-		}
-	}
-
-	/**
-	 * lister toutes les commandes de ce utilisateur
-	 * 
-	 * @param request
-	 * @param response
-	 * @throws ServletException
-	 * @throws IOException
-	 */
-	protected void afficher(HttpServletRequest request, HttpServletResponse response)
+	protected void afficherAll(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		Utilisateur loginUtilisateur = (Utilisateur) session.getAttribute("utilisateur");

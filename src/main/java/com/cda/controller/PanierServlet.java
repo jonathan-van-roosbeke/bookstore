@@ -56,7 +56,8 @@ public class PanierServlet extends AbstractController {
 		Livre livre = livreService.findById(Integer.parseInt(request.getParameter("id")));
 		panier.ajouterLivre(livre);
 
-		response.sendRedirect(request.getContextPath() + "/index");
+//		response.sendRedirect(request.getContextPath() + "/index");
+		request.getRequestDispatcher("/index").forward(request, response);
 	}
 
 	protected void supprimer(HttpServletRequest request, HttpServletResponse response)

@@ -261,7 +261,7 @@ COLLATE=utf8_general_ci;
 -- CREATION ACTICLE COMMANDE ---
 -- -----------------------------
 CREATE TABLE t_article_cmd (
-	id_article int not null primary key auto_increment,
+	id_article int not null,
  	titre varchar(100) NOT NULL,
 	quantite int NOT NULL,
 	prix Decimal(11,2) NOT NULL,
@@ -286,8 +286,6 @@ values ("admin", md5("admin"), 1, "kayne","boby","admin@afpa.fr",2,1);
 INSERT into t_utilisateur()
 VALUES ("client", md5("client"), 2,  "dupond", "jean", "dj@client.fr", 1, 2);
 
-INSERT INTO t_commande ()
-VALUES ("123", '2015-11-05 14:29:36', 1, 1.2, "client");
 
 
 -- -----------------------------

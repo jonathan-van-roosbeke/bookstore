@@ -21,63 +21,54 @@
 <body>
 	<div class="container-fluid">
 
-		<c:choose>
-			<c:when test="${utilisateur.status_utilisateur == 1}">
-   				<%@ include file="../include/common/menu-admin.html"%>
-  			</c:when>
-			<c:when test="${utilisateur.status_utilisateur == 2}">
-    			<%@ include file="../include/common/menu-admin.html"%>
-			</c:when>
-			<c:otherwise>
-    			<%@ include file="../include/common/menu-utilisateur.html"%>
-  			</c:otherwise>
-		</c:choose>
+		<%@ include file="../include/common/menu-client.html"%>
 
 		<div class="row">
 			<div class="col-sm-12">
 
-				<%-- <c:if test="${empty panier.all}">
+				<c:if test="${empty commandes}">
 					<div class="jumbotron jumbotron-fluid">
 						<div class="container">
-							<h1 class="display-4">Votre panier est vide</h1>
-							<a class="btn btn-primary btn-lg"
-								href="/bookstore/ListLivreServlet" role="button">Shopping
-								maintenant</a>
+							<h1 class="display-4">Vous n'avez pas encore de commandes</h1>
+							<a class="btn btn-primary btn-lg" href="/bookstore/index"
+								role="button">Shopping maintenant</a>
 						</div>
 					</div>
-				</c:if> --%>
+				</c:if>
 
-				<%-- <c:if test="${!empty panier.all}"> --%>
-				<table class="table">
-					<thead>
-						<tr>
-							<th scope="col">Numero de commande</th>
-							<th scope="col">Date</th>
-							<th scope="col">Status</th>
-							<th scope="col">Prix total</th>
-							<th scope="col"></th>
-						</tr>
-					</thead>
-
-					<c:forEach items="${panier.all}" var="article">
-						<tbody>
+				<c:if test="${!empty commandes}">
+					<table class="table">
+						<thead>
 							<tr>
-								<th scope="row">${article.livre.id}</th>
-								<td>${article.livre.titre}</td>
-								<td><input class="quantite" type="number" min="1"
-									name="quantite" value="${article.quantite}" /></td>
-								<td>${article.livre.prix}</td>
-								<td>${article.total}</td>
-								<td><a class="delBtn"
-									href="PanierServlet?method=supprimer&id=${article.livre.id}"
-									class="btn btn-primary">Voir la detaile</a></td>
+								<th scope="col">Numero de commande</th>
+								<th scope="col">Date</th>
+								<th scope="col">Status</th>
+								<th scope="col">Prix total</th>
+								<th scope="col"></th>
 							</tr>
-						</tbody>
-					</c:forEach>
+						</thead>
 
-
-				</table>
-				<%-- </c:if> --%>
+						<c:forEach items="${commandes}" var="commande">
+							<tbody>
+								<tr>
+									<th scope="row">${commande.numeroCmd}</th>
+									<td>${commande.date}</td>
+									<td><c:choose>
+											<c:when test="${commande.status==0 }"> En cours de préparation</c:when>
+											<c:when test="${commande.status==1 }"> En cours de livraison<a
+													href="#" class="btn btn-primary">Reçu</a>
+											</c:when>
+											<c:when test="${commande.status==2 }"> Livré</c:when>
+										</c:choose></td>
+									<td>${commande.totalCmd}</td>
+									<td><a
+										href="commande-client?method=detail&id=${commande.numeroCmd}">Voir
+											la détail</a></td>
+								</tr>
+							</tbody>
+						</c:forEach>
+					</table>
+				</c:if>
 			</div>
 		</div>
 	</div>
