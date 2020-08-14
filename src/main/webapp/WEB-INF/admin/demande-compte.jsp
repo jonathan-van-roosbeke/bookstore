@@ -39,11 +39,11 @@
                             <td>${utilisateur.nom}</td>
                             <td>20/06/2020</td>
                             <td>
-                                <form class="btn-val-compte" action="valider-compte" method="post">
-                                    <input type="submit" class="btn btn-success" id="${utilisateur.login}" value="Envoyer">
+                                <form class="btn-compte" action="valider-compte" method="post">
+                                    <input type="submit" class="btn btn-success" id="${utilisateur.login}" value="Ajouter">
                                 </form>
-                                <form action="supprimer-compte" method="post">
-                                    <input type="button" class="btn btn-danger" value="Supprimer">
+                                <form class="btn-compte" action="supprimer-compte" method="post">
+                                    <input type="submit" class="btn btn-danger" id="${utilisateur.login}" value="Supprimer">
                                 </form>
                             </td>
                         </tr>

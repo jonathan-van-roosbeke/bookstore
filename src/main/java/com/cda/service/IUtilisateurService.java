@@ -16,4 +16,6 @@ public interface IUtilisateurService {
 	public List<Utilisateur> findCompteEnAttente();
 	
 	public Utilisateur findById(String login);
+	
+	public void deleteById(String id);
 }

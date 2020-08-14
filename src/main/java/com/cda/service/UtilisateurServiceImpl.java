@@ -40,4 +40,10 @@ public class UtilisateurServiceImpl implements IUtilisateurService {
 		}
 		return null;
 	}
+
+	@Override
+	public void deleteById(String id) {
+		utilisateurDao.deleteById(id);
+		
+	}
 }
