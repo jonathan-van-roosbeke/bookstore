@@ -38,7 +38,9 @@
 
 				<c:if test="${!empty commandes}">
 					<table class="table">
-						<thead>
+						<br>
+						<h1>Mes commandes</h1>
+						<thead class="thead-dark">
 							<tr>
 								<th scope="col">Numero de commande</th>
 								<th scope="col">Date</th>

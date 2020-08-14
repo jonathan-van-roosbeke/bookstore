@@ -29,7 +29,7 @@ public class CommandeAdminServlet extends AbstractController {
 		String methodName = request.getParameter("method");
 		System.out.println(methodName);
 		if (methodName == null) {
-			request.getRequestDispatcher("/WEB-INF/utilisateur/commande.jsp").forward(request, response);
+			request.getRequestDispatcher("/WEB-INF/admin/lister-commande.jsp").forward(request, response);
 		} else if ("afficherAll".contentEquals(methodName)) {
 			afficherAll(request, response);
 		} else if ("detail".contentEquals(methodName)) {
@@ -54,9 +54,9 @@ public class CommandeAdminServlet extends AbstractController {
 			throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		Utilisateur loginUtilisateur = (Utilisateur) session.getAttribute("utilisateur");
-		List<Commande> mesCommandes = commandeService.mesCmds(loginUtilisateur.getLogin());
-		request.setAttribute("commandes", mesCommandes);
-		request.getRequestDispatcher("/WEB-INF/utilisateur/commande.jsp").forward(request, response);
+		List<Commande> commandes = commandeService.getCommandes();
+		request.setAttribute("commandes", commandes);
+		request.getRequestDispatcher("/WEB-INF/admin/lister-commande.jsp").forward(request, response);
 	}
 
 	/**
