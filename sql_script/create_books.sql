@@ -301,4 +301,3 @@ JOIN t_auteur ta ON tl.id_auteur = ta.id_auteur;
 SELECT * FROM t_adresse;
 
 SELECT * FROM t_utilisateur;
-

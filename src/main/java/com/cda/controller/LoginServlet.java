@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -40,6 +41,10 @@ public class LoginServlet extends AbstractController {
 			request.setAttribute("en_attente", true);
 			request.getRequestDispatcher("WEB-INF/utilisateur/login.jsp").forward(request, response);
 		}else {
+		} else {
+			Cookie cookie = new Cookie("login", login);
+			cookie.setMaxAge(60 * 60 * 24 * 7);
+			response.addCookie(cookie);
 			request.getSession().setAttribute("utilisateur", utilisateur);
 			request.getRequestDispatcher("/index").forward(request, response);
 		}
