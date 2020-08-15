@@ -1,6 +1,7 @@
 package com.cda.controller;
 
 import java.io.IOException;
+import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -49,7 +50,7 @@ public class InscriptionServlet extends AbstractController {
     	Adresse adresse = new Adresse(Integer.parseInt(numero), rue, ville, cp, pays);
     	Adresse adresseInscription = adresseService.save(adresse);
     	
-    	Utilisateur utilisateur = new Utilisateur(login, DigestUtils.md5Hex(password), nom, prenom, email, 0, adresseInscription.getIdAdresse());
+    	Utilisateur utilisateur = new Utilisateur(login, DigestUtils.md5Hex(password), nom, prenom, email, 0, adresseInscription.getIdAdresse(), new Date());
     	utilisateurService.save(utilisateur);
     	
     	response.sendRedirect(request.getContextPath() + "/index");

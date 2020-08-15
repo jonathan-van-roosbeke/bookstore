@@ -41,7 +41,6 @@ public class LoginServlet extends AbstractController {
 			request.setAttribute("en_attente", true);
 			request.getRequestDispatcher("WEB-INF/utilisateur/login.jsp").forward(request, response);
 		}else {
-		} else {
 			Cookie cookie = new Cookie("login", login);
 			cookie.setMaxAge(60 * 60 * 24 * 7);
 			response.addCookie(cookie);

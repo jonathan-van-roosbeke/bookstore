@@ -37,7 +37,7 @@
                             <td>${utilisateur.login}</td>
                             <td>${utilisateur.prenom}</td>
                             <td>${utilisateur.nom}</td>
-                            <td>20/06/2020</td>
+                            <td>${utilisateur.localDate}</td>
                             <td>
                                 <form class="btn-compte" action="valider-compte" method="post">
                                     <input type="submit" class="btn btn-success" id="${utilisateur.login}" value="Ajouter">

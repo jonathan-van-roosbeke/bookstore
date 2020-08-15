@@ -1,6 +1,9 @@
 package com.cda.entity;
 
 import java.io.Serializable;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -52,13 +55,18 @@ public class Utilisateur implements Serializable {
 	
 	@Column(name = "id_adresse")
 	private int idAdresse;
+	
+	@Column(name = "date_ajout")
+	private Date date;
+	
+	private LocalDate localDate;
 
 	@ManyToOne(targetEntity = Adresse.class, cascade = { CascadeType.ALL })
 	@JoinColumn(name = "id_adresse", referencedColumnName = "id_adresse", nullable = false, insertable = false, updatable = false)
 	private Adresse adresse;
 
 	public Utilisateur(String login, String motdepasse, String nom, String prenom, String email, int statusUtilisateur,
-			int idAdresse) {
+			int idAdresse, Date date) {
 		super();
 		this.login = login;
 		this.motdepasse = motdepasse;
@@ -67,5 +75,7 @@ public class Utilisateur implements Serializable {
 		this.email = email;
 		this.statusUtilisateur = statusUtilisateur;
 		this.idAdresse = idAdresse;
+		this.date = date;
+		this.localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 	}
 }
