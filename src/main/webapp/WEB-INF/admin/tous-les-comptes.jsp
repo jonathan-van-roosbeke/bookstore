@@ -26,18 +26,16 @@
                         <th scope="col">login</th>
                         <th scope="col">nom</th>
                         <th scope="col">prenom</th>
-                        <th scope="col">date de la demande</th>
                         <th scope="col">date de la dernniere connexion</th>
                     </tr>
                 </thead>
                 <tbody>
                     <c:forEach items="${utilisateurs}" var="utilisateur">
-                        <tr>
+                        <tr class="tr-hover" data-toggle="tooltip" data-placement="bottom" title="Date de la demande du compte : ${utilisateur.dateDemande}">
                             <th scope="row">${utilisateur.id}</th>
                             <td>${utilisateur.login}</td>
                             <td>${utilisateur.prenom}</td>
                             <td>${utilisateur.nom}</td>
-                            <td>${utilisateur.dateDemande}</td>
                             <td>${utilisateur.ts}</td>
                         </tr>
                     </c:forEach>
@@ -55,7 +53,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.1/js/bootstrap.min.js"
         integrity="sha384-XEerZL0cuoUbHE4nZReLT7nx9gQrQreJekYhJD9WNWhH8nEW+0c5qq7aIo2Wl30J"
         crossorigin="anonymous"></script>
-        <script src="resources/js/select-compte.js"></script>
+        <script src="resources/js/tooltip.js"></script>
 </body>
 
 </html>
