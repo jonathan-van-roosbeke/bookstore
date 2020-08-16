@@ -11,9 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.cda.service.ILivreService;
 
-/**
- * Servlet implementation class AdminSupprimerLivre
- */
 @WebServlet("/supprimer-livre")
 public class AdminSupprimerLivre extends AbstractController {
 	
