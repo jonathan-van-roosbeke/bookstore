@@ -46,4 +46,9 @@ public class UtilisateurServiceImpl implements IUtilisateurService {
 		utilisateurDao.deleteById(id);
 		
 	}
+
+	@Override
+	public List<Utilisateur> findAll() {
+		return (List<Utilisateur>) utilisateurDao.findAll();
+	}
 }

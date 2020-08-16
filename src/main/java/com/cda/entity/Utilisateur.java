@@ -1,9 +1,11 @@
 package com.cda.entity;
 
 import java.io.Serializable;
+import java.sql.Date;
+import java.sql.Timestamp;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.ZoneId;
-import java.util.Date;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -56,17 +58,24 @@ public class Utilisateur implements Serializable {
 	@Column(name = "id_adresse")
 	private int idAdresse;
 	
-	@Column(name = "date_ajout")
-	private Date date;
+	@Column(name = "date_demande_compte")
+	private Date dateDemande;
 	
-	private LocalDate localDate;
+	@Column(name = "date_derniere_connexion")
+	private Date dateConnexion;
+//	
+//	private LocalDate localDate;
+//	
+//	private LocalDateTime localDateTime;
+	
+	private Timestamp ts;
 
 	@ManyToOne(targetEntity = Adresse.class, cascade = { CascadeType.ALL })
 	@JoinColumn(name = "id_adresse", referencedColumnName = "id_adresse", nullable = false, insertable = false, updatable = false)
 	private Adresse adresse;
 
 	public Utilisateur(String login, String motdepasse, String nom, String prenom, String email, int statusUtilisateur,
-			int idAdresse, Date date) {
+			int idAdresse, Date dateDemande, Date dateConnexion) {
 		super();
 		this.login = login;
 		this.motdepasse = motdepasse;
@@ -75,7 +84,13 @@ public class Utilisateur implements Serializable {
 		this.email = email;
 		this.statusUtilisateur = statusUtilisateur;
 		this.idAdresse = idAdresse;
-		this.date = date;
-		this.localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+		this.dateDemande = dateDemande;
+//		this.localDate = dateDemande.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+//		this.localDateTime = dateConnexion.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
+	}
+
+	public Utilisateur(Date dateConnexion) {
+		this.dateConnexion = dateConnexion;
+//		this.localDateTime = dateConnexion.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
 	}
 }

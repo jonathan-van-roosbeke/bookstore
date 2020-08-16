@@ -1,6 +1,9 @@
 package com.cda.controller;
 
 import java.io.IOException;
+import java.sql.Date;
+import java.sql.Timestamp;
+import java.util.Calendar;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -41,6 +44,11 @@ public class LoginServlet extends AbstractController {
 			request.setAttribute("en_attente", true);
 			request.getRequestDispatcher("WEB-INF/utilisateur/login.jsp").forward(request, response);
 		}else {
+			Date date = new Date(Calendar.getInstance().getTime().getTime());
+			utilisateur.setDateConnexion(new Date(Calendar.getInstance().getTime().getTime()));
+			utilisateur.setTs(new Timestamp(date.getTime()));
+			utilisateurService.save(utilisateur);
+			System.out.println(utilisateur.getTs());
 			Cookie cookie = new Cookie("login", login);
 			cookie.setMaxAge(60 * 60 * 24 * 7);
 			response.addCookie(cookie);

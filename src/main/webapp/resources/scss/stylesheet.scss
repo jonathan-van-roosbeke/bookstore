@@ -169,7 +169,7 @@ body {
 .error {
   h6 {
     margin-top: 20px;
-    color: rgb(247, 14, 25);
+    color: $bleu;
   }
 }
 
@@ -191,4 +191,8 @@ svg {
 #response {
   color: $bleu;
   font-size: small;
+}
+
+.tr-hover:hover {
+  background-color: $vert;
 }

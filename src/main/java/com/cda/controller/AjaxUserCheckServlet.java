@@ -13,7 +13,7 @@ import com.cda.entity.Utilisateur;
 import com.cda.service.IUtilisateurService;
 
 @WebServlet("/user-check")
-public class UserCheckServlet extends AbstractController {
+public class AjaxUserCheckServlet extends AbstractController {
 	
 	private static final long serialVersionUID = 1L;
 	

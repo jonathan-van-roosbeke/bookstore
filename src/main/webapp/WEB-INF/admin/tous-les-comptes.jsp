@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.1/css/bootstrap.min.css"
         integrity="sha384-VCmXjywReHh4PwowAiWNagnWcLhlEJLA5buUprzK8rxFgeH0kww/aWY76TfkUoSX" crossorigin="anonymous">
     <link rel="stylesheet" href="./resources/css/stylesheet.css">
-    <title>Compte en attente</title>
+    <title>Tous les comptes</title>
 </head>
 
 <body>
@@ -26,26 +26,17 @@
                         <th scope="col">login</th>
                         <th scope="col">nom</th>
                         <th scope="col">prenom</th>
-                        <th scope="col">date de la demande</th>
-                        <th scope="col">action</th>
+                        <th scope="col">date de la dernniere connexion</th>
                     </tr>
                 </thead>
                 <tbody>
                     <c:forEach items="${utilisateurs}" var="utilisateur">
-                        <tr>
+                        <tr class="tr-hover" data-toggle="tooltip" data-placement="bottom" title="Date de la demande du compte : ${utilisateur.dateDemande}">
                             <th scope="row">${utilisateur.id}</th>
                             <td>${utilisateur.login}</td>
                             <td>${utilisateur.prenom}</td>
                             <td>${utilisateur.nom}</td>
-                            <td>${utilisateur.dateDemande}</td>
-                            <td>
-                                <form class="btn-compte" action="valider-compte" method="post">
-                                    <input type="submit" class="btn btn-success" id="${utilisateur.login}" value="Ajouter">
-                                </form>
-                                <form class="btn-compte" action="supprimer-compte" method="post">
-                                    <input type="submit" class="btn btn-danger" id="${utilisateur.login}" value="Supprimer">
-                                </form>
-                            </td>
+                            <td>${utilisateur.ts}</td>
                         </tr>
                     </c:forEach>
                 </tbody>
@@ -62,7 +53,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.1/js/bootstrap.min.js"
         integrity="sha384-XEerZL0cuoUbHE4nZReLT7nx9gQrQreJekYhJD9WNWhH8nEW+0c5qq7aIo2Wl30J"
         crossorigin="anonymous"></script>
-    <script src="resources/js/select-compte.js"></script>
+        <script src="resources/js/tooltip.js"></script>
 </body>
 
 </html>
