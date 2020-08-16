@@ -13,9 +13,11 @@ public interface IUtilisateurService {
 	
 	public Utilisateur save(Utilisateur utilisateur);
 	
+	public Utilisateur findById(String login);
+	
 	public List<Utilisateur> findCompteEnAttente();
 	
-	public Utilisateur findById(String login);
+	public List<Utilisateur> findAll();
 	
 	public void deleteById(String id);
 }

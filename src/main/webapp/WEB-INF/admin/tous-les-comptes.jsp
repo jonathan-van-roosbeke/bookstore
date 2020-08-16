@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.1/css/bootstrap.min.css"
         integrity="sha384-VCmXjywReHh4PwowAiWNagnWcLhlEJLA5buUprzK8rxFgeH0kww/aWY76TfkUoSX" crossorigin="anonymous">
     <link rel="stylesheet" href="./resources/css/stylesheet.css">
-    <title>Compte en attente</title>
+    <title>Tous les comptes</title>
 </head>
 
 <body>
@@ -27,7 +27,7 @@
                         <th scope="col">nom</th>
                         <th scope="col">prenom</th>
                         <th scope="col">date de la demande</th>
-                        <th scope="col">action</th>
+                        <th scope="col">date de la dernniere connexion</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -38,14 +38,7 @@
                             <td>${utilisateur.prenom}</td>
                             <td>${utilisateur.nom}</td>
                             <td>${utilisateur.dateDemande}</td>
-                            <td>
-                                <form class="btn-compte" action="valider-compte" method="post">
-                                    <input type="submit" class="btn btn-success" id="${utilisateur.login}" value="Ajouter">
-                                </form>
-                                <form class="btn-compte" action="supprimer-compte" method="post">
-                                    <input type="submit" class="btn btn-danger" id="${utilisateur.login}" value="Supprimer">
-                                </form>
-                            </td>
+                            <td>${utilisateur.ts}</td>
                         </tr>
                     </c:forEach>
                 </tbody>
