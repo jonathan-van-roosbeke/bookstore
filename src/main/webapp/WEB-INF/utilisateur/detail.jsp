@@ -22,19 +22,10 @@
 
 		<div class="row">
 			<div class="col-sm-12">
-
-
+				<br>
+				<h1>Numero de commande : ${numeroCmd}</h1>
+				
 				<table class="table">
-					<thead>
-						<tr>
-							<th scope="col" rowspan="5">Numero de commande : ${numeroCmd}</th>
-							<th scope="col"></th>
-							<th scope="col"></th>
-							<th scope="col"></th>
-							<th scope="col"></th>
-						</tr>
-					</thead>
-
 					<thead>
 						<tr>
 							<th scope="col">No.</th>
@@ -56,20 +47,18 @@
 							</tr>
 						</tbody>
 					</c:forEach>
-					
+
 					<tbody>
-							<tr>
-								<th scope="row"></th>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td><a href="commande-client?method=afficher"
-									class="btn btn-primary">Retour</a></td>
-								<td></td>
-							</tr>
-						</tbody>
-					
+						<tr>
+							<th scope="row"></th>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td><a href="commande-client?method=afficher"
+								class="btn btn-primary">Retour</a></td>
+						</tr>
+					</tbody>
+
 				</table>
 			</div>
 		</div>
