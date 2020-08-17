@@ -8,5 +8,6 @@ public class Constant {
 	public static final int PREPARATION = 0;
 	public static final int ENVOYE = 1;
 	public static final int LIVRE = 2;
+	public static final int ANNULE = 3;
 
 }
