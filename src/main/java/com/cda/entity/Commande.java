@@ -1,6 +1,7 @@
 package com.cda.entity;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -30,7 +31,7 @@ public class Commande implements Serializable {
 	private String numeroCmd;
 
 	@Column(name = "date_creation")
-	private String date;
+	private LocalDateTime date;
 
 	@Column(name = "status_cmd")
 	private int status;

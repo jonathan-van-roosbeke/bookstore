@@ -77,6 +77,8 @@ public class CommandeClientServlet extends AbstractController {
 			response.sendRedirect(request.getContextPath() + "/commande-client?method=success");
 		} else {
 			request.getRequestDispatcher("/login").forward(request, response);
+//			request.getRequestDispatcher("/WEB-iNF/utilisateur/login.jsp").forward(request, response);
+//			response.sendRedirect(request.getContextPath() + "/login");
 		}
 	}
 
@@ -158,6 +160,7 @@ public class CommandeClientServlet extends AbstractController {
 			throws ServletException, IOException {
 		String numeroCmd = request.getParameter("numeroCmd");
 		commandeService.updateStatus(numeroCmd, Constant.ANNULE + "");
+		commandeService.annuler(numeroCmd);
 
 		String refer = request.getHeader("referer");
 		response.sendRedirect(refer);

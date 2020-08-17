@@ -1,7 +1,6 @@
 package com.cda.service;
 
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,8 +33,9 @@ public class CommandeServiceImpl implements ICommandeService {
 		String numeroCmd = millis + "" + utilisateur.getId();
 
 		Commande commande = new Commande();
-		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("DD-MM-yyyy HH:mm:ss");
-		commande.setDate(dtf.format(LocalDateTime.now()));
+//		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("DD-MM-yyyy HH:mm:ss");
+//		commande.setDate(dtf.format(LocalDateTime.now()));
+		commande.setDate(LocalDateTime.now());
 		commande.setNumeroCmd(numeroCmd);
 		commande.setTotalCmd(panier.getTotalPrix());
 		commande.setStatus(0);
@@ -88,5 +88,18 @@ public class CommandeServiceImpl implements ICommandeService {
 	@Override
 	public List<Commande> getCommandes() {
 		return (List<Commande>) commandeDao.findAll();
+	}
+
+	@Override
+	public void annuler(String numeroCmd) {
+		List<ArticleCmd> list = commandeDao.detailCmd(numeroCmd);
+		for (ArticleCmd articleCmd : list) {
+			Livre tempLivre = livreDao.findById(articleCmd.getId()).get();
+			if (tempLivre != null) {
+				int qteAchete = articleCmd.getQuantite();
+				tempLivre.setQuantiteStock(tempLivre.getQuantiteStock() + qteAchete);
+				livreDao.save(tempLivre);
+			}
+		}
 	}
 }

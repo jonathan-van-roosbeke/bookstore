@@ -18,4 +18,6 @@ public interface ICommandeService {
 	List<Commande> getCommandes();
 
 	void updateStatus(String numeroCmd, String status);
+
+	void annuler(String numeroCmd);
 }
