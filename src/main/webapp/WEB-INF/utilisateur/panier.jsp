@@ -23,9 +23,6 @@
 
 		<c:choose>
 			<c:when test="${utilisateur.statusUtilisateur == 1}">
-				<%@ include file="../include/common/menu-admin.html"%>
-			</c:when>
-			<c:when test="${utilisateur.statusUtilisateur == 2}">
 				<%@ include file="../include/common/menu-client.html"%>
 			</c:when>
 			<c:otherwise>
