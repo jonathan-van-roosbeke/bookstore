@@ -26,7 +26,7 @@
                         <div class="form-row">
                             <div class="col-md-12 mb-3">
                                 <label for="nom">Nom</label>
-                                <input type="text" class="form-control" id="nom" name="nom" placeholder="nom" required>
+                                <input type="text" class="form-control" id="nom" name="nom" placeholder="nom" required autofocus>
                             </div>
                             <div class="col-md-12 mb-3">
                                 <label for="prenom">Prenom</label>
