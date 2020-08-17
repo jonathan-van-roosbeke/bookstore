@@ -14,22 +14,24 @@ import javax.servlet.http.HttpServletResponse;
 import com.cda.entity.Utilisateur;
 
 @WebFilter(urlPatterns = { "/ajouter-livre", "/demande-compte", "/editer-livre", "/supprimer-compte",
-		"/supprimer-livre", "/valider-compte", "/tous-comptes", "/select-user" })
+		"/supprimer-livre", "/valider-compte", "/tous-comptes", "/select-user", "/commande-admin" })
 public class AdminFilter implements Filter {
 
-	public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain) throws IOException, ServletException {
-		
+	@Override
+	public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain)
+			throws IOException, ServletException {
+
 		HttpServletRequest request = (HttpServletRequest) req;
-        HttpServletResponse response = (HttpServletResponse) res;
-        
-        Utilisateur utilisateur = (Utilisateur) request.getSession().getAttribute("utilisateur");
-        
-        if(utilisateur == null) {
-        	((HttpServletResponse)response).sendRedirect("index");        	
-        } else if (utilisateur.getStatusUtilisateur() == 1) {
-        	((HttpServletResponse)response).sendRedirect("index");        	
-        } else if (utilisateur.getStatusUtilisateur() == 2) {
-        	chain.doFilter(request, response);
-        }
+		HttpServletResponse response = (HttpServletResponse) res;
+
+		Utilisateur utilisateur = (Utilisateur) request.getSession().getAttribute("utilisateur");
+
+		if (utilisateur == null) {
+			response.sendRedirect("index");
+		} else if (utilisateur.getStatusUtilisateur() == 1) {
+			response.sendRedirect("index");
+		} else if (utilisateur.getStatusUtilisateur() == 2) {
+			chain.doFilter(request, response);
+		}
 	}
 }

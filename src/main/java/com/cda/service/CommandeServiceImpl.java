@@ -60,6 +60,7 @@ public class CommandeServiceImpl implements ICommandeService {
 			livreDao.save(tempLivre);
 		}
 
+		panier.vider();
 		return numeroCmd;
 	}
 

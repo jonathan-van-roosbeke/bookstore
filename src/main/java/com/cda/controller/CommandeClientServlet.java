@@ -34,12 +34,14 @@ public class CommandeClientServlet extends AbstractController {
 			request.getRequestDispatcher("/WEB-INF/utilisateur/commande.jsp").forward(request, response);
 		} else if ("checkout".equals(methodName)) {
 			checkout(request, response);
-		} else if ("afficher".contentEquals(methodName)) {
+		} else if ("afficher".equals(methodName)) {
 			afficher(request, response);
-		} else if ("detail".contentEquals(methodName)) {
+		} else if ("detail".equals(methodName)) {
 			detail(request, response);
-		} else if ("updateStatus".contentEquals(methodName)) {
+		} else if ("updateStatus".equals(methodName)) {
 			updateStatus(request, response);
+		} else if ("success".contentEquals(methodName)) {
+			success(request, response);
 		}
 	}
 
@@ -70,10 +72,9 @@ public class CommandeClientServlet extends AbstractController {
 			System.out.println(numeroCmd);
 			session.setAttribute("numeroCmd", numeroCmd);
 
-//			response.sendRedirect(request.getContextPath() + "/WEB-INF/utilisateur/checkout.jsp");
-			request.getRequestDispatcher("/WEB-INF/utilisateur/checkout.jsp").forward(request, response);
+			response.sendRedirect(request.getContextPath() + "/commande-client?method=success");
 		} else {
-			request.getRequestDispatcher("/WEB-INF/utilisateur/login.jsp").forward(request, response);
+			request.getRequestDispatcher("/login").forward(request, response);
 		}
 	}
 
@@ -130,4 +131,16 @@ public class CommandeClientServlet extends AbstractController {
 		response.sendRedirect(refer);
 	}
 
+	/**
+	 * Client peut modifier le status de commande en livre
+	 * 
+	 * @param request
+	 * @param response
+	 * @throws ServletException
+	 * @throws IOException
+	 */
+	protected void success(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		request.getRequestDispatcher("/WEB-INF/utilisateur/checkout.jsp").forward(request, response);
+	}
 }

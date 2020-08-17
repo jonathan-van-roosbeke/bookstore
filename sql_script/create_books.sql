@@ -11,7 +11,7 @@ CREATE TABLE t_livre (
 	reference_livre INT auto_increment NOT NULL,
 	id_auteur INT NOT NULL,
 	titre_livre varchar(100) NOT NULL,
-	quantite_stock INT NOT NULL,
+	quantite_stock INT UNSIGNED NOT NULL,
 	nombre_page INT NOT NULL,
 	synopsis varchar(300) NOT NULL,
 	nom_image varchar(100) NOT NULL,
