@@ -128,10 +128,15 @@ svg {
   margin-left: 20px; }
 
 #response {
-  color: #66b0c8;
   font-size: small; }
 
 .tr-hover:hover {
   background-color: #5bdf94; }
+
+.valide {
+  color: #5bdf94; }
+
+.error {
+  color: red; }
 
 /*# sourceMappingURL=stylesheet.css.map */

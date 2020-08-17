@@ -21,21 +21,21 @@ public class AjaxUserCheckServlet extends AbstractController {
 	IUtilisateurService utilisateurService;
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-	}
-
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String login = request.getParameter("login").trim();
 		Utilisateur utilisateur = utilisateurService.findById(login);
 		System.out.println(utilisateur);
 		
 		if(utilisateur != null) {
 			response.setContentType("text/plain");
-		    response.getWriter().write(utilisateur.getLogin() + " existe déjà");
+			response.getWriter().write(utilisateur.getLogin() + " existe déjà");
+			response.setStatus(400);
 		} else {
 			response.setContentType("text/plain");
-		    response.getWriter().write("valide");
-		}
+			response.getWriter().write("valide");
+		}		
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	}
 
 }
