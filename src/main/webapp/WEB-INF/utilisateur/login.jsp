@@ -23,7 +23,7 @@
                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 inscription">
                     <form action="login" method="post">
                         <h1>Login</h1>
-                        <input type="text" id="login" class="form-control" value ="${cookie.login.value }" name="login" placeholder="login" required>
+                        <input type="text" id="login" class="form-control" name="login" placeholder="login" required autofocus>
                         <br />
                         <input type="password" class="form-control" name="password" placeholder="password" required>
                         <button type="submit" class="btn btn-primary">Login</button>
