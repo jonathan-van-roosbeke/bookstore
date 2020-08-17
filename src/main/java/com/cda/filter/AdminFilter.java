@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.cda.entity.Utilisateur;
 
 @WebFilter(urlPatterns = { "/ajouter-livre", "/demande-compte", "/editer-livre", "/supprimer-compte",
-		"/supprimer-livre", "/valider-compte", "/tous-comptes" })
+		"/supprimer-livre", "/valider-compte", "/tous-comptes", "/select-user" })
 public class AdminFilter implements Filter {
 
 	public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain) throws IOException, ServletException {

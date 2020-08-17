@@ -33,7 +33,7 @@
                     <c:forEach items="${utilisateurs}" var="utilisateur">
                         <tr class="tr-hover" data-toggle="tooltip" data-placement="bottom" title="Date de la demande du compte : ${utilisateur.dateDemande}">
                             <th scope="row">${utilisateur.id}</th>
-                            <td>${utilisateur.login}</td>
+                            <td id="${utilisateur.login}">${utilisateur.login}</td>
                             <td>${utilisateur.prenom}</td>
                             <td>${utilisateur.nom}</td>
                             <td>${utilisateur.ts}</td>
@@ -54,6 +54,7 @@
         integrity="sha384-XEerZL0cuoUbHE4nZReLT7nx9gQrQreJekYhJD9WNWhH8nEW+0c5qq7aIo2Wl30J"
         crossorigin="anonymous"></script>
         <script src="resources/js/tooltip.js"></script>
+        <script src="resources/js/select-user.js"></script>
 </body>
 
 </html>
