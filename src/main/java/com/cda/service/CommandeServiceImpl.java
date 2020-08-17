@@ -1,6 +1,7 @@
 package com.cda.service;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,7 +34,8 @@ public class CommandeServiceImpl implements ICommandeService {
 		String numeroCmd = millis + "" + utilisateur.getId();
 
 		Commande commande = new Commande();
-		commande.setDate(LocalDateTime.now());
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("DD-MM-yyyy HH:mm:ss");
+		commande.setDate(dtf.format(LocalDateTime.now()));
 		commande.setNumeroCmd(numeroCmd);
 		commande.setTotalCmd(panier.getTotalPrix());
 		commande.setStatus(0);
