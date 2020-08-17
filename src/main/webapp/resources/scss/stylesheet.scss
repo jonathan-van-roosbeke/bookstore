@@ -189,10 +189,17 @@ svg {
 }
 
 #response {
-  color: $bleu;
   font-size: small;
 }
 
 .tr-hover:hover {
   background-color: $vert;
+}
+
+.valide{
+  color : $vert;
+}
+
+.error{
+  color :red;
 }

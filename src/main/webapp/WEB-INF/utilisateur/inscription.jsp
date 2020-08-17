@@ -22,39 +22,51 @@
                 </div>
                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 inscription">
 
-                    <form action="inscription" method="POST" class="needs-validation" novalidate>
+                    <form action="inscription" method="POST" class="needs-validation" validate>
                         <div class="form-row">
                             <div class="col-md-12 mb-3">
                                 <label for="nom">Nom</label>
-                                <input type="text" class="form-control" id="nom" name="nom" placeholder="nom" required autofocus>
+                                <input type="text" class="form-control" id="nom" name="nom" placeholder="nom"
+                                    pattern="^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$" required autofocus
+                                    oninvalid="setCustomValidity('Exemple : Dupond')"
+                                    onchange="try{setCustomValidity('')}catch(e){}">
                             </div>
                             <div class="col-md-12 mb-3">
                                 <label for="prenom">Prenom</label>
                                 <input type="text" class="form-control" id="prenom" name="prenom" placeholder="prenom"
-                                    required>
+                                    pattern="^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$" required
+                                    oninvalid="setCustomValidity('Exemple : Jean')"
+                                    onchange="try{setCustomValidity('')}catch(e){}">
                             </div>
                             <div class="col-md-12 mb-3">
                                 <label for="email">E-mail</label>
-                                <input type="text" class="form-control" id="email" name="email" placeholder="email"
-                                    required>
+                                <input type="email" class="form-control" id="email" name="email" placeholder="email"
+                                    pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required
+                                    oninvalid="setCustomValidity('Exemple : votre-mail@domain.com')"
+                                    onchange="try{setCustomValidity('')}catch(e){}">
                             </div>
                             <div class="col-md-12 mb-3">
                                 <label for="login">Login</label>
                                 <input type="text" class="form-control" id="login" name="login" placeholder="login"
-                                    required>
-                                    <div id="response"></div>
+                                    pattern="^(?=.*[A-Za-z0-9]$)[A-Za-z][A-Za-z\d.-]{0,19}$" required
+                                    oninvalid="setCustomValidity('Exemple : monPseudo-5')"
+                                    onchange="try{setCustomValidity('')}catch(e){}">
+                                <div id="response"></div>
                             </div>
                             <div class="col-md-12 mb-3">
                                 <label for="password">Password</label>
-                                <input type="text" class="form-control" id="password" name="password"
-                                    placeholder="password" required>
+                                <input type="password" class="form-control" id="password" name="password"
+                                    pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$" placeholder="password" required
+                                    oninvalid="setCustomValidity('Votre password doit contenir au minimum : 8 lettre, une lettre majuscule et un chiffre')"
+                                    onchange="try{setCustomValidity('')}catch(e){}">
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="col-md-4 mb-3">
                                 <label for="numero">N°</label>
-                                <input type="text" class="form-control" id="numero" name="numero" placeholder="num"
-                                    required>
+                                <input type="text" class="form-control" id="numero" name="numero" placeholder="num" pattern="[0-9]{1,4}"
+                                    required oninvalid="setCustomValidity('Vous avez le droit à un numero entre 1 - 9999')"
+                                    onchange="try{setCustomValidity('')}catch(e){}">
                             </div>
                             <div class="col-md-8 mb-3">
                                 <label for="rue">Rue</label>
