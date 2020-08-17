@@ -27,14 +27,16 @@
                             <div class="col-md-12 mb-3">
                                 <label for="nom">Nom</label>
                                 <input type="text" class="form-control" id="nom" name="nom" placeholder="nom"
-                                    pattern="^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$" required autofocus
-                                    oninvalid="setCustomValidity('Exemple : Dupond')"
+                                    pattern="^[a-zA-Z- ]*$" required autofocus
+                                    title="Exemple : Dupond" oninput="this.setCustomValidity('Exemple : Dupond')"
+                                    oninvalid="this.setCustomValidity('Exemple : Dupond')"
                                     onchange="try{setCustomValidity('')}catch(e){}">
                             </div>
                             <div class="col-md-12 mb-3">
                                 <label for="prenom">Prenom</label>
                                 <input type="text" class="form-control" id="prenom" name="prenom" placeholder="prenom"
-                                    pattern="^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$" required
+                                    pattern="^[a-zA-Z- ]*$" required title="Exemple : Jean"
+                                    oninput="setCustomValidity('Exemple : Jean')"
                                     oninvalid="setCustomValidity('Exemple : Jean')"
                                     onchange="try{setCustomValidity('')}catch(e){}">
                             </div>
@@ -42,6 +44,8 @@
                                 <label for="email">E-mail</label>
                                 <input type="email" class="form-control" id="email" name="email" placeholder="email"
                                     pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required
+                                    title="Exemple : votre-mail@domain.com"
+                                    oninput="setCustomValidity('Exemple : votre-mail@domain.com')"
                                     oninvalid="setCustomValidity('Exemple : votre-mail@domain.com')"
                                     onchange="try{setCustomValidity('')}catch(e){}">
                             </div>
@@ -49,6 +53,7 @@
                                 <label for="login">Login</label>
                                 <input type="text" class="form-control" id="login" name="login" placeholder="login"
                                     pattern="^(?=.*[A-Za-z0-9]$)[A-Za-z][A-Za-z\d.-]{0,19}$" required
+                                    title="Exemple : monPseudo-5" oninput="setCustomValidity('Exemple : monPseudo-5')"
                                     oninvalid="setCustomValidity('Exemple : monPseudo-5')"
                                     onchange="try{setCustomValidity('')}catch(e){}">
                                 <div id="response"></div>
@@ -57,6 +62,8 @@
                                 <label for="password">Password</label>
                                 <input type="password" class="form-control" id="password" name="password"
                                     pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$" placeholder="password" required
+                                    title="Votre password doit contenir au minimum : 8 lettre, une lettre majuscule et un chiffre"
+                                    oninput="setCustomValidity('Votre password doit contenir au minimum : 8 lettre, une lettre majuscule et un chiffre')"
                                     oninvalid="setCustomValidity('Votre password doit contenir au minimum : 8 lettre, une lettre majuscule et un chiffre')"
                                     onchange="try{setCustomValidity('')}catch(e){}">
                             </div>
@@ -64,27 +71,43 @@
                         <div class="form-row">
                             <div class="col-md-4 mb-3">
                                 <label for="numero">N°</label>
-                                <input type="text" class="form-control" id="numero" name="numero" placeholder="num" pattern="[0-9]{1,4}"
-                                    required oninvalid="setCustomValidity('Vous avez le droit à un numero entre 1 - 9999')"
+                                <input type="text" class="form-control" id="numero" name="numero" placeholder="num"
+                                    pattern="[0-9]{1,4}" required title="Vous avez le droit à un numero entre 1 - 9999"
+                                    oninput="setCustomValidity('Vous avez le droit à un numero entre 1 - 9999')"
+                                    oninvalid="setCustomValidity('Vous avez le droit à un numero entre 1 - 9999')"
                                     onchange="try{setCustomValidity('')}catch(e){}">
                             </div>
                             <div class="col-md-8 mb-3">
                                 <label for="rue">Rue</label>
-                                <input type="text" class="form-control" id="rue" name="rue" placeholder="rue" required>
+                                <input type="text" class="form-control" id="rue" name="rue" placeholder="rue" required
+                                    pattern="^[a-zA-Z- ]*$" title="Exemple : rue de Jean Camin"
+                                    oninput="setCustomValidity('Exemple : rue de Jean Camin')"
+                                    oninvalid="setCustomValidity('Exemple : rue de Jean Camin')"
+                                    onchange="try{setCustomValidity('')}catch(e){}">
                             </div>
                             <div class="col-md-12 mb-3">
                                 <label for="ville">Ville</label>
                                 <input type="text" class="form-control" id="ville" name="ville" placeholder="ville"
-                                    required>
+                                    pattern="^[a-zA-Z- ]*$" required title="Exemple : Lille"
+                                    oninput="setCustomValidity('Exemple : Lille')"
+                                    oninvalid="setCustomValidity('Exemple : Lille')"
+                                    onchange="try{setCustomValidity('')}catch(e){}">
                             </div>
                             <div class="col-md-12 mb-3">
                                 <label for="cp">Code postal</label>
-                                <input type="text" class="form-control" id="cp" name="cp" placeholder="cp" required>
+                                <input type="text" class="form-control" id="cp" name="cp" placeholder="cp" required
+                                    pattern="^[0-9]{5}" title="Exemple : 59000"
+                                    oninput="setCustomValidity('Exemple : 59000')"
+                                    oninvalid="setCustomValidity('Exemple : 59000')"
+                                    onchange="try{setCustomValidity('')}catch(e){}">
                             </div>
                             <div class="col-md-12 mb-3">
                                 <label for="cp">Pays</label>
                                 <input type="text" class="form-control" id="pays" name="pays" placeholder="pays"
-                                    required>
+                                    pattern="[a-zA-Z]{2,}" required title="Exemple : France"
+                                    oninput="setCustomValidity('Exemple : France')"
+                                    oninvalid="setCustomValidity('Exemple : France')"
+                                    onchange="try{setCustomValidity('')}catch(e){}">
                             </div>
                         </div>
 
