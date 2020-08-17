@@ -24,8 +24,8 @@
                     <tr>
                         <th scope="col">Id client</th>
                         <th scope="col">login</th>
-                        <th scope="col">nom</th>
                         <th scope="col">prenom</th>
+                        <th scope="col">nom</th>
                         <th scope="col">date de la demande</th>
                         <th scope="col">action</th>
                     </tr>
