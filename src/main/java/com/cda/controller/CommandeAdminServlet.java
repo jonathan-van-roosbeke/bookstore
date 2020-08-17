@@ -1,6 +1,7 @@
 package com.cda.controller;
 
 import java.io.IOException;
+import java.util.Collections;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -58,6 +59,8 @@ public class CommandeAdminServlet extends AbstractController {
 		HttpSession session = request.getSession();
 		Utilisateur loginUtilisateur = (Utilisateur) session.getAttribute("utilisateur");
 		List<Commande> commandes = commandeService.getCommandes();
+		Collections.sort(commandes);
+
 		request.setAttribute("commandes", commandes);
 		request.getRequestDispatcher("/WEB-INF/admin/lister-commande.jsp").forward(request, response);
 	}

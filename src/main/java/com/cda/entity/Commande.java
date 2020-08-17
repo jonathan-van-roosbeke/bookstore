@@ -22,7 +22,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Entity
 @Table(name = "t_commande")
-public class Commande implements Serializable {
+public class Commande implements Serializable, Comparable<Commande> {
 
 	private static final long serialVersionUID = 1L;
 
@@ -44,4 +44,9 @@ public class Commande implements Serializable {
 	private Utilisateur utilisateur;
 
 	private String login;
+
+	@Override
+	public int compareTo(Commande o) {
+		return o.getDate().compareTo(getDate());
+	}
 }

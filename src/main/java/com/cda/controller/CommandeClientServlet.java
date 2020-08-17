@@ -1,6 +1,7 @@
 package com.cda.controller;
 
 import java.io.IOException;
+import java.util.Collections;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -93,6 +94,7 @@ public class CommandeClientServlet extends AbstractController {
 		HttpSession session = request.getSession();
 		Utilisateur loginUtilisateur = (Utilisateur) session.getAttribute("utilisateur");
 		List<Commande> mesCommandes = commandeService.mesCmds(loginUtilisateur.getLogin());
+		Collections.sort(mesCommandes);
 		request.setAttribute("commandes", mesCommandes);
 		request.getRequestDispatcher("/WEB-INF/utilisateur/commande.jsp").forward(request, response);
 	}
