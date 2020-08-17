@@ -42,6 +42,8 @@ public class CommandeClientServlet extends AbstractController {
 			updateStatus(request, response);
 		} else if ("success".contentEquals(methodName)) {
 			success(request, response);
+		} else if ("annuler".contentEquals(methodName)) {
+			annuler(request, response);
 		}
 	}
 
@@ -132,7 +134,7 @@ public class CommandeClientServlet extends AbstractController {
 	}
 
 	/**
-	 * Client peut modifier le status de commande en livre
+	 * Client peut signaler qu'il a recu une commande en livraison(status : 1)
 	 * 
 	 * @param request
 	 * @param response
@@ -142,5 +144,22 @@ public class CommandeClientServlet extends AbstractController {
 	protected void success(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		request.getRequestDispatcher("/WEB-INF/utilisateur/checkout.jsp").forward(request, response);
+	}
+
+	/**
+	 * Client peut annuler une commande en cours de preparation(status : 0)
+	 * 
+	 * @param request
+	 * @param response
+	 * @throws ServletException
+	 * @throws IOException
+	 */
+	protected void annuler(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		String numeroCmd = request.getParameter("numeroCmd");
+		commandeService.updateStatus(numeroCmd, Constant.ANNULE + "");
+
+		String refer = request.getHeader("referer");
+		response.sendRedirect(refer);
 	}
 }

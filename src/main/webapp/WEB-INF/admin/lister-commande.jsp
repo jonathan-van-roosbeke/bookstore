@@ -56,6 +56,7 @@
 											<c:when test="${commande.status==0 }"> En cours de préparation</c:when>
 											<c:when test="${commande.status==1 }"> En cours de livraison</c:when>
 											<c:when test="${commande.status==2 }"> Livré</c:when>
+											<c:when test="${commande.status==3 }"> Annulé</c:when>
 										</c:choose></td>
 									<td>${commande.totalCmd}</td>
 									<td><a
@@ -63,10 +64,12 @@
 											la détail</a></td>
 									<td><c:choose>
 											<c:when test="${commande.status==0 }">
-												<a href="commande-admin?method=updateStatus&numeroCmd=${commande.numeroCmd}">Envoyer la commande</a>
+												<a
+													href="commande-admin?method=updateStatus&numeroCmd=${commande.numeroCmd}">Envoyer
+													la commande</a>
 											</c:when>
 											<c:when test="${commande.status==1 }"> Attendre la confirmation de client</c:when>
-											<c:when test="${commande.status==2 }"> Terminer</c:when>
+											<c:when test="${commande.status==2 || commande.status==3}"> Terminer</c:when>
 
 										</c:choose></td>
 								</tr>
