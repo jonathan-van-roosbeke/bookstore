@@ -77,8 +77,6 @@ public class CommandeClientServlet extends AbstractController {
 			response.sendRedirect(request.getContextPath() + "/commande-client?method=success");
 		} else {
 			request.getRequestDispatcher("/login").forward(request, response);
-//			request.getRequestDispatcher("/WEB-iNF/utilisateur/login.jsp").forward(request, response);
-//			response.sendRedirect(request.getContextPath() + "/login");
 		}
 	}
 

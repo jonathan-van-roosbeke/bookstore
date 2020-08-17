@@ -18,7 +18,7 @@
 <body>
 	<div class="container-fluid">
 
-		<%@ include file="../include/common/menu-utilisateur.html"%>
+		<%@ include file="../include/common/menu-client.html"%>
 
 		<div class="row">
 			<div class="col-sm-12">
