@@ -68,6 +68,7 @@ public class AdminAjouterUnLivre extends AbstractController {
 		Auteur auteur = new Auteur(nom, prenom);
 		auteurService.save(auteur);
 
+		
 		Livre livre = new Livre(auteur.getId(), titre, Integer.parseInt(quantiteStock), Integer.parseInt(nombrePage),
 				synopsis, fileName, new BigDecimal(prix), auteur);
 		livreService.save(livre);

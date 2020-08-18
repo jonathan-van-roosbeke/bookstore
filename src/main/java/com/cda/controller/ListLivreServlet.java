@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.cda.dto.LivreDto;
 import com.cda.entity.Livre;
 import com.cda.entity.Utilisateur;
 import com.cda.service.ILivreService;
@@ -26,8 +27,8 @@ public class ListLivreServlet extends AbstractController {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		List<Livre> livres = iLivreService.findAll();
-		for (Livre livre : livres) {
+		List<LivreDto> livres = iLivreService.findAll();
+		for (LivreDto livre : livres) {
 			System.out.println(livre);
 		}
 		log.info("livres affichés avec succes");
@@ -39,7 +40,7 @@ public class ListLivreServlet extends AbstractController {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		List<Livre> livres = iLivreService.findAll();
+		List<LivreDto> livres = iLivreService.findAll();
 		Utilisateur utlisateur = (Utilisateur) request.getAttribute("utilisateur");
 
 		request.setAttribute("livres", livres);

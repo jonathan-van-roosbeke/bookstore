@@ -63,10 +63,6 @@ public class Utilisateur implements Serializable {
 	
 	@Column(name = "date_derniere_connexion")
 	private Date dateConnexion;
-//	
-//	private LocalDate localDate;
-//	
-//	private LocalDateTime localDateTime;
 	
 	private Timestamp ts;
 
