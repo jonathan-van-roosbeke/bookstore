@@ -11,10 +11,14 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 
+import com.cda.dto.LivreDto;
 import com.cda.entity.Livre;
 import com.cda.entity.Utilisateur;
 import com.cda.service.ILivreService;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @WebServlet("/index")
 public class ListLivreServlet extends AbstractController {
 	private static final long serialVersionUID = 1L;
@@ -25,10 +29,7 @@ public class ListLivreServlet extends AbstractController {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		List<Livre> livres = iLivreService.findAll();
-		for (Livre livre : livres) {
-			System.out.println(livre);
-		}
+		List<LivreDto> livres = iLivreService.findAll();
 
 		String pageNoStr = request.getParameter("pageNo");
 		if (pageNoStr == null) {
@@ -44,6 +45,8 @@ public class ListLivreServlet extends AbstractController {
 		}
 		Page<Livre> page = iLivreService.getPage(pageNo, 4);
 		request.setAttribute("page", page);
+
+		log.info("livres affichés avec succes");
 		request.setAttribute("livres", livres);
 		request.getRequestDispatcher("WEB-INF/utilisateur/index.jsp").forward(request, response);
 
@@ -52,7 +55,7 @@ public class ListLivreServlet extends AbstractController {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		List<Livre> livres = iLivreService.findAll();
+		List<LivreDto> livres = iLivreService.findAll();
 		Utilisateur utlisateur = (Utilisateur) request.getAttribute("utilisateur");
 
 		String pageNoStr = request.getParameter("pageNo");

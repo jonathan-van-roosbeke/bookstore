@@ -56,7 +56,7 @@ public class AdminAjouterUnLivre extends AbstractController {
 		// type="text" name="description">
 		Part filePart = request.getPart("file"); // Retrieves <input type="file" name="file">
 		String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString(); // MSIE fix.
-		System.out.println(fileName);
+		
 		InputStream fileContent = filePart.getInputStream();
 		byte[] buffer = new byte[fileContent.available()];
 		fileContent.read(buffer);
@@ -68,6 +68,7 @@ public class AdminAjouterUnLivre extends AbstractController {
 		Auteur auteur = new Auteur(nom, prenom);
 		auteurService.save(auteur);
 
+		
 		Livre livre = new Livre(auteur.getId(), titre, Integer.parseInt(quantiteStock), Integer.parseInt(nombrePage),
 				synopsis, fileName, new BigDecimal(prix), auteur);
 		livreService.save(livre);
