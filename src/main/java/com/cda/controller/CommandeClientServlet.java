@@ -20,6 +20,9 @@ import com.cda.entity.Panier;
 import com.cda.entity.Utilisateur;
 import com.cda.service.ICommandeService;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @WebServlet("/commande-client")
 public class CommandeClientServlet extends AbstractController {
 	private static final long serialVersionUID = 1L;
@@ -148,6 +151,7 @@ public class CommandeClientServlet extends AbstractController {
 			throws ServletException, IOException {
 		String numeroCmd = request.getParameter("numeroCmd");
 		commandeService.updateStatus(numeroCmd, Constant.LIVRE + "");
+		log.info("Update de la commande numero " + numeroCmd );
 
 		String refer = request.getHeader("referer");
 		response.sendRedirect(refer);

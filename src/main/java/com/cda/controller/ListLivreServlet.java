@@ -46,8 +46,8 @@ public class ListLivreServlet extends AbstractController {
 		Page<Livre> page = iLivreService.getPage(pageNo, 4);
 		request.setAttribute("page", page);
 
-		log.info("livres affichés avec succes");
 		request.setAttribute("livres", livres);
+		log.info("Affichage des livres");
 		request.getRequestDispatcher("WEB-INF/utilisateur/index.jsp").forward(request, response);
 
 	}

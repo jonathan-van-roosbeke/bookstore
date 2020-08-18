@@ -1,6 +1,7 @@
 package com.cda.controller;
 
 import java.io.File;
+
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -22,6 +23,9 @@ import com.cda.entity.Livre;
 import com.cda.service.IAuteurService;
 import com.cda.service.ILivreService;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @WebServlet("/ajouter-livre")
 @MultipartConfig
 public class AdminAjouterUnLivre extends AbstractController {
@@ -72,6 +76,8 @@ public class AdminAjouterUnLivre extends AbstractController {
 		Livre livre = new Livre(auteur.getId(), titre, Integer.parseInt(quantiteStock), Integer.parseInt(nombrePage),
 				synopsis, fileName, new BigDecimal(prix), auteur);
 		livreService.save(livre);
+		
+		log.info("Livre : " + livre + " ajouté");
 		
 		response.sendRedirect(request.getContextPath() + "/index");
 
