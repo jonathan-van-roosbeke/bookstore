@@ -5,6 +5,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import com.cda.dao.IArticleCmdDao;
@@ -26,6 +29,12 @@ public class CommandeServiceImpl implements ICommandeService {
 	IArticleCmdDao articleCmdDao;
 	@Autowired
 	ILivreDao livreDao;
+
+	@Override
+	public Page<Commande> getPage(int pageNo, int pageSize) {
+		PageRequest pageable = PageRequest.of(pageNo - 1, pageSize);
+		return commandeDao.findAll(pageable);
+	}
 
 	@Override
 	public String checkout(Panier panier, Utilisateur utilisateur) {
@@ -87,7 +96,7 @@ public class CommandeServiceImpl implements ICommandeService {
 
 	@Override
 	public List<Commande> getCommandes() {
-		return (List<Commande>) commandeDao.findAll();
+		return commandeDao.findAll();
 	}
 
 	@Override
@@ -102,4 +111,16 @@ public class CommandeServiceImpl implements ICommandeService {
 			}
 		}
 	}
+
+	@Override
+	public Page<Commande> getPage(int pageNo, int pageSize, List list, Utilisateur login) {
+		PageRequest pageable = PageRequest.of(pageNo - 1, pageSize);
+
+		int start = (int) pageable.getOffset();
+		int end = (start + pageable.getPageSize()) > list.size() ? list.size() : (start + pageable.getPageSize());
+		Page<Commande> page = new PageImpl<Commande>(list.subList(start, end), pageable, list.size());
+
+		return page;
+	}
+
 }

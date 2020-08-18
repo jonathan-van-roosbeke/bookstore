@@ -9,8 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 
-import com.cda.dao.ILivreDao;
 import com.cda.entity.Livre;
 import com.cda.entity.Utilisateur;
 import com.cda.service.ILivreService;
@@ -29,6 +29,21 @@ public class ListLivreServlet extends AbstractController {
 		for (Livre livre : livres) {
 			System.out.println(livre);
 		}
+
+		String pageNoStr = request.getParameter("pageNo");
+		if (pageNoStr == null) {
+			pageNoStr = "1";
+		}
+		int pageNo = 1;
+		try {
+			pageNo = Integer.parseInt(pageNoStr);
+			if (pageNo < 1) {
+				pageNo = 1;
+			}
+		} catch (Exception e) {
+		}
+		Page<Livre> page = iLivreService.getPage(pageNo, 4);
+		request.setAttribute("page", page);
 		request.setAttribute("livres", livres);
 		request.getRequestDispatcher("WEB-INF/utilisateur/index.jsp").forward(request, response);
 
@@ -39,6 +54,21 @@ public class ListLivreServlet extends AbstractController {
 			throws ServletException, IOException {
 		List<Livre> livres = iLivreService.findAll();
 		Utilisateur utlisateur = (Utilisateur) request.getAttribute("utilisateur");
+
+		String pageNoStr = request.getParameter("pageNo");
+		if (pageNoStr == null) {
+			pageNoStr = "1";
+		}
+		int pageNo = 1;
+		try {
+			pageNo = Integer.parseInt(pageNoStr);
+			if (pageNo < 1) {
+				pageNo = 1;
+			}
+		} catch (Exception e) {
+		}
+		Page<Livre> page = iLivreService.getPage(pageNo, 4);
+		request.setAttribute("page", page);
 
 		request.setAttribute("livres", livres);
 		request.setAttribute("utilisateur", utlisateur);

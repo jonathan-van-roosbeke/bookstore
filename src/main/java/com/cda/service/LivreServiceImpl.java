@@ -3,6 +3,8 @@ package com.cda.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import com.cda.dao.ILivreDao;
@@ -32,7 +34,12 @@ public class LivreServiceImpl implements ILivreService {
 	@Override
 	public void deleteById(Integer id) {
 		livreDao.deleteById(id);
-		
+	}
+
+	@Override
+	public Page<Livre> getPage(int pageNo, int pageSize) {
+		PageRequest pageable = PageRequest.of(pageNo - 1, pageSize);
+		return livreDao.findAll(pageable);
 	}
 
 }

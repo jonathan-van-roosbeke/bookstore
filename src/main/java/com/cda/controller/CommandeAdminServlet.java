@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 
 import com.cda.entity.ArticleCmd;
 import com.cda.entity.Commande;
@@ -32,11 +33,11 @@ public class CommandeAdminServlet extends AbstractController {
 		System.out.println(methodName);
 		if (methodName == null) {
 			request.getRequestDispatcher("/WEB-INF/admin/lister-commande.jsp").forward(request, response);
-		} else if ("afficherAll".contentEquals(methodName)) {
-			afficherAll(request, response);
-		} else if ("detail".contentEquals(methodName)) {
+		} else if ("afficher".equals(methodName)) {
+			afficher(request, response);
+		} else if ("detail".equals(methodName)) {
 			detail(request, response);
-		} else if ("updateStatus".contentEquals(methodName)) {
+		} else if ("updateStatus".equals(methodName)) {
 			updateStatus(request, response);
 		}
 	}
@@ -54,13 +55,27 @@ public class CommandeAdminServlet extends AbstractController {
 	 * @throws ServletException
 	 * @throws IOException
 	 */
-	protected void afficherAll(HttpServletRequest request, HttpServletResponse response)
+	protected void afficher(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		Utilisateur loginUtilisateur = (Utilisateur) session.getAttribute("utilisateur");
 		List<Commande> commandes = commandeService.getCommandes();
 		Collections.sort(commandes);
 
+		String pageNoStr = request.getParameter("pageNo");
+		if (pageNoStr == null) {
+			pageNoStr = "1";
+		}
+		int pageNo = 1;
+		try {
+			pageNo = Integer.parseInt(pageNoStr);
+			if (pageNo < 1) {
+				pageNo = 1;
+			}
+		} catch (Exception e) {
+		}
+		Page<Commande> page = commandeService.getPage(pageNo, 10);
+		request.setAttribute("page", page);
 		request.setAttribute("commandes", commandes);
 		request.getRequestDispatcher("/WEB-INF/admin/lister-commande.jsp").forward(request, response);
 	}

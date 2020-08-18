@@ -2,6 +2,8 @@ package com.cda.service;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+
 import com.cda.entity.ArticleCmd;
 import com.cda.entity.Commande;
 import com.cda.entity.Panier;
@@ -20,4 +22,9 @@ public interface ICommandeService {
 	void updateStatus(String numeroCmd, String status);
 
 	void annuler(String numeroCmd);
+
+	Page<Commande> getPage(int pageNo, int pageSize);
+
+	Page<Commande> getPage(int pageNo, int pageSize, List list, Utilisateur login);
+
 }

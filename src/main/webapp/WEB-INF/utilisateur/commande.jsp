@@ -51,7 +51,7 @@
 							</tr>
 						</thead>
 
-						<c:forEach items="${commandes}" var="commande">
+						<c:forEach items="${page.content}" var="commande">
 							<tbody>
 								<tr>
 									<th scope="row">${commande.numeroCmd}</th>
@@ -69,7 +69,8 @@
 									<td><c:choose>
 											<c:when test="${commande.status==0 }">
 												<a
-													href="commande-client?method=annuler&numeroCmd=${commande.numeroCmd}">Annuler la commande</a>
+													href="commande-client?method=annuler&numeroCmd=${commande.numeroCmd}">Annuler
+													la commande</a>
 											</c:when>
 											<c:when test="${commande.status==1 }">
 												<a
@@ -80,7 +81,9 @@
 								</tr>
 							</tbody>
 						</c:forEach>
+
 					</table>
+					<div><%@ include file="../include/common/pagination.jsp"%></div>
 				</c:if>
 			</div>
 		</div>

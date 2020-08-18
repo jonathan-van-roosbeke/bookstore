@@ -30,7 +30,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <c:forEach items="${utilisateurs}" var="utilisateur">
+                    <c:forEach items="${page.content}" var="utilisateur">
                         <tr class="tr-hover" data-toggle="tooltip" data-placement="bottom" title="Date de la demande du compte : ${utilisateur.dateDemande}">
                             <th scope="row">${utilisateur.id}</th>
                             <td id="${utilisateur.login}">${utilisateur.login}</td>
@@ -41,6 +41,7 @@
                     </c:forEach>
                 </tbody>
             </table>
+            <div><%@ include file="../include/common/pagination.jsp"%></div>
         </div>
     </div>
 

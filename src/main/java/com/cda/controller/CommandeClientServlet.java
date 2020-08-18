@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 
 import com.cda.entity.ArticleCmd;
 import com.cda.entity.Commande;
@@ -32,7 +33,7 @@ public class CommandeClientServlet extends AbstractController {
 		String methodName = request.getParameter("method");
 		System.out.println(methodName);
 		if (methodName == null) {
-			request.getRequestDispatcher("/WEB-INF/utilisateur/commande.jsp").forward(request, response);
+			request.getRequestDispatcher("/commande-client?method=afficher").forward(request, response);
 		} else if ("checkout".equals(methodName)) {
 			checkout(request, response);
 		} else if ("afficher".equals(methodName)) {
@@ -41,11 +42,12 @@ public class CommandeClientServlet extends AbstractController {
 			detail(request, response);
 		} else if ("updateStatus".equals(methodName)) {
 			updateStatus(request, response);
-		} else if ("success".contentEquals(methodName)) {
+		} else if ("success".equals(methodName)) {
 			success(request, response);
-		} else if ("annuler".contentEquals(methodName)) {
+		} else if ("annuler".equals(methodName)) {
 			annuler(request, response);
 		}
+
 	}
 
 	@Override
@@ -95,7 +97,23 @@ public class CommandeClientServlet extends AbstractController {
 		Utilisateur loginUtilisateur = (Utilisateur) session.getAttribute("utilisateur");
 		List<Commande> mesCommandes = commandeService.mesCmds(loginUtilisateur.getLogin());
 		Collections.sort(mesCommandes);
+
+		String pageNoStr = request.getParameter("pageNo");
+		if (pageNoStr == null) {
+			pageNoStr = "1";
+		}
+		int pageNo = 1;
+		try {
+			pageNo = Integer.parseInt(pageNoStr);
+			if (pageNo < 1) {
+				pageNo = 1;
+			}
+		} catch (Exception e) {
+		}
+
+		Page<Commande> page = commandeService.getPage(pageNo, 10, mesCommandes, loginUtilisateur);
 		request.setAttribute("commandes", mesCommandes);
+		request.setAttribute("page", page);
 		request.getRequestDispatcher("/WEB-INF/utilisateur/commande.jsp").forward(request, response);
 	}
 
@@ -165,4 +183,5 @@ public class CommandeClientServlet extends AbstractController {
 		String refer = request.getHeader("referer");
 		response.sendRedirect(refer);
 	}
+
 }
