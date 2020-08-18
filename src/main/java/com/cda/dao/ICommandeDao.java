@@ -18,6 +18,6 @@ public interface ICommandeDao extends JpaRepository<Commande, String> {
 	List<ArticleCmd> detailCmd(String numeroCmd);
 
 	@Query(nativeQuery = true, value = "select * from t_commande c where c.login=:login limit :offset, :size")
-	List<Commande> findInPage(@Param("login") String login, @Param("offset") int offset, @Param("size") int size);
+	List<Commande> mesCmds(@Param("login") String login, @Param("offset") int offset, @Param("size") int size);
 
 }
