@@ -15,6 +15,9 @@ import com.cda.entity.Livre;
 import com.cda.service.IAuteurService;
 import com.cda.service.ILivreService;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @WebServlet("/editer-livre")
 public class AdminEditerUnLivre extends AbstractController {
 	private static final long serialVersionUID = 1L;
@@ -80,6 +83,7 @@ public class AdminEditerUnLivre extends AbstractController {
 							.auteur(auteur)
 							.build();
 
+		log.info("Vous avez édité le livre : " + livre + " en " + livreUpdate);
 		livreService.save(livreUpdate);
 		
 		response.sendRedirect(request.getContextPath() + "/index");

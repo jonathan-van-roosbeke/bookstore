@@ -11,6 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.cda.service.ILivreService;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @WebServlet("/supprimer-livre")
 public class AdminSupprimerLivre extends AbstractController {
 	
@@ -22,6 +25,7 @@ public class AdminSupprimerLivre extends AbstractController {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String id = request.getParameter("id");
 		livreService.deleteById(Integer.parseInt(id));
+		log.info("Livre " + id + " supprimé");
 		response.sendRedirect(request.getContextPath() + "/index");
 	}
 

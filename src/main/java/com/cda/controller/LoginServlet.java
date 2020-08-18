@@ -16,6 +16,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.cda.entity.Utilisateur;
 import com.cda.service.IUtilisateurService;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @WebServlet(urlPatterns = { "/login" })
 public class LoginServlet extends AbstractController {
 	private static final long serialVersionUID = 1L;
@@ -52,6 +55,7 @@ public class LoginServlet extends AbstractController {
 			Cookie cookie = new Cookie("login", login);
 			cookie.setMaxAge(60 * 60 * 24 * 7);
 			response.addCookie(cookie);
+			log.debug("L'utilisateur " + login + " s'est connecté");
 			request.getSession().setAttribute("utilisateur", utilisateur);
 			request.getRequestDispatcher("/index").forward(request, response);
 		}

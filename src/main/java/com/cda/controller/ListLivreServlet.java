@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.cda.dto.LivreDto;
-import com.cda.entity.Livre;
 import com.cda.entity.Utilisateur;
 import com.cda.service.ILivreService;
 
@@ -31,8 +30,8 @@ public class ListLivreServlet extends AbstractController {
 		for (LivreDto livre : livres) {
 			System.out.println(livre);
 		}
-		log.info("livres affichés avec succes");
 		request.setAttribute("livres", livres);
+		log.info("Affichage des livres");
 		request.getRequestDispatcher("WEB-INF/utilisateur/index.jsp").forward(request, response);
 
 	}
