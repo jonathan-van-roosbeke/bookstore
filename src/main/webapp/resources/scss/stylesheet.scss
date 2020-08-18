@@ -196,10 +196,18 @@ svg {
   background-color: $vert;
 }
 
-.valide{
-  color : $vert;
+.valide {
+  color: $vert;
 }
 
-.error{
-  color :red;
+.error {
+  color: red;
+}
+
+.inputGroupFile02 {
+  margin-top: 10px;
+}
+
+.input-group {
+  width: 100%;
 }

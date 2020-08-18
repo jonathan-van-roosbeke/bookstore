@@ -27,8 +27,8 @@
                             <div class="col-md-12 mb-3">
                                 <label for="nom">Nom</label>
                                 <input type="text" class="form-control" id="nom" name="nom" placeholder="nom"
-                                    pattern="^[a-zA-Z- ]*$" required autofocus
-                                    title="Exemple : Dupond" oninput="this.setCustomValidity('Exemple : Dupond')"
+                                    pattern="^[a-zA-Z- ]*$" required autofocus title="Exemple : Dupond"
+                                    oninput="this.setCustomValidity('Exemple : Dupond')"
                                     oninvalid="this.setCustomValidity('Exemple : Dupond')"
                                     onchange="try{setCustomValidity('')}catch(e){}">
                             </div>
@@ -72,7 +72,8 @@
                             <div class="col-md-4 mb-3">
                                 <label for="numero">N°</label>
                                 <input type="text" class="form-control" id="numero" name="numero" placeholder="num"
-                                    pattern="[0-9]{1,4}" required title="Vous avez le droit à un numero entre 1 - 9999"
+                                    pattern="[0-9]{1,4}" required
+                                    title="Vous avez le droit à un numero entre 1 - 9999"
                                     oninput="setCustomValidity('Vous avez le droit à un numero entre 1 - 9999')"
                                     oninvalid="setCustomValidity('Vous avez le droit à un numero entre 1 - 9999')"
                                     onchange="try{setCustomValidity('')}catch(e){}">

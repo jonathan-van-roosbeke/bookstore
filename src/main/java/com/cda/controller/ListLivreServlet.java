@@ -10,11 +10,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.cda.dao.ILivreDao;
 import com.cda.entity.Livre;
 import com.cda.entity.Utilisateur;
 import com.cda.service.ILivreService;
 
+import lombok.extern.slf4j.Slf4j;
+@Slf4j
 @WebServlet("/index")
 public class ListLivreServlet extends AbstractController {
 	private static final long serialVersionUID = 1L;
@@ -29,6 +30,7 @@ public class ListLivreServlet extends AbstractController {
 		for (Livre livre : livres) {
 			System.out.println(livre);
 		}
+		log.info("livres affichés avec succes");
 		request.setAttribute("livres", livres);
 		request.getRequestDispatcher("WEB-INF/utilisateur/index.jsp").forward(request, response);
 
