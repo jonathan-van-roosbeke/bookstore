@@ -54,7 +54,7 @@
 							<td></td>
 							<td></td>
 							<td></td>
-							<td><a href="commande-admin?method=afficherAll"
+							<td><a href="commande-admin?method=afficher"
 								class="btn btn-primary">Retour</a></td>
 						</tr>
 					</tbody>

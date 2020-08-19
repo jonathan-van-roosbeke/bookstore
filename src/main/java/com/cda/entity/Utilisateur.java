@@ -40,7 +40,7 @@ public class Utilisateur implements Serializable {
 	private String motdepasse;
 
 	@Column(name = "uid")
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
 	@Column(name = "nom")
