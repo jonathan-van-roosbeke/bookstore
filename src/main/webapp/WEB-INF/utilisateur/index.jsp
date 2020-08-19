@@ -3,18 +3,15 @@
 <html>
 
 <head>
-<meta charset="UTF-8">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>index</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>index</title>
 
-<link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
-	integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
-	crossorigin="anonymous">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+		integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 
-<link type="text/css" rel="stylesheet"
-	href="./resources/css/stylesheet.css">
+	<link type="text/css" rel="stylesheet" href="./resources/css/stylesheet.css">
+
 <body>
 	<div class="container-fluid">
 
@@ -62,10 +59,8 @@
 			<c:forEach items="${page.content}" var="livres">
 				<div class="col-sm-3" name="id-livre">
 					<div class="card" style="width: 18rem;">
-						<img
-							src="resources/images/img-couverture-livre/${livres.nomImage}"
-							class="card-img-top livre" id="${livres.id}"
-							alt="${livres.nomImage}">
+						<img src="resources/images/img-couverture-livre/${livres.nomImage}" class="card-img-top livre"
+							id="${livres.id}" alt="${livres.nomImage}">
 						<div class="card-body">
 							<h5 class="card-title">${livres.titre}</h5>
 							<p class="card-text">${livres.auteur.nom}
@@ -79,11 +74,9 @@
 									<div class="action">
 										<a href="editer-livre?id=${livres.id}" class="btn btn-primary">Editer</a>
 										<!-- icone supprimer -->
-										<a id="${livres.id}" href="#" class="trash"> <svg
-												width="1.5em" height="1.5em" viewBox="0 0 16 16"
-												class="bi bi-trash" fill="#65B3C5"
-												xmlns="http://www.w3.org/2000/svg"
-												transform='translate(10 0)'>
+										<a id="${livres.id}" href="#" class="trash"> <svg width="1.5em" height="1.5em"
+												viewBox="0 0 16 16" class="bi bi-trash" fill="#65B3C5"
+												xmlns="http://www.w3.org/2000/svg" transform='translate(10 0)'>
 												<path
 													d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
 												<path fill-rule="evenodd"
@@ -93,8 +86,8 @@
 									</div>
 								</c:when>
 								<c:otherwise>
-									<a href="panier?method=ajouter&id=${livres.id}"
-										class="btn btn-primary">Ajouter au panier</a>
+									<a href="panier?method=ajouter&id=${livres.id}" class="btn btn-primary">Ajouter au
+										panier</a>
 								</c:otherwise>
 							</c:choose>
 
@@ -102,20 +95,19 @@
 					</div>
 				</div>
 			</c:forEach>
+			<div>
+				<%@ include file="../include/common/pagination.jsp"%>
+			</div>
 		</div>
-		<div>
-			<%@ include file="../include/common/pagination.jsp"%>
-		</div>
+
 
 		<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
 			integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
 			crossorigin="anonymous"></script>
-		<script
-			src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
 			integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
 			crossorigin="anonymous"></script>
-		<script
-			src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
 			integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
 			crossorigin="anonymous"></script>
 
@@ -125,8 +117,7 @@
 			</c:when>
 
 			<c:when test="${utilisateur.statusUtilisateur == 2}">
-				<script
-					src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.4.0/bootbox.js"></script>
+				<script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.4.0/bootbox.js"></script>
 				<script src="resources/js/modal.js"></script>
 			</c:when>
 

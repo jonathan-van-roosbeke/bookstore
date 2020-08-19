@@ -55,17 +55,16 @@ public class AdminAjouterUnLivre extends AbstractController {
 		
 		
 
-		// image
-		// String description = request.getParameter("description"); // Retrieves <input
-		// type="text" name="description">
-		Part filePart = request.getPart("file"); // Retrieves <input type="file" name="file">
-		String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString(); // MSIE fix.
+
+		Part filePart = request.getPart("file");
+		String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
 		
 		InputStream fileContent = filePart.getInputStream();
 		byte[] buffer = new byte[fileContent.available()];
 		fileContent.read(buffer);
-
-		File targetFile = new File("/home/jonathan/Documents/java-projects/bookstore/src/main/webapp/resources/images/img-couverture-livre/" + fileName);
+		
+		
+		File targetFile = new File("~/images/" + fileName);
 		OutputStream outStream = new FileOutputStream(targetFile);
 		outStream.write(buffer);
 
