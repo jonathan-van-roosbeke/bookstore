@@ -14,6 +14,9 @@ import com.cda.entity.Livre;
 import com.cda.entity.Panier;
 import com.cda.service.ILivreService;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @WebServlet("/panier")
 public class PanierServlet extends AbstractController {
 	private static final long serialVersionUID = 1L;
@@ -25,7 +28,7 @@ public class PanierServlet extends AbstractController {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String methodName = request.getParameter("method");
-		System.out.println(methodName);
+		log.info(methodName);
 		if (methodName == null) {
 			request.getRequestDispatcher("/WEB-INF/utilisateur/panier.jsp").forward(request, response);
 		} else if ("ajouter".equals(methodName)) {

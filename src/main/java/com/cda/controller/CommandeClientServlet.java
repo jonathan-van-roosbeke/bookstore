@@ -34,7 +34,7 @@ public class CommandeClientServlet extends AbstractController {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String methodName = request.getParameter("method");
-		System.out.println(methodName);
+		log.info(methodName);
 		if (methodName == null) {
 			request.getRequestDispatcher("/commande-client?method=afficher").forward(request, response);
 		} else if ("checkout".equals(methodName)) {
@@ -151,7 +151,7 @@ public class CommandeClientServlet extends AbstractController {
 			throws ServletException, IOException {
 		String numeroCmd = request.getParameter("numeroCmd");
 		commandeService.updateStatus(numeroCmd, Constant.LIVRE + "");
-		log.info("Update de la commande numero " + numeroCmd );
+		log.info("Update de la commande numero " + numeroCmd);
 
 		String refer = request.getHeader("referer");
 		response.sendRedirect(refer);

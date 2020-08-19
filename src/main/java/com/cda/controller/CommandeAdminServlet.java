@@ -19,6 +19,9 @@ import com.cda.entity.Constant;
 import com.cda.entity.Utilisateur;
 import com.cda.service.ICommandeService;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @WebServlet("/commande-admin")
 public class CommandeAdminServlet extends AbstractController {
 	private static final long serialVersionUID = 1L;
@@ -30,7 +33,7 @@ public class CommandeAdminServlet extends AbstractController {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String methodName = request.getParameter("method");
-		System.out.println(methodName);
+		log.info(methodName);
 		if (methodName == null) {
 			request.getRequestDispatcher("/WEB-INF/admin/lister-commande.jsp").forward(request, response);
 		} else if ("afficher".equals(methodName)) {
