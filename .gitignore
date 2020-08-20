@@ -207,3 +207,4 @@ src/main/resources/applicationContext.xml
 *.css.map
 *.sass.map
 *.scss.map
+pom.xml
