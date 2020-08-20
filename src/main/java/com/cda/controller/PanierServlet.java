@@ -1,88 +1,59 @@
 package com.cda.controller;
 
-import java.io.IOException;
-
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.cda.entity.Livre;
 import com.cda.entity.Panier;
 import com.cda.service.ILivreService;
 
-import lombok.extern.slf4j.Slf4j;
-
-@Slf4j
-@WebServlet("/panier")
+@Controller
 public class PanierServlet extends AbstractController {
 	private static final long serialVersionUID = 1L;
 
 	@Autowired
 	private ILivreService livreService;
 
-	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		String methodName = request.getParameter("method");
-		log.info(methodName);
-		if (methodName == null) {
-			request.getRequestDispatcher("/WEB-INF/utilisateur/panier.jsp").forward(request, response);
-		} else if ("ajouter".equals(methodName)) {
-			ajouter(request, response);
+	@GetMapping(value = "/panier")
+	String getPanier(HttpSession session, @RequestParam(value = "method", required = false) String methodName,
+			@RequestParam(value = "id", required = false) String id,
+			@RequestParam(value = "qte", defaultValue = "1", required = false) String qte) {
+
+		if ("ajouter".equals(methodName)) {
+			return ajouter(session, id);
 		} else if ("supprimer".equals(methodName)) {
-			supprimer(request, response);
+			return supprimer(session, id);
 		} else if ("modifier".equals(methodName)) {
-			modifier(request, response);
+			return modifier(session, id, qte);
 		}
+		return "utilisateur/panier";
 	}
 
-	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		doGet(request, response);
-	}
-
-	protected void ajouter(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		HttpSession session = request.getSession();
+	private String ajouter(HttpSession session, String id) {
 		Panier panier = (Panier) session.getAttribute("panier");
 		if (panier == null) {
 			panier = new Panier();
 			session.setAttribute("panier", panier);
-
 		}
-		System.out.println(request.getParameter("id"));
-		Livre livre = livreService.findById(Integer.parseInt(request.getParameter("id")));
+		Livre livre = livreService.findById(Integer.parseInt(id));
 		panier.ajouterLivre(livre);
 
-//		response.sendRedirect(request.getContextPath() + "/index");
-		request.getRequestDispatcher("/index").forward(request, response);
+		return "utilisateur/index";
 	}
 
-	protected void supprimer(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		HttpSession session = request.getSession();
+	protected String supprimer(HttpSession session, String id) {
 		Panier panier = (Panier) session.getAttribute("panier");
-
-		System.out.println(request.getParameter("id"));
-		panier.supprimerLivre(Integer.parseInt(request.getParameter("id")));
-
-//		response.sendRedirect(request.getContextPath() + "/WEB-INF/utilisateur/panier.jsp");
-		request.getRequestDispatcher("/WEB-INF/utilisateur/panier.jsp").forward(request, response);
+		panier.supprimerLivre(Integer.parseInt(id));
+		return "utilisateur/panier";
 	}
 
-	private void modifier(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		HttpSession session = request.getSession();
+	private String modifier(HttpSession session, String id, String qte) {
 		Panier panier = (Panier) session.getAttribute("panier");
-
-		panier.updateQuantite(Integer.parseInt(request.getParameter("id")), request.getParameter("qte"));
-
-//		response.sendRedirect(request.getContextPath() + "/WEB-INF/utilisateur/panier.jsp");
-		request.getRequestDispatcher("/WEB-INF/utilisateur/panier.jsp").forward(request, response);
+		panier.updateQuantite(Integer.parseInt(id), qte);
+		return "utilisateur/panier";
 	}
 }

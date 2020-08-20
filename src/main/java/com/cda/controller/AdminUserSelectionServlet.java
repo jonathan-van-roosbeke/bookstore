@@ -1,32 +1,25 @@
 package com.cda.controller;
 
-import java.io.IOException;
-
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.cda.entity.Utilisateur;
 import com.cda.service.IUtilisateurService;
 
-@WebServlet("/select-user")
-public class AdminUserSelectionServlet extends AbstractController {
-	private static final long serialVersionUID = 1L;
+@Controller
+public class AdminUserSelectionServlet {
 	@Autowired
 	IUtilisateurService utilisateurService;
-       
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String id = request.getParameter("id");
+     
+	@GetMapping(value = "/select-user")
+	public ModelAndView selectUser(@RequestParam(value="id") String id) {
 		Utilisateur utilisateur = utilisateurService.findById(id);
-		request.setAttribute("utilisateur", utilisateur);
-		
-		request.getRequestDispatcher("/WEB-INF/admin/info-user.jsp").forward(request, response);
+		ModelAndView model = new ModelAndView();
+		model.addObject("utilisateur", utilisateur);
+		model.setViewName("/admin/info-user");
+		return model;
 	}
-
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	}
-
 }

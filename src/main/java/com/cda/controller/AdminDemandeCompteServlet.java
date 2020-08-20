@@ -1,34 +1,27 @@
 package com.cda.controller;
 
-import java.io.IOException;
 import java.util.List;
-
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.cda.entity.Utilisateur;
 import com.cda.service.IUtilisateurService;
 
-import lombok.extern.slf4j.Slf4j;
-
-@WebServlet("/demande-compte")
-public class AdminDemandeCompteServlet extends AbstractController {
-	private static final long serialVersionUID = 1L;
+@Controller
+public class AdminDemandeCompteServlet {
 
 	@Autowired
 	IUtilisateurService utilisateurService;
 
-	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	@GetMapping(value = "/demande-compte")
+	ModelAndView getCompte(ModelAndView model, @RequestParam(value = "pageNo", defaultValue = "1") String pageNoStr) {
 		List<Utilisateur> utilisateurs = utilisateurService.findCompteEnAttente();
-
-		String pageNoStr = request.getParameter("pageNo");
 		if (pageNoStr == null) {
 			pageNoStr = "1";
 		}
@@ -42,17 +35,17 @@ public class AdminDemandeCompteServlet extends AbstractController {
 		}
 
 		Page<Utilisateur> page = utilisateurService.getPage(pageNo, 10, utilisateurs);
-		request.setAttribute("page", page);
-		request.setAttribute("utilisateurs", utilisateurs);
-		request.getRequestDispatcher("WEB-INF/admin/demande-compte.jsp").forward(request, response);
+		model.setViewName("admin/demande-compte");
+		model.addObject("page", page);
+		model.addObject("utilisateurs", utilisateurs);
+		return model;
 	}
 
-	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	@PostMapping(value = "/demande-compte")
+	ModelAndView editerLaDemande(ModelAndView model) {
 		List<Utilisateur> utilisateurs = utilisateurService.findCompteEnAttente();
-		request.setAttribute("utilisateurs", utilisateurs);
-		request.getRequestDispatcher("WEB-INF/admin/demande-compte.jsp").forward(request, response);
+		model.addObject("utilisateurs", utilisateurs);
+		model.setViewName("admin/demande-compte");
+		return model;
 	}
-
 }

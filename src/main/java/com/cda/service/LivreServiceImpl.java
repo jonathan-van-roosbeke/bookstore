@@ -18,7 +18,7 @@ public class LivreServiceImpl implements ILivreService {
 
 	@Autowired
 	ILivreDao livreDao;
-	
+
 	@Autowired
 	private ModelMapper modelMapper;
 
@@ -26,7 +26,7 @@ public class LivreServiceImpl implements ILivreService {
 	public List<LivreDto> findAll() {
 		List<LivreDto> livresDto = new ArrayList<>();
 		List<Livre> livres = livreDao.findAll();
-		for(Livre l : livres) {
+		for (Livre l : livres) {
 			livresDto.add(this.modelMapper.map(l, LivreDto.class));
 		}
 		return livresDto;
@@ -56,6 +56,11 @@ public class LivreServiceImpl implements ILivreService {
 	@Override
 	public Long count() {
 		return livreDao.count();
+	}
+
+	@Override
+	public Livre findByTitre(String titre) {
+		return livreDao.findByTitre(titre);
 	}
 
 }

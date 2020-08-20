@@ -13,12 +13,14 @@ public interface ILivreService {
 
 	Livre findById(Integer id);
 
+	Livre findByTitre(String titre);
+
 	Livre save(Livre livre);
 
 	void deleteById(Integer id);
 
 	Page<Livre> getPage(int pageNo, int pageSize);
-	
+
 	Long count();
 
 }
