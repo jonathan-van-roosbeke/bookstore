@@ -1,37 +1,32 @@
 package com.cda.controller;
 
-import java.io.IOException;
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
-import com.cda.entity.Utilisateur;
 import com.cda.service.IUtilisateurService;
 
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-@WebServlet("/supprimer-compte")
+@Controller
 public class AdminSupprimerCompteServlet extends AbstractController {
 	private static final long serialVersionUID = 1L;
-	
+
 	@Autowired
 	IUtilisateurService utilisateurService;
-	
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.sendRedirect(request.getContextPath()+"/demande-compte");
+
+	@GetMapping("/supprimer-compte")
+	String getCompte() {
+		return "admin/demande-compte";
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String login = request.getParameter("id");
-		utilisateurService.deleteById(login);
-		
-		log.info("Le compte " + login + " à été supprimé");
-		response.sendRedirect(request.getContextPath()+"/demande-compte");
+	@PostMapping("/supprimer-compte")
+	String supprimerCompte(@RequestParam(value = "id") String id) {
+		utilisateurService.deleteById(id);
+		log.info("Le compte " + id + " à été supprimé");
+		return "admin/demande-compte";
 	}
-
 }

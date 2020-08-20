@@ -1,36 +1,25 @@
 package com.cda.controller;
 
-import java.io.IOException;
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.cda.service.ILivreService;
 
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-@WebServlet("/supprimer-livre")
-public class AdminSupprimerLivre extends AbstractController {
-	
+@Controller
+public class AdminSupprimerLivre {
+
 	@Autowired
 	ILivreService livreService;
-	
-	private static final long serialVersionUID = 1L;
-	
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String id = request.getParameter("id");
+
+	@GetMapping(value = "/supprimer-livre")
+	String getLivre(@RequestParam(value = "id") String id) {
 		livreService.deleteById(Integer.parseInt(id));
 		log.info("Livre " + id + " supprimé");
-		response.sendRedirect(request.getContextPath() + "/index");
+		return "/utilisateur/index";
 	}
-
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-	}
-
 }
