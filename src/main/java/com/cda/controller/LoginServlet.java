@@ -51,7 +51,7 @@ public class LoginServlet extends AbstractController {
 			utilisateur.setDateConnexion(new Date(Calendar.getInstance().getTime().getTime()));
 			utilisateur.setTs(new Timestamp(date.getTime()));
 			utilisateurService.save(utilisateur);
-			System.out.println(utilisateur.getTs());
+			//System.out.println(utilisateur.getTs());
 			Cookie cookie = new Cookie("login", login);
 			cookie.setMaxAge(60 * 60 * 24 * 7);
 			response.addCookie(cookie);
