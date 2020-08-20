@@ -1,52 +1,49 @@
 package com.cda.controller;
 
-import java.io.IOException;
 import java.sql.Date;
 import java.util.Calendar;
 
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.cda.entity.Adresse;
 import com.cda.entity.Utilisateur;
 import com.cda.service.IAdresseService;
 import com.cda.service.IUtilisateurService;
 
-@WebServlet(urlPatterns = { "/inscription" })
-public class InscriptionServlet extends AbstractController {
-	private static final long serialVersionUID = 1L;
+@Controller
+public class InscriptionServlet {
 
 	@Autowired
 	IAdresseService adresseService;
 
 	@Autowired
 	IUtilisateurService utilisateurService;
-
-	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		request.getRequestDispatcher("WEB-INF/utilisateur/inscription.jsp").forward(request, response);
+	
+	@GetMapping(value = "/inscription")
+	public ModelAndView initInscription() {
+		ModelAndView model = new ModelAndView();
+		model.setViewName("/utilisateur/inscription");
+		return model;
 	}
 
-	@Override
-	protected void doPost(HttpServletRequest request, javax.servlet.http.HttpServletResponse response)
-			throws ServletException, IOException {
-		String nom = request.getParameter("nom");
-		String prenom = request.getParameter("prenom");
-		String email = request.getParameter("email");
-		String login = request.getParameter("login");
-		String password = request.getParameter("password");
-
-		String numero = request.getParameter("numero");
-		String rue = request.getParameter("rue");
-		String ville = request.getParameter("ville");
-		String cp = request.getParameter("cp");
-		String pays = request.getParameter("pays");
+	@PostMapping(value = "/inscription")
+	public ModelAndView validerInscription(
+			@RequestParam(value = "nom") String nom, 
+			@RequestParam(value = "prenom") String prenom, 
+			@RequestParam(value = "email") String email,
+			@RequestParam(value = "login") String login, 
+			@RequestParam(value = "password") String password, 
+			@RequestParam(value = "numero") String numero,
+			@RequestParam(value = "rue") String rue, 
+			@RequestParam(value = "ville") String ville, 
+			@RequestParam(value = "cp") String cp,
+			@RequestParam(value = "pays") String pays) {
 
 		Adresse adresse = new Adresse(Integer.parseInt(numero), rue, ville, cp, pays);
 		Adresse adresseInscription = adresseService.save(adresse);
@@ -56,7 +53,6 @@ public class InscriptionServlet extends AbstractController {
 				new Date(Calendar.getInstance().getTime().getTime()));
 		utilisateurService.save(utilisateur);
 
-		response.sendRedirect(request.getContextPath() + "/index");
-
+		return new ModelAndView("redirect:/index");
 	}
 }
