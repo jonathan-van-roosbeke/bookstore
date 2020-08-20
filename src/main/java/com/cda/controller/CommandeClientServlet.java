@@ -5,14 +5,12 @@ import java.util.Collections;
 import java.util.List;
 
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.cda.entity.ArticleCmd;
@@ -26,16 +24,45 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Controller
-public class CommandeClientServlet {
+public class CommandeClientServlet extends AbstractController {
+
+	private static final long serialVersionUID = 1L;
 
 	@Autowired
 	ICommandeService commandeService;
-	@Autowired
-	HttpServletRequest request;
 
-	@RequestMapping(value = "/checkout", method = RequestMethod.GET)
-	protected ModelAndView checkout() {
-		HttpSession session = request.getSession();
+	@GetMapping(value = "/commande-client")
+	protected String commandeClient(HttpSession session,
+			@RequestParam(value = "method", required = false) String methodName,
+			@RequestParam(value = "id", required = false) String id,
+			@RequestParam(value = "pageNo", required = false, defaultValue = "1") String pageNo,
+			@RequestParam(value = "numeroCmd", required = false) String numeroCmd)
+			throws ServletException, IOException {
+		log.info(methodName);
+		if ("checkout".equals(methodName)) {
+			return checkout(session);
+		} else if ("afficher".equals(methodName)) {
+			return afficher(session, pageNo);
+		} else if ("detail".equals(methodName)) {
+			return detail(session, id);
+		} else if ("updateStatus".equals(methodName)) {
+			return updateStatus(numeroCmd);
+		} else if ("annuler".equals(methodName)) {
+			return annuler(numeroCmd);
+		}
+		return "/utilisateur/commande";
+
+	}
+
+	/**
+	 * Generer une commande, midifier la qte de stock
+	 * 
+	 * @param request
+	 * @param response
+	 * @throws ServletException
+	 * @throws IOException
+	 */
+	protected String checkout(HttpSession session) {
 		log.info("checkout");
 		Utilisateur loginUtilisateur = (Utilisateur) session.getAttribute("utilisateur");
 		ModelAndView model = new ModelAndView();
@@ -49,104 +76,11 @@ public class CommandeClientServlet {
 			String numeroCmd = commandeService.checkout(panier, loginUtilisateur);
 			session.setAttribute("numeroCmd", numeroCmd);
 
-			model.addObject("numeroCmd", numeroCmd);
-			model.setViewName("/utilisateur/checkout");
-			return model;
-//			response.sendRedirect(request.getContextPath() + "/commande-client?method=success");
+			return "/utilisateur/checkout";
 		} else {
-//			request.getRequestDispatcher("/login").forward(request, response);
-			model.setViewName("/utilisateur/login");
-			return model;
+			return "/utilisateur/login";
 		}
 	}
-
-	@RequestMapping(value = "/afficher", method = RequestMethod.GET)
-	protected ModelAndView afficher() {
-		HttpSession session = request.getSession();
-		Utilisateur loginUtilisateur = (Utilisateur) session.getAttribute("utilisateur");
-		List<Commande> mesCommandes = commandeService.mesCmds(loginUtilisateur.getLogin());
-		Collections.sort(mesCommandes);
-
-		log.info("afficher les commandes d'une client");
-
-		ModelAndView model = new ModelAndView();
-		model.setViewName("/utilisateur/commande");
-		return model;
-
-//		String pageNoStr = request.getParameter("pageNo");
-//		if (pageNoStr == null) {
-//			pageNoStr = "1";
-//		}
-//		int pageNo = 1;
-//		try {
-//			pageNo = Integer.parseInt(pageNoStr);
-//			if (pageNo < 1) {
-//				pageNo = 1;
-//			}
-//		} catch (Exception e) {
-//		}
-//
-//		Page<Commande> page = commandeService.getPage(pageNo, 10, mesCommandes, loginUtilisateur);
-//		request.setAttribute("commandes", mesCommandes);
-//		request.setAttribute("page", page);
-//		request.getRequestDispatcher("/WEB-INF/utilisateur/commande.jsp").forward(request, response);
-	}
-
-//	@Override
-//	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-//			throws ServletException, IOException {
-//		String methodName = request.getParameter("method");
-//		log.info(methodName);
-//		if (methodName == null) {
-//			request.getRequestDispatcher("/commande-client?method=afficher").forward(request, response);
-//		} else if ("checkout".equals(methodName)) {
-//			checkout(request, response);
-//		} else if ("afficher".equals(methodName)) {
-//			afficher(request, response);
-//		} else if ("detail".equals(methodName)) {
-//			detail(request, response);
-//		} else if ("updateStatus".equals(methodName)) {
-//			updateStatus(request, response);
-//		} else if ("success".equals(methodName)) {
-//			success(request, response);
-//		} else if ("annuler".equals(methodName)) {
-//			annuler(request, response);
-//		}
-//
-//	}
-//
-//	@Override
-//	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-//			throws ServletException, IOException {
-//	}
-
-	/**
-	 * Generer une commande, midifier la qte de stock
-	 * 
-	 * @param request
-	 * @param response
-	 * @throws ServletException
-	 * @throws IOException
-	 */
-//	protected void checkout(HttpServletRequest request, HttpServletResponse response)
-//			throws ServletException, IOException {
-//		HttpSession session = request.getSession();
-//		Utilisateur loginUtilisateur = (Utilisateur) session.getAttribute("utilisateur");
-//		if (loginUtilisateur != null) {
-//			Panier panier = (Panier) session.getAttribute("panier");
-//			if (panier == null) {
-//				panier = new Panier();
-//				session.setAttribute("panier", panier);
-//			}
-//			String numeroCmd = commandeService.checkout(panier, loginUtilisateur);
-//			System.out.println(numeroCmd);
-//			session.setAttribute("numeroCmd", numeroCmd);
-//
-//			response.sendRedirect(request.getContextPath() + "/commande-client?method=success");
-//		} else {
-//			request.getRequestDispatcher("/login").forward(request, response);
-//		}
-//	}
 
 	/**
 	 * lister toutes les commandes de ce utilisateur
@@ -156,30 +90,19 @@ public class CommandeClientServlet {
 	 * @throws ServletException
 	 * @throws IOException
 	 */
-	protected void afficher(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		HttpSession session = request.getSession();
+	protected String afficher(HttpSession session, String pageNo) {
 		Utilisateur loginUtilisateur = (Utilisateur) session.getAttribute("utilisateur");
 		List<Commande> mesCommandes = commandeService.mesCmds(loginUtilisateur.getLogin());
 		Collections.sort(mesCommandes);
 
-		String pageNoStr = request.getParameter("pageNo");
-//		if (pageNoStr == null) {
-//			pageNoStr = "1";
-//		}
-//		int pageNo = 1;
-//		try {
-//			pageNo = Integer.parseInt(pageNoStr);
-//			if (pageNo < 1) {
-//				pageNo = 1;
-//			}
-//		} catch (Exception e) {
-//		}
-//
-//		Page<Commande> page = commandeService.getPage(pageNo, 10, mesCommandes, loginUtilisateur);
-//		request.setAttribute("commandes", mesCommandes);
-//		request.setAttribute("page", page);
-//		request.getRequestDispatcher("/WEB-INF/utilisateur/commande.jsp").forward(request, response);
+		log.info("afficher les commandes d'une client");
+		log.info(mesCommandes.toString());
+
+		session.setAttribute("commandes", mesCommandes);
+		return "/utilisateur/commande";
+
+//		Page<Commande> page = commandeService.getPage(Integer.parseInt(pageNo), 10, mesCommandes, loginUtilisateur);
+//		session.setAttribute("page", page);
 	}
 
 	/**
@@ -190,46 +113,29 @@ public class CommandeClientServlet {
 	 * @throws ServletException
 	 * @throws IOException
 	 */
-	protected void detail(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		HttpSession session = request.getSession();
+	protected String detail(HttpSession session, String id) throws ServletException, IOException {
 		Utilisateur loginUtilisateur = (Utilisateur) session.getAttribute("utilisateur");
-		String numeroCmd = request.getParameter("id");
+		String numeroCmd = id;
 		List<ArticleCmd> detailCmd = commandeService.detailCmd(numeroCmd);
-		request.setAttribute("detailCmd", detailCmd);
-		request.setAttribute("numeroCmd", numeroCmd);
-		request.getRequestDispatcher("/WEB-INF/utilisateur/detail.jsp").forward(request, response);
+		session.setAttribute("detailCmd", detailCmd);
+		session.setAttribute("numeroCmd", numeroCmd);
+		return "/utilisateur/detail";
 	}
 
 	/**
-	 * Client peut modifier le status de commande en livre
+	 * Client peut modifier le status de commande en livre Client peut signaler
+	 * qu'il a recu une commande en livraison(status : 1)
 	 * 
 	 * @param request
 	 * @param response
 	 * @throws ServletException
 	 * @throws IOException
 	 */
-	protected void updateStatus(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		String numeroCmd = request.getParameter("numeroCmd");
+	protected String updateStatus(String numeroCmd) {
 		commandeService.updateStatus(numeroCmd, Constant.LIVRE + "");
 		log.info("Update de la commande numero " + numeroCmd);
 
-		String refer = request.getHeader("referer");
-		response.sendRedirect(refer);
-	}
-
-	/**
-	 * Client peut signaler qu'il a recu une commande en livraison(status : 1)
-	 * 
-	 * @param request
-	 * @param response
-	 * @throws ServletException
-	 * @throws IOException
-	 */
-	protected void success(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		request.getRequestDispatcher("/WEB-INF/utilisateur/checkout.jsp").forward(request, response);
+		return "redirect:/commande-client?method=afficher";
 	}
 
 	/**
@@ -240,14 +146,11 @@ public class CommandeClientServlet {
 	 * @throws ServletException
 	 * @throws IOException
 	 */
-	protected void annuler(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		String numeroCmd = request.getParameter("numeroCmd");
+	protected String annuler(String numeroCmd) {
 		commandeService.updateStatus(numeroCmd, Constant.ANNULE + "");
 		commandeService.annuler(numeroCmd);
 
-		String refer = request.getHeader("referer");
-		response.sendRedirect(refer);
+		return "redirect:/commande-client?method=afficher";
 	}
 
 }

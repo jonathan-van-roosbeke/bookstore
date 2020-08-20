@@ -5,13 +5,12 @@ import java.util.Collections;
 import java.util.List;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.cda.entity.ArticleCmd;
 import com.cda.entity.Commande;
@@ -22,32 +21,30 @@ import com.cda.service.ICommandeService;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-@WebServlet("/commande-admin")
+@Controller
 public class CommandeAdminServlet extends AbstractController {
 	private static final long serialVersionUID = 1L;
 
 	@Autowired
 	ICommandeService commandeService;
 
-	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+	@GetMapping(value = "/commande-admin")
+	protected String commandeAdmin(HttpSession session,
+			@RequestParam(value = "method", required = false) String methodName,
+			@RequestParam(value = "id", required = false) String id,
+			@RequestParam(value = "pageNo", required = false, defaultValue = "1") String pageNo,
+			@RequestParam(value = "numeroCmd", required = false) String numeroCmd)
 			throws ServletException, IOException {
-		String methodName = request.getParameter("method");
 		log.info(methodName);
-		if (methodName == null) {
-			request.getRequestDispatcher("/WEB-INF/admin/lister-commande.jsp").forward(request, response);
-		} else if ("afficher".equals(methodName)) {
-			afficher(request, response);
+		if ("afficher".equals(methodName)) {
+			return afficher(session);
 		} else if ("detail".equals(methodName)) {
-			detail(request, response);
+			return detail(session, numeroCmd);
 		} else if ("updateStatus".equals(methodName)) {
-			updateStatus(request, response);
+			return updateStatus(numeroCmd);
+		} else {
+			return "/admin/lister-commande";
 		}
-	}
-
-	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
 	}
 
 	/**
@@ -58,29 +55,28 @@ public class CommandeAdminServlet extends AbstractController {
 	 * @throws ServletException
 	 * @throws IOException
 	 */
-	protected void afficher(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		HttpSession session = request.getSession();
+	protected String afficher(HttpSession session) {
+//		HttpSession session = request.getSession();
 		Utilisateur loginUtilisateur = (Utilisateur) session.getAttribute("utilisateur");
 		List<Commande> commandes = commandeService.getCommandes();
 		Collections.sort(commandes);
 
-		String pageNoStr = request.getParameter("pageNo");
-		if (pageNoStr == null) {
-			pageNoStr = "1";
-		}
-		int pageNo = 1;
-		try {
-			pageNo = Integer.parseInt(pageNoStr);
-			if (pageNo < 1) {
-				pageNo = 1;
-			}
-		} catch (Exception e) {
-		}
-		Page<Commande> page = commandeService.getPage(pageNo, 10);
-		request.setAttribute("page", page);
-		request.setAttribute("commandes", commandes);
-		request.getRequestDispatcher("/WEB-INF/admin/lister-commande.jsp").forward(request, response);
+//		String pageNoStr = request.getParameter("pageNo");
+//		if (pageNoStr == null) {
+//			pageNoStr = "1";
+//		}
+//		int pageNo = 1;
+//		try {
+//			pageNo = Integer.parseInt(pageNoStr);
+//			if (pageNo < 1) {
+//				pageNo = 1;
+//			}
+//		} catch (Exception e) {
+//		}
+//		Page<Commande> page = commandeService.getPage(pageNo, 10);
+//		request.setAttribute("page", page);
+		session.setAttribute("commandes", commandes);
+		return "/admin/lister-commande";
 	}
 
 	/**
@@ -91,15 +87,13 @@ public class CommandeAdminServlet extends AbstractController {
 	 * @throws ServletException
 	 * @throws IOException
 	 */
-	protected void detail(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		HttpSession session = request.getSession();
+	protected String detail(HttpSession session, String id) throws ServletException, IOException {
 		Utilisateur loginUtilisateur = (Utilisateur) session.getAttribute("utilisateur");
-		String numeroCmd = request.getParameter("id");
+		String numeroCmd = id;
 		List<ArticleCmd> detailCmd = commandeService.detailCmd(numeroCmd);
-		request.setAttribute("detailCmd", detailCmd);
-		request.setAttribute("numeroCmd", numeroCmd);
-		request.getRequestDispatcher("/WEB-INF/admin/detail.jsp").forward(request, response);
+		session.setAttribute("detailCmd", detailCmd);
+		session.setAttribute("numeroCmd", numeroCmd);
+		return "/utilisateur/detail";
 	}
 
 	/**
@@ -111,13 +105,11 @@ public class CommandeAdminServlet extends AbstractController {
 	 * @throws ServletException
 	 * @throws IOException
 	 */
-	protected void updateStatus(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		String numeroCmd = request.getParameter("numeroCmd");
+	protected String updateStatus(String numeroCmd) throws ServletException, IOException {
+//		String numeroCmd = request.getParameter("numeroCmd");
 		commandeService.updateStatus(numeroCmd, Constant.ENVOYE + "");
 
-		String refer = request.getHeader("referer");
-		response.sendRedirect(refer);
+		return "redirect:/commande-admin?method=afficher";
 	}
 
 }
