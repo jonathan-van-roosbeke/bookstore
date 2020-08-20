@@ -1,23 +1,20 @@
 package com.cda.controller;
 
-import java.io.IOException;
-import java.util.Optional;
-
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.cda.dao.ILivreDao;
 import com.cda.entity.Livre;
 import com.cda.service.ILivreService;
 
-@WebServlet("/select")
-public class SelectionLivreServlet extends AbstractController {
-	private static final long serialVersionUID = 1L;
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
+@Controller
+public class SelectionLivreServlet {
 
 	@Autowired
 	private ILivreService livreService;
@@ -27,31 +24,27 @@ public class SelectionLivreServlet extends AbstractController {
 	
 	private String idLivre;
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	@GetMapping(value = "/select")
+	protected ModelAndView selectLivre(@RequestParam(value="id")String id) {
 
-		idLivre = request.getParameter("id");
+		idLivre = id;
 		boolean exists = false;
 		
 		if (idLivre.matches("[0-9]+")) {
 			exists = livreDao.existsById(Integer.parseInt(idLivre));
 		} else {
-			System.out.println("error lettre");
+			log.info("une lettre est rentré dans l'id");
 		};
 
 		Livre livre;
 		if (idLivre != null && exists) {
 			livre = livreService.findById(Integer.parseInt(idLivre));
-			request.setAttribute("livre", livre);
-			request.getRequestDispatcher("WEB-INF/utilisateur/selection-livre.jsp").forward(request, response);
+			ModelAndView model = new ModelAndView();
+			model.addObject("livre", livre);
+			model.setViewName("/utilisateur/selection-livre");
+			return model;
 		} else {
-			request.getRequestDispatcher("/index").forward(request, response);
+			return new ModelAndView("redirect:/index");
 		}
 	}
-
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-
-	}
-
 }
