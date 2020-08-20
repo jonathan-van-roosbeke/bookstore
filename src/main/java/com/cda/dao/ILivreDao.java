@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.cda.entity.Livre;
 
+
 public interface ILivreDao extends JpaRepository<Livre, Integer> {
 
 	@Override
