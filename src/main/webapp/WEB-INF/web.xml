@@ -1,25 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" id="WebApp_ID" version="4.0">
+	xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
+	id="WebApp_ID"
+	version="4.0">
+	
 	<display-name>Bookstore</display-name>
 
 	<welcome-file-list>
 		<welcome-file>index</welcome-file>
 	</welcome-file-list>
-
-	<!-- 	declaration de l'application context dans le serveur -->
-	<listener>
-		<listener-class>
-            org.springframework.web.context.ContextLoaderListener
-		</listener-class>
-	</listener>
-
+	
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>classpath:applicationContext.xml</param-value>
 	</context-param>
-	<!-- fin -->
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+
+	<servlet>
+		<servlet-name>appServlet</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>classpath:servlet-context.xml</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>appServlet</servlet-name>
+		<url-pattern>/</url-pattern>
+	</servlet-mapping>
 
 	<jsp-config>
 		<jsp-property-group>
@@ -27,11 +41,5 @@
 			<include-prelude>/WEB-INF/lib/jstlLib.jsp</include-prelude>
 		</jsp-property-group>
 	</jsp-config>
-
-	<!-- <context-param>
-		<description>Location to store uploaded file</description>
-		<param-name>file-upload</param-name>
-		<param-value>~/images</param-value>
-	</context-param> -->
 
 </web-app>

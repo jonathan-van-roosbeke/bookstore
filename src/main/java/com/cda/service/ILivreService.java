@@ -18,5 +18,7 @@ public interface ILivreService {
 	void deleteById(Integer id);
 
 	Page<Livre> getPage(int pageNo, int pageSize);
+	
+	Long count();
 
 }

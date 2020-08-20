@@ -53,4 +53,9 @@ public class LivreServiceImpl implements ILivreService {
 		return livreDao.findAll(pageable);
 	}
 
+	@Override
+	public Long count() {
+		return livreDao.count();
+	}
+
 }
