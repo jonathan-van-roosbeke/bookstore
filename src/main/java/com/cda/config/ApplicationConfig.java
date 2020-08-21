@@ -32,12 +32,12 @@ public class ApplicationConfig implements WebMvcConfigurer {
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
 		dataSource.setDriverClassName("org.mariadb.jdbc.Driver");
 		dataSource.setUrl("jdbc:mariadb://localhost:3306/bookstore?serverTimezone=Europe/Paris");
-		dataSource.setUsername("bookstore");
-		dataSource.setPassword("bookstore");
+//		dataSource.setUsername("bookstore");
+//		dataSource.setPassword("bookstore");
 //		dataSource.setDriverClassName("org.mariadb.jdbc.Driver");
 //		dataSource.setUrl("jdbc:mariadb://localhost:3306/bookstore?serverTimezone=Europe/Paris");
-//		dataSource.setUsername("root");
-//		dataSource.setPassword("");
+		dataSource.setUsername("root");
+		dataSource.setPassword("");
 		return dataSource;
 	}
 
@@ -76,10 +76,7 @@ public class ApplicationConfig implements WebMvcConfigurer {
 		return viewResolver;
 	}
 
-	<<<<<<<HEAD
-
-	@Override
-=======
+	
 	// Uploading file
 	@Bean(name = "multipartResolver")
 	public CommonsMultipartResolver multipartResolver() {
@@ -88,7 +85,7 @@ public class ApplicationConfig implements WebMvcConfigurer {
 		return resolver;
 	}
 
-	>>>>>>>spring-mvc
+	
 
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
