@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 
 import com.cda.entity.Utilisateur;
 
+
 public interface IUtilisateurDao extends JpaRepository<Utilisateur, String> {
 
 	@Query("SELECT u FROM Utilisateur u WHERE login = ?1 AND motdepasse = md5(?2)")
