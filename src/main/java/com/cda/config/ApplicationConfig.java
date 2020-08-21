@@ -20,6 +20,8 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
+import com.cda.utils.MyConstants;
+
 @Configuration
 @ComponentScan(basePackages = { "com.cda.controller", "com.cda.service" })
 @EnableJpaRepositories("com.cda.dao")
@@ -98,5 +100,7 @@ public class ApplicationConfig implements WebMvcConfigurer {
 		registry.addResourceHandler("/resources/bootstrap/**").addResourceLocations("/resources/bootstrap/");
 		registry.addResourceHandler("/resources/font-awesome/**").addResourceLocations("/resources/font-awesome/");
 		registry.addResourceHandler("/resources/images/**").addResourceLocations("/resources/images/");
+		String uploadDirectory = MyConstants.HOME_DIR + "\\images\\";
+		registry.addResourceHandler("/images/**").addResourceLocations("file:" + uploadDirectory + "\\");
 	}
 }
