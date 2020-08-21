@@ -5,9 +5,11 @@ import java.util.Collections;
 import java.util.List;
 
 import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -28,7 +30,7 @@ public class CommandeAdminServlet {
 	ICommandeService commandeService;
 
 	@GetMapping(value = "/commande-admin")
-	protected String commandeAdmin(HttpSession session,
+	protected String commandeAdmin(HttpSession session, HttpServletRequest request,
 			@RequestParam(value = "method", required = false) String methodName,
 			@RequestParam(value = "id", required = false) String id,
 			@RequestParam(value = "pageNo", required = false, defaultValue = "1") String pageNo,
@@ -36,7 +38,7 @@ public class CommandeAdminServlet {
 			throws ServletException, IOException {
 		log.info(methodName);
 		if ("afficher".equals(methodName)) {
-			return afficher(session);
+			return afficher(session, request);
 		} else if ("detail".equals(methodName)) {
 			return detail(session, numeroCmd);
 		} else if ("updateStatus".equals(methodName)) {
@@ -54,26 +56,25 @@ public class CommandeAdminServlet {
 	 * @throws ServletException
 	 * @throws IOException
 	 */
-	protected String afficher(HttpSession session) {
-//		HttpSession session = request.getSession();
+	protected String afficher(HttpSession session, HttpServletRequest request) {
 		Utilisateur loginUtilisateur = (Utilisateur) session.getAttribute("utilisateur");
 		List<Commande> commandes = commandeService.getCommandes();
 		Collections.sort(commandes);
 
-//		String pageNoStr = request.getParameter("pageNo");
-//		if (pageNoStr == null) {
-//			pageNoStr = "1";
-//		}
-//		int pageNo = 1;
-//		try {
-//			pageNo = Integer.parseInt(pageNoStr);
-//			if (pageNo < 1) {
-//				pageNo = 1;
-//			}
-//		} catch (Exception e) {
-//		}
-//		Page<Commande> page = commandeService.getPage(pageNo, 10);
-//		request.setAttribute("page", page);
+		String pageNoStr = request.getParameter("pageNo");
+		if (pageNoStr == null) {
+			pageNoStr = "1";
+		}
+		int pageNo = 1;
+		try {
+			pageNo = Integer.parseInt(pageNoStr);
+			if (pageNo < 1) {
+				pageNo = 1;
+			}
+		} catch (Exception e) {
+		}
+		Page<Commande> page = commandeService.getPage(pageNo, 10);
+		request.setAttribute("page", page);
 		session.setAttribute("commandes", commandes);
 		return "/admin/lister-commande";
 	}

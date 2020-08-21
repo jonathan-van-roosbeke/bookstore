@@ -57,7 +57,7 @@
 			</c:choose>
 
 			<div class="row">
-				<c:forEach items="${livres}" var="livres">
+				<c:forEach items="${page.content}" var="livres">
 					<div class="col-sm-3">
 						<div class="card" style="width: 18rem;">
 							<img src="resources/images/img-couverture-livre/${livres.nomImage}"
