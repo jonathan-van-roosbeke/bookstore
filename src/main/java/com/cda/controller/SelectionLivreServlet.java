@@ -18,23 +18,23 @@ public class SelectionLivreServlet {
 
 	@Autowired
 	private ILivreService livreService;
-	
+
 	@Autowired
 	private ILivreDao livreDao;
-	
+
 	private String idLivre;
 
 	@GetMapping(value = "/select")
-	protected ModelAndView selectLivre(@RequestParam(value="id")String id) {
+	protected ModelAndView selectLivre(@RequestParam(value = "id") String id) {
 
 		idLivre = id;
 		boolean exists = false;
-		
+
 		if (idLivre.matches("[0-9]+")) {
 			exists = livreDao.existsById(Integer.parseInt(idLivre));
 		} else {
 			log.info("une lettre est rentré dans l'id");
-		};
+		}
 
 		Livre livre;
 		if (idLivre != null && exists) {
