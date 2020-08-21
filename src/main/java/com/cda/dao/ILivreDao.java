@@ -6,7 +6,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.cda.entity.Livre;
 
-
 public interface ILivreDao extends JpaRepository<Livre, Integer> {
 
 	@Override
@@ -14,4 +13,7 @@ public interface ILivreDao extends JpaRepository<Livre, Integer> {
 
 	Livre findByTitre(String titre);
 
+//	@Query("SELECT l FROM Livre l WHERE titre LIKE %:titre% ")
+//	List<Livre> searchByTitre(String titre);
+	List<Livre> findByTitreContainingIgnoreCase(String titre);
 }

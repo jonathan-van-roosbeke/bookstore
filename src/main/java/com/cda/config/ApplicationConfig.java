@@ -20,7 +20,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 @Configuration
-@ComponentScan(basePackages = { "com.cda.controller","com.cda.service"})
+@ComponentScan(basePackages = { "com.cda.controller", "com.cda.service" })
 @EnableJpaRepositories("com.cda.dao")
 @EnableTransactionManagement
 @EnableWebMvc
@@ -30,7 +30,7 @@ public class ApplicationConfig implements WebMvcConfigurer {
 	public DataSource dataSource() {
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
 		dataSource.setDriverClassName("com.mysql.jdbc.Driver");
-		dataSource.setUrl("jdbc:mysql://localhost:3306/bookstore?serverTimezone=Europe/Paris");
+		dataSource.setUrl("jdbc:mysql://localhost:8889/bookstore?serverTimezone=Europe/Paris");
 		dataSource.setUsername("bookstore");
 		dataSource.setPassword("bookstore");
 		return dataSource;
@@ -71,6 +71,7 @@ public class ApplicationConfig implements WebMvcConfigurer {
 		return viewResolver;
 	}
 
+	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 		registry.addResourceHandler("/resources/css/**").addResourceLocations("/resources/css/");
 		registry.addResourceHandler("/resources/js/**").addResourceLocations("/resources/js/");
