@@ -34,10 +34,14 @@ public class AdminAjouterUnLivre {
 	}
 
 	@RequestMapping(value = "/ajouter-livre", method = RequestMethod.POST)
-	public @ResponseBody ModelAndView validationAjout(@RequestParam(value = "titre") String titre,
-			@RequestParam(value = "nom") String nom, @RequestParam(value = "prenom") String prenom,
-			@RequestParam(value = "synopsis") String synopsis, @RequestParam(value = "nombre-page") String nombrePage,
-			@RequestParam(value = "quantitee-stock") String quantiteStock, @RequestParam(value = "prix") String prix) {
+	public @ResponseBody ModelAndView validationAjout(
+			@RequestParam(value = "titre") String titre,
+			@RequestParam(value = "nom") String nom,
+			@RequestParam(value = "prenom") String prenom,
+			@RequestParam(value = "synopsis") String synopsis,
+			@RequestParam(value = "nombre-page") String nombrePage,
+			@RequestParam(value = "quantitee-stock") String quantiteStock,
+			@RequestParam(value = "prix") String prix) {
 
 		ModelAndView model = new ModelAndView();
 		log.info(titre);
@@ -48,7 +52,7 @@ public class AdminAjouterUnLivre {
 		if (livreService.findByTitre(titre) == null) {
 			livreService.save(livre);
 			log.info("Livre : " + livre + " ajouté");
-			model.setViewName("/utilisateur/index");
+			return new ModelAndView("redirect:/index");
 		} else {
 			log.info("Livre : " + livre + " existe déja");
 			model.addObject("error", "Le livre existe déja");
