@@ -13,7 +13,5 @@ public interface ILivreDao extends JpaRepository<Livre, Integer> {
 
 	Livre findByTitre(String titre);
 
-//	@Query("SELECT l FROM Livre l WHERE titre LIKE %:titre% ")
-//	List<Livre> searchByTitre(String titre);
 	List<Livre> findByTitreContainingIgnoreCase(String titre);
 }
