@@ -31,7 +31,7 @@ public class ApplicationConfig implements WebMvcConfigurer {
 	public DataSource dataSource() {
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
 		dataSource.setDriverClassName("com.mysql.jdbc.Driver");
-		dataSource.setUrl("jdbc:mysql://localhost:3306/bookstore?serverTimezone=Europe/Paris");
+		dataSource.setUrl("jdbc:mysql://localhost:8889/bookstore?serverTimezone=Europe/Paris");
 		dataSource.setUsername("bookstore");
 		dataSource.setPassword("bookstore");
 //		dataSource.setDriverClassName("org.mariadb.jdbc.Driver");
