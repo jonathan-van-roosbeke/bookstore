@@ -5,13 +5,15 @@ import java.util.Collections;
 import java.util.List;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.cda.entity.ArticleCmd;
 import com.cda.entity.Commande;
@@ -23,39 +25,35 @@ import com.cda.service.ICommandeService;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-@WebServlet("/commande-client")
-public class CommandeClientServlet extends AbstractController {
+@Controller
+public class CommandeClientServlet {
+
 	private static final long serialVersionUID = 1L;
 
 	@Autowired
 	ICommandeService commandeService;
 
-	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+	@GetMapping(value = "/commande-client")
+	protected String commandeClient(HttpSession session, HttpServletRequest request,
+			@RequestParam(value = "method", required = false) String methodName,
+			@RequestParam(value = "id", required = false) String id,
+			@RequestParam(value = "pageNo", required = false, defaultValue = "1") String pageNo,
+			@RequestParam(value = "numeroCmd", required = false) String numeroCmd)
 			throws ServletException, IOException {
-		String methodName = request.getParameter("method");
-		System.out.println(methodName);
-		if (methodName == null) {
-			request.getRequestDispatcher("/commande-client?method=afficher").forward(request, response);
-		} else if ("checkout".equals(methodName)) {
-			checkout(request, response);
+		log.info(methodName);
+		if ("checkout".equals(methodName)) {
+			return checkout(session);
 		} else if ("afficher".equals(methodName)) {
-			afficher(request, response);
+			return afficher(session, request);
 		} else if ("detail".equals(methodName)) {
-			detail(request, response);
+			return detail(session, id);
 		} else if ("updateStatus".equals(methodName)) {
-			updateStatus(request, response);
-		} else if ("success".equals(methodName)) {
-			success(request, response);
+			return updateStatus(numeroCmd);
 		} else if ("annuler".equals(methodName)) {
-			annuler(request, response);
+			return annuler(numeroCmd);
 		}
+		return "/utilisateur/commande";
 
-	}
-
-	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
 	}
 
 	/**
@@ -66,10 +64,11 @@ public class CommandeClientServlet extends AbstractController {
 	 * @throws ServletException
 	 * @throws IOException
 	 */
-	protected void checkout(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		HttpSession session = request.getSession();
+	protected String checkout(HttpSession session) {
+		log.info("checkout");
 		Utilisateur loginUtilisateur = (Utilisateur) session.getAttribute("utilisateur");
+		ModelAndView model = new ModelAndView();
+
 		if (loginUtilisateur != null) {
 			Panier panier = (Panier) session.getAttribute("panier");
 			if (panier == null) {
@@ -77,12 +76,11 @@ public class CommandeClientServlet extends AbstractController {
 				session.setAttribute("panier", panier);
 			}
 			String numeroCmd = commandeService.checkout(panier, loginUtilisateur);
-			System.out.println(numeroCmd);
 			session.setAttribute("numeroCmd", numeroCmd);
 
-			response.sendRedirect(request.getContextPath() + "/commande-client?method=success");
+			return "/utilisateur/checkout";
 		} else {
-			request.getRequestDispatcher("/login").forward(request, response);
+			return "/utilisateur/login";
 		}
 	}
 
@@ -94,12 +92,13 @@ public class CommandeClientServlet extends AbstractController {
 	 * @throws ServletException
 	 * @throws IOException
 	 */
-	protected void afficher(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		HttpSession session = request.getSession();
+	protected String afficher(HttpSession session, HttpServletRequest request) {
 		Utilisateur loginUtilisateur = (Utilisateur) session.getAttribute("utilisateur");
 		List<Commande> mesCommandes = commandeService.mesCmds(loginUtilisateur.getLogin());
 		Collections.sort(mesCommandes);
+
+		log.info("afficher les commandes d'une client");
+		log.info(mesCommandes.toString());
 
 		String pageNoStr = request.getParameter("pageNo");
 		if (pageNoStr == null) {
@@ -113,11 +112,11 @@ public class CommandeClientServlet extends AbstractController {
 			}
 		} catch (Exception e) {
 		}
-
-		Page<Commande> page = commandeService.getPage(pageNo, 10, mesCommandes, loginUtilisateur);
-		request.setAttribute("commandes", mesCommandes);
+		Page<Commande> page = commandeService.getPage(pageNo, 10);
 		request.setAttribute("page", page);
-		request.getRequestDispatcher("/WEB-INF/utilisateur/commande.jsp").forward(request, response);
+
+		session.setAttribute("commandes", mesCommandes);
+		return "/utilisateur/commande";
 	}
 
 	/**
@@ -128,46 +127,29 @@ public class CommandeClientServlet extends AbstractController {
 	 * @throws ServletException
 	 * @throws IOException
 	 */
-	protected void detail(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		HttpSession session = request.getSession();
+	protected String detail(HttpSession session, String id) throws ServletException, IOException {
 		Utilisateur loginUtilisateur = (Utilisateur) session.getAttribute("utilisateur");
-		String numeroCmd = request.getParameter("id");
+		String numeroCmd = id;
 		List<ArticleCmd> detailCmd = commandeService.detailCmd(numeroCmd);
-		request.setAttribute("detailCmd", detailCmd);
-		request.setAttribute("numeroCmd", numeroCmd);
-		request.getRequestDispatcher("/WEB-INF/utilisateur/detail.jsp").forward(request, response);
+		session.setAttribute("detailCmd", detailCmd);
+		session.setAttribute("numeroCmd", numeroCmd);
+		return "/utilisateur/detail";
 	}
 
 	/**
-	 * Client peut modifier le status de commande en livre
+	 * Client peut modifier le status de commande en livre Client peut signaler
+	 * qu'il a recu une commande en livraison(status : 1)
 	 * 
 	 * @param request
 	 * @param response
 	 * @throws ServletException
 	 * @throws IOException
 	 */
-	protected void updateStatus(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		String numeroCmd = request.getParameter("numeroCmd");
+	protected String updateStatus(String numeroCmd) {
 		commandeService.updateStatus(numeroCmd, Constant.LIVRE + "");
-		log.info("Update de la commande numero " + numeroCmd );
+		log.info("Update de la commande numero " + numeroCmd);
 
-		String refer = request.getHeader("referer");
-		response.sendRedirect(refer);
-	}
-
-	/**
-	 * Client peut signaler qu'il a recu une commande en livraison(status : 1)
-	 * 
-	 * @param request
-	 * @param response
-	 * @throws ServletException
-	 * @throws IOException
-	 */
-	protected void success(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		request.getRequestDispatcher("/WEB-INF/utilisateur/checkout.jsp").forward(request, response);
+		return "redirect:/commande-client?method=afficher";
 	}
 
 	/**
@@ -178,14 +160,11 @@ public class CommandeClientServlet extends AbstractController {
 	 * @throws ServletException
 	 * @throws IOException
 	 */
-	protected void annuler(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		String numeroCmd = request.getParameter("numeroCmd");
+	protected String annuler(String numeroCmd) {
 		commandeService.updateStatus(numeroCmd, Constant.ANNULE + "");
 		commandeService.annuler(numeroCmd);
 
-		String refer = request.getHeader("referer");
-		response.sendRedirect(refer);
+		return "redirect:/commande-client?method=afficher";
 	}
 
 }

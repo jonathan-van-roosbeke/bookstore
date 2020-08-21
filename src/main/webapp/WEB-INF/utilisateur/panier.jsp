@@ -79,7 +79,7 @@
 								<td>${panier.totalQuantite}</td>
 								<td></td>
 								<td>${panier.totalPrix}€</td>
-								<td><a href="commande-client?method=checkout"
+								<td><a href="checkout"
 									class="btn btn-primary">Passer la commande</a></td>
 								<td></td>
 							</tr>
