@@ -11,6 +11,6 @@ public class DeconnexionServlet {
 	@GetMapping(value = "/deconnexion")
 	public String deconnexion(HttpSession session) {
 		session.invalidate();
-		return "/utilisateur/index";
+		return "redirect:/index";
 	}
 }
