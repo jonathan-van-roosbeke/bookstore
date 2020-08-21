@@ -54,13 +54,13 @@ public class LivreServiceImpl implements ILivreService {
 	}
 
 	@Override
-	public Long count() {
-		return livreDao.count();
+	public Livre findByTitre(String titre) {
+		return livreDao.findByTitre(titre);
 	}
 
 	@Override
-	public Livre findByTitre(String titre) {
-		return livreDao.findByTitre(titre);
+	public List<Livre> searchByTitre(String titre) {
+		return livreDao.findByTitreContainingIgnoreCase(titre);
 	}
 
 }

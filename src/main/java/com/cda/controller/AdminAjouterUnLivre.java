@@ -75,7 +75,7 @@ public class AdminAjouterUnLivre {
 					Integer.parseInt(nombrePage), synopsis, "test", new BigDecimal(prix), auteur);
 			livreService.save(livre);
 			log.info("Livre : " + livre + " ajouté");
-			model.setViewName("/utilisateur/index");
+			return new ModelAndView("redirect:/index");
 		} else {
 			model.addObject("error", "Le livre existe déja");
 			model.setViewName("/admin/ajouter-livre");

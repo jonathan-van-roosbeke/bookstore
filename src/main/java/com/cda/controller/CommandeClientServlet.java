@@ -28,7 +28,6 @@ import lombok.extern.slf4j.Slf4j;
 @Controller
 public class CommandeClientServlet {
 
-
 	@Autowired
 	ICommandeService commandeService;
 
@@ -63,6 +62,7 @@ public class CommandeClientServlet {
 	 * @throws ServletException
 	 * @throws IOException
 	 */
+	@GetMapping(value = "/checkout")
 	protected String checkout(HttpSession session) {
 		log.info("checkout");
 		Utilisateur loginUtilisateur = (Utilisateur) session.getAttribute("utilisateur");
@@ -126,7 +126,7 @@ public class CommandeClientServlet {
 	 * @throws ServletException
 	 * @throws IOException
 	 */
-	protected String detail(HttpSession session, String id) throws ServletException, IOException {
+	protected String detail(HttpSession session, String id) {
 		Utilisateur loginUtilisateur = (Utilisateur) session.getAttribute("utilisateur");
 		String numeroCmd = id;
 		List<ArticleCmd> detailCmd = commandeService.detailCmd(numeroCmd);

@@ -6,7 +6,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.cda.entity.Livre;
 
-
 public interface ILivreDao extends JpaRepository<Livre, Integer> {
 
 	@Override
@@ -14,4 +13,5 @@ public interface ILivreDao extends JpaRepository<Livre, Integer> {
 
 	Livre findByTitre(String titre);
 
+	List<Livre> findByTitreContainingIgnoreCase(String titre);
 }
