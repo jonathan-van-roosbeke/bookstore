@@ -126,7 +126,7 @@ public class CommandeClientServlet {
 	 * @throws ServletException
 	 * @throws IOException
 	 */
-	protected String detail(HttpSession session, String id) throws ServletException, IOException {
+	protected String detail(HttpSession session, String id) {
 		Utilisateur loginUtilisateur = (Utilisateur) session.getAttribute("utilisateur");
 		String numeroCmd = id;
 		List<ArticleCmd> detailCmd = commandeService.detailCmd(numeroCmd);

@@ -40,7 +40,7 @@ public class CommandeAdminServlet {
 		if ("afficher".equals(methodName)) {
 			return afficher(session, request);
 		} else if ("detail".equals(methodName)) {
-			return detail(session, numeroCmd);
+			return detail(session, request);
 		} else if ("updateStatus".equals(methodName)) {
 			return updateStatus(numeroCmd);
 		} else {
@@ -87,13 +87,13 @@ public class CommandeAdminServlet {
 	 * @throws ServletException
 	 * @throws IOException
 	 */
-	protected String detail(HttpSession session, String id) {
+	protected String detail(HttpSession session, HttpServletRequest request) {
 		Utilisateur loginUtilisateur = (Utilisateur) session.getAttribute("utilisateur");
-		String numeroCmd = id;
+		String numeroCmd = request.getParameter("id");
 		List<ArticleCmd> detailCmd = commandeService.detailCmd(numeroCmd);
-		session.setAttribute("detailCmd", detailCmd);
-		session.setAttribute("numeroCmd", numeroCmd);
-		return "/utilisateur/detail";
+		request.setAttribute("detailCmd", detailCmd);
+		request.setAttribute("numeroCmd", numeroCmd);
+		return "/admin/detail";
 	}
 
 	/**
