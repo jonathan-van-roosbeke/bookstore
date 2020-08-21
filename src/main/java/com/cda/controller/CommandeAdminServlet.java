@@ -22,7 +22,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Controller
-public class CommandeAdminServlet extends AbstractController {
+public class CommandeAdminServlet {
 	private static final long serialVersionUID = 1L;
 
 	@Autowired
