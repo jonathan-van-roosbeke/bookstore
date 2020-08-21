@@ -13,7 +13,6 @@ import com.cda.service.ILivreService;
 
 @Controller
 public class PanierServlet {
-	private static final long serialVersionUID = 1L;
 
 	@Autowired
 	private ILivreService livreService;

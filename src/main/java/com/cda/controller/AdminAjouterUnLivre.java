@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.cda.entity.Auteur;
@@ -32,14 +33,11 @@ public class AdminAjouterUnLivre {
 		return model;
 	}
 
-	// hello
 	@RequestMapping(value = "/ajouter-livre", method = RequestMethod.POST)
-	public ModelAndView validationAjout(@RequestParam(value = "titre") String titre,
+	public @ResponseBody ModelAndView validationAjout(@RequestParam(value = "titre") String titre,
 			@RequestParam(value = "nom") String nom, @RequestParam(value = "prenom") String prenom,
 			@RequestParam(value = "synopsis") String synopsis, @RequestParam(value = "nombre-page") String nombrePage,
-			@RequestParam(value = "quantitee-stock") String quantiteStock, @RequestParam(value = "prix") String prix)
-	// @RequestParam(value = "file") Part filePart)
-	{
+			@RequestParam(value = "quantitee-stock") String quantiteStock, @RequestParam(value = "prix") String prix) {
 
 		ModelAndView model = new ModelAndView();
 		log.info(titre);
@@ -47,7 +45,7 @@ public class AdminAjouterUnLivre {
 		auteurService.save(auteur);
 		Livre livre = new Livre(auteur.getId(), titre, Integer.parseInt(quantiteStock), Integer.parseInt(nombrePage),
 				synopsis, "test", new BigDecimal(prix), auteur);
-		if (livreService.findByTitre(titre) != null) {
+		if (livreService.findByTitre(titre) == null) {
 			livreService.save(livre);
 			log.info("Livre : " + livre + " ajouté");
 			model.setViewName("/utilisateur/index");

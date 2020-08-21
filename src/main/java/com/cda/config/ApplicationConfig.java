@@ -14,6 +14,7 @@ import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -33,6 +34,10 @@ public class ApplicationConfig implements WebMvcConfigurer {
 		dataSource.setUrl("jdbc:mysql://localhost:8889/bookstore?serverTimezone=Europe/Paris");
 		dataSource.setUsername("bookstore");
 		dataSource.setPassword("bookstore");
+//		dataSource.setDriverClassName("org.mariadb.jdbc.Driver");
+//		dataSource.setUrl("jdbc:mariadb://localhost:3306/bookstore?serverTimezone=Europe/Paris");
+//		dataSource.setUsername("root");
+//		dataSource.setPassword("");
 		return dataSource;
 	}
 
@@ -70,6 +75,20 @@ public class ApplicationConfig implements WebMvcConfigurer {
 		viewResolver.setSuffix(".jsp");
 		return viewResolver;
 	}
+
+	<<<<<<<HEAD
+
+	@Override
+=======
+	// Uploading file
+	@Bean(name = "multipartResolver")
+	public CommonsMultipartResolver multipartResolver() {
+		CommonsMultipartResolver resolver = new CommonsMultipartResolver();
+		resolver.setMaxUploadSize(10240000);
+		return resolver;
+	}
+
+	>>>>>>>spring-mvc
 
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
