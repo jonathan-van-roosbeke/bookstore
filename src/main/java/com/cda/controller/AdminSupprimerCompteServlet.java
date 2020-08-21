@@ -13,7 +13,6 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Controller
 public class AdminSupprimerCompteServlet {
-	private static final long serialVersionUID = 1L;
 
 	@Autowired
 	IUtilisateurService utilisateurService;
