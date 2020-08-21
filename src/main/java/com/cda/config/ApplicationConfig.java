@@ -76,10 +76,6 @@ public class ApplicationConfig implements WebMvcConfigurer {
 		return viewResolver;
 	}
 
-	<<<<<<<HEAD
-
-	@Override
-=======
 	// Uploading file
 	@Bean(name = "multipartResolver")
 	public CommonsMultipartResolver multipartResolver() {
@@ -87,8 +83,6 @@ public class ApplicationConfig implements WebMvcConfigurer {
 		resolver.setMaxUploadSize(10240000);
 		return resolver;
 	}
-
-	>>>>>>>spring-mvc
 
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
