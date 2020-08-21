@@ -41,7 +41,7 @@ public class PanierServlet {
 		Livre livre = livreService.findById(Integer.parseInt(id));
 		panier.ajouterLivre(livre);
 
-		return "redirect:/utilisateur/index";
+		return "redirect:/index";
 	}
 
 	protected String supprimer(HttpSession session, String id) {
