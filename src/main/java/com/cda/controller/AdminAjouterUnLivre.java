@@ -19,6 +19,7 @@ import com.cda.entity.Auteur;
 import com.cda.entity.Livre;
 import com.cda.service.IAuteurService;
 import com.cda.service.ILivreService;
+import com.cda.utils.MyConstants;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -30,7 +31,6 @@ public class AdminAjouterUnLivre {
 	IAuteurService auteurService;
 	@Autowired
 	ILivreService livreService;
-	private static final String OS = System.getProperty("os.name").toLowerCase();
 
 	@RequestMapping(value = "/ajouter-livre", method = RequestMethod.GET)
 	public ModelAndView initialisationAjout() {
@@ -45,17 +45,14 @@ public class AdminAjouterUnLivre {
 			@RequestParam(value = "prenom") String prenom, @RequestParam(value = "synopsis") String synopsis,
 			@RequestParam(value = "nombre-page") String nombrePage,
 			@RequestParam(value = "quantitee-stock") String quantiteStock, @RequestParam(value = "prix") String prix) {
-		// test si le livre existe
-		String SLASH = OS.contains("windows") ? "\\" : "/";
 		ModelAndView model = new ModelAndView();
 		if (livreService.findByTitre(titre) == null) {
-			// vérifier si le fichier est bien une image
-			if (FilenameUtils.getExtension(multipart.getOriginalFilename()).matches("jpg|jpeg|png")) {
-				String home = System.getProperty("user.home");
-				String pathDir = home + SLASH + "images";
+			if (FilenameUtils.getExtension(multipart.getOriginalFilename().toLowerCase()).matches("jpg|jpeg|png")) {
+				String pathDir = MyConstants.HOME_DIR + MyConstants.SLASH + "images";
 				File dirPath = new File(pathDir);
-				File filePath = new File(pathDir + SLASH + new Timestamp(System.currentTimeMillis()).getTime() + "."
-						+ FilenameUtils.getExtension(multipart.getOriginalFilename()));
+				File filePath = new File(
+						pathDir + MyConstants.SLASH + new Timestamp(System.currentTimeMillis()).getTime() + "."
+								+ FilenameUtils.getExtension(multipart.getOriginalFilename()));
 				try {
 					if (!dirPath.exists()) {
 						dirPath.mkdir();
@@ -64,18 +61,20 @@ public class AdminAjouterUnLivre {
 					if (a) {
 						multipart.transferTo(filePath);
 					}
+					Auteur auteur = new Auteur(nom, prenom);
+					auteurService.save(auteur);
+					Livre livre = new Livre(auteur.getId(), titre, Integer.parseInt(quantiteStock),
+							Integer.parseInt(nombrePage), synopsis, filePath.getName(), new BigDecimal(prix), auteur);
+					livreService.save(livre);
+					log.info("Livre : " + livre + " ajouté");
+					return new ModelAndView("redirect:/index");
 				} catch (IllegalStateException | IOException e) {
 					e.printStackTrace();
 				}
+			} else {
+				model.addObject("errorImg", "Veillez saisir un fichier avec une extension (jpg|jpeg|png) ");
+				model.setViewName("/admin/ajouter-livre");
 			}
-			log.info(titre);
-			Auteur auteur = new Auteur(nom, prenom);
-			auteurService.save(auteur);
-			Livre livre = new Livre(auteur.getId(), titre, Integer.parseInt(quantiteStock),
-					Integer.parseInt(nombrePage), synopsis, "test", new BigDecimal(prix), auteur);
-			livreService.save(livre);
-			log.info("Livre : " + livre + " ajouté");
-			return new ModelAndView("redirect:/index");
 		} else {
 			model.addObject("error", "Le livre existe déja");
 			model.setViewName("/admin/ajouter-livre");

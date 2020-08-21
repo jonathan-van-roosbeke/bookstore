@@ -46,7 +46,7 @@ public class ListLivreServlet {
 		}
 		Page<Livre> page = iLivreService.getPage(pageNo, 4);
 		request.setAttribute("page", page);
-
+		model.addObject("path", "images/");
 		model.addObject("livres", livres);
 		model.setViewName("/utilisateur/index");
 		return model;

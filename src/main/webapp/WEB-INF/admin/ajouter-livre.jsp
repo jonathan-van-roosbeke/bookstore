@@ -32,10 +32,23 @@
 								<label class="custom-file-label" for="inputGroupFile02">
 									Choose file
 								</label>
+								
 							</div>
+							<c:choose>
+							<c:when test="${not empty errorImg }">
+								<div class="error">
+									<h6>
+										<c:out value="${errorImg}"></c:out>
+									</h6>
+								</div>
+							</c:when>
+						</c:choose>
 							<div id="fichier-upload"></div>
 						</div>
 					</div>
+						
+				
+					
 			</div>
 			<div class="col-xl-7 col-lg-7 col-md-7 col-sm-7 right">
 				<div class="center_info">

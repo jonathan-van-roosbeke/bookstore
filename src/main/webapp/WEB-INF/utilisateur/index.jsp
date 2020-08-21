@@ -60,7 +60,8 @@
 				<c:forEach items="${page.content}" var="livres">
 					<div class="col-sm-3">
 						<div class="card" style="width: 18rem;">
-							<img src="resources/images/img-couverture-livre/${livres.nomImage}"
+<%-- 							<img src="resources/images/img-couverture-livre/${livres.nomImage}" --%>
+							<img src="${path}${livres.nomImage}"
 								class="card-img-top livre" id="${livres.id}" alt="${livres.nomImage}">
 							<div class="card-body">
 								<h5 class="card-title">${livres.titre}</h5>

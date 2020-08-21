@@ -20,6 +20,8 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
+import com.cda.utils.MyConstants;
+
 @Configuration
 @ComponentScan(basePackages = { "com.cda.controller", "com.cda.service" })
 @EnableJpaRepositories("com.cda.dao")
@@ -30,20 +32,20 @@ public class ApplicationConfig implements WebMvcConfigurer {
 	@Bean
 	public DataSource dataSource() {
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
-		dataSource.setDriverClassName("com.mysql.jdbc.Driver");
-		dataSource.setUrl("jdbc:mysql://localhost:8889/bookstore?serverTimezone=Europe/Paris");
-		dataSource.setUsername("bookstore");
-		dataSource.setPassword("bookstore");
+//		dataSource.setDriverClassName("com.mysql.jdbc.Driver");
+//		dataSource.setUrl("jdbc:mysql://localhost:8889/bookstore?serverTimezone=Europe/Paris");
+//		dataSource.setUsername("bookstore");
+//		dataSource.setPassword("bookstore");
 
 //		dataSource.setDriverClassName("org.mariadb.jdbc.Driver");
 //		dataSource.setUrl("jdbc:mariadb://localhost:3306/bookstore?serverTimezone=Europe/Paris");
 //		dataSource.setUsername("bookstore");
 //		dataSource.setPassword("bookstore");
 
-//		dataSource.setDriverClassName("org.mariadb.jdbc.Driver");
-//		dataSource.setUrl("jdbc:mariadb://localhost:3306/bookstore?serverTimezone=Europe/Paris");
-//		dataSource.setUsername("root");
-//		dataSource.setPassword("");
+		dataSource.setDriverClassName("org.mariadb.jdbc.Driver");
+		dataSource.setUrl("jdbc:mariadb://localhost:3306/bookstore?serverTimezone=Europe/Paris");
+		dataSource.setUsername("root");
+		dataSource.setPassword("");
 		return dataSource;
 	}
 
@@ -98,5 +100,7 @@ public class ApplicationConfig implements WebMvcConfigurer {
 		registry.addResourceHandler("/resources/bootstrap/**").addResourceLocations("/resources/bootstrap/");
 		registry.addResourceHandler("/resources/font-awesome/**").addResourceLocations("/resources/font-awesome/");
 		registry.addResourceHandler("/resources/images/**").addResourceLocations("/resources/images/");
+		String uploadDirectory = MyConstants.HOME_DIR + "\\images\\";
+		registry.addResourceHandler("/images/**").addResourceLocations("file:" + uploadDirectory + "\\");
 	}
 }
