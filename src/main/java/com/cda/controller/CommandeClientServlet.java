@@ -26,7 +26,6 @@ import lombok.extern.slf4j.Slf4j;
 @Controller
 public class CommandeClientServlet {
 
-	private static final long serialVersionUID = 1L;
 
 	@Autowired
 	ICommandeService commandeService;
