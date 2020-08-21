@@ -34,6 +34,12 @@ public class ApplicationConfig implements WebMvcConfigurer {
 		dataSource.setUrl("jdbc:mysql://localhost:8889/bookstore?serverTimezone=Europe/Paris");
 		dataSource.setUsername("bookstore");
 		dataSource.setPassword("bookstore");
+
+//		dataSource.setDriverClassName("org.mariadb.jdbc.Driver");
+//		dataSource.setUrl("jdbc:mariadb://localhost:3306/bookstore?serverTimezone=Europe/Paris");
+//		dataSource.setUsername("bookstore");
+//		dataSource.setPassword("bookstore");
+
 //		dataSource.setDriverClassName("org.mariadb.jdbc.Driver");
 //		dataSource.setUrl("jdbc:mariadb://localhost:3306/bookstore?serverTimezone=Europe/Paris");
 //		dataSource.setUsername("root");
