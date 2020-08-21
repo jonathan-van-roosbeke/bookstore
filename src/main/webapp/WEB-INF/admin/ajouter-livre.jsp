@@ -49,7 +49,15 @@
 							</div>
 							<input type="text" class="form-control" name="titre" placeholder="Titre livre" required>
 						</div>
-
+						<c:choose>
+							<c:when test="${not empty error }">
+								<div class="error">
+									<h6>
+										<c:out value="${error}"></c:out>
+									</h6>
+								</div>
+							</c:when>
+						</c:choose>
 						<!-- --------------------------Nom Prenom Auteur-------------------------- -->
 						<div class="input-group">
 							<div class="input-group-prepend">
@@ -103,15 +111,6 @@
 				</form>
 			</div>
 		</div>
-		<c:choose>
-			<c:when test="${error}">
-				<div class="error">
-					<h6>
-						<c:out value="${error}"></c:out>
-					</h6>
-				</div>
-			</c:when>
-		</c:choose>
 
 
 		<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
