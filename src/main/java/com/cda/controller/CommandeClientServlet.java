@@ -63,6 +63,7 @@ public class CommandeClientServlet {
 	 * @throws ServletException
 	 * @throws IOException
 	 */
+	@GetMapping(value = "/checkout")
 	protected String checkout(HttpSession session) {
 		log.info("checkout");
 		Utilisateur loginUtilisateur = (Utilisateur) session.getAttribute("utilisateur");
