@@ -10,23 +10,31 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.cda.entity.Utilisateur;
 import com.cda.service.IUtilisateurService;
 
-@WebServlet("/tous-comptes")
-public class AdminTousLesComptesServlet extends AbstractController {
-	private static final long serialVersionUID = 1L;
+import lombok.extern.slf4j.Slf4j;
+
+
+@Slf4j
+@Controller
+public class AdminTousLesComptesServlet  {
+	
 
 	@Autowired
 	IUtilisateurService utilisateurService;
 
-	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	@RequestMapping(value = { "/tous-comptes"} , method = {RequestMethod.GET})
+	protected ModelAndView listerTousLesComptes(@RequestParam(value = "pageNo", defaultValue = "1") String pageNoStr) {
+		ModelAndView model = new ModelAndView();
 		List<Utilisateur> utilisateurs = utilisateurService.findAll();
-
-		String pageNoStr = request.getParameter("pageNo");
+		
 		if (pageNoStr == null) {
 			pageNoStr = "1";
 		}
@@ -39,15 +47,13 @@ public class AdminTousLesComptesServlet extends AbstractController {
 		} catch (Exception e) {
 		}
 		Page<Utilisateur> page = utilisateurService.getPage(pageNo, 10);
-		request.setAttribute("page", page);
+		model.addObject("page", page);
+		model.addObject("utilisateurs", utilisateurs);
+		model.setViewName("/admin/tous-les-comptes");
+		
+		
+		return model;
 
-		request.setAttribute("utilisateurs", utilisateurs);
-		request.getRequestDispatcher("WEB-INF/admin/tous-les-comptes.jsp").forward(request, response);
+	
 	}
-
-	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-	}
-
 }

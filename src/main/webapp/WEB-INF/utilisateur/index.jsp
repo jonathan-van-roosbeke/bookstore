@@ -99,9 +99,9 @@
 					</div>
 				</c:forEach>
 			</div>
-			<%-- <div class="pagination">
+			<div class="pagination">
 				<%@ include file="../include/common/pagination.jsp"%>
-			</div> --%>
+			</div>
 
 
 			<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"

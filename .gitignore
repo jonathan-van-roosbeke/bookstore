@@ -200,7 +200,7 @@ bookstore/.project
 
 src/main/resources/jdbc.properties
 
-src/main/resources/applicationContext.xml
+
 
 ### Sass ###
 .sass-cache/

@@ -28,7 +28,7 @@
 						<h1 class="display-4">Merci pour votre achat !</h1>
 						<h3>Numero de commande : ${numeroCmd}</h3>
 						<a class="btn btn-primary btn-lg"
-							href="/bookstore/" role="button">Home</a>
+							href="/bookstore/index" role="button">Home</a>
 					</div>
 				</div>
 

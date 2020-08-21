@@ -11,4 +11,7 @@ public interface ILivreDao extends JpaRepository<Livre, Integer> {
 
 	@Override
 	List<Livre> findAll();
+
+	Livre findByTitre(String titre);
+
 }

@@ -51,7 +51,7 @@
 							</tr>
 						</thead>
 
-						<c:forEach items="${page.content}" var="commande">
+						<c:forEach items="${commandes}" var="commande">
 							<tbody>
 								<tr>
 									<th scope="row">${commande.numeroCmd}</th>
