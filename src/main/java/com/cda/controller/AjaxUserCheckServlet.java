@@ -25,7 +25,6 @@ public class AjaxUserCheckServlet {
 			HttpServletResponse response) {
 		
 		Utilisateur utilisateur = utilisateurService.findById(login);
-		System.out.println(utilisateur);
 		
 		if(utilisateur != null) {
 			response.setContentType("text/plain");

@@ -42,10 +42,10 @@ public class ApplicationConfig implements WebMvcConfigurer {
 //		dataSource.setUsername("bookstore");
 //		dataSource.setPassword("bookstore");
 
-		dataSource.setDriverClassName("org.mariadb.jdbc.Driver");
-		dataSource.setUrl("jdbc:mariadb://localhost:3306/bookstore?serverTimezone=Europe/Paris");
-		dataSource.setUsername("root");
-		dataSource.setPassword("");
+		dataSource.setDriverClassName("com.mysql.jdbc.Driver");
+		dataSource.setUrl("jdbc:mysql://localhost:3306/bookstore?serverTimezone=Europe/Paris");
+		dataSource.setUsername("bookstore");
+		dataSource.setPassword("bookstore");
 		return dataSource;
 	}
 
@@ -100,7 +100,7 @@ public class ApplicationConfig implements WebMvcConfigurer {
 		registry.addResourceHandler("/resources/bootstrap/**").addResourceLocations("/resources/bootstrap/");
 		registry.addResourceHandler("/resources/font-awesome/**").addResourceLocations("/resources/font-awesome/");
 		registry.addResourceHandler("/resources/images/**").addResourceLocations("/resources/images/");
-		String uploadDirectory = MyConstants.HOME_DIR + "\\images\\";
-		registry.addResourceHandler("/images/**").addResourceLocations("file:" + uploadDirectory + "\\");
+		String uploadDirectory = MyConstants.HOME_DIR + "/images/";
+		registry.addResourceHandler("/images/**").addResourceLocations("file:" + uploadDirectory + "/");
 	}
 }
