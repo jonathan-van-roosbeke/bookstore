@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.cda.service.ILivreService;
 
@@ -17,9 +18,9 @@ public class AdminSupprimerLivre {
 	ILivreService livreService;
 
 	@GetMapping(value = "/supprimer-livre")
-	String getLivre(@RequestParam(value = "id") String id) {
+	ModelAndView getLivre(@RequestParam(value = "id") String id) {
 		livreService.deleteById(Integer.parseInt(id));
 		log.info("Livre " + id + " supprimé");
-		return "/utilisateur/index";
+		return new ModelAndView("redirect:/index");
 	}
 }
