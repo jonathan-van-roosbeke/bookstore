@@ -65,6 +65,6 @@ public class AdminEditerUnLivre {
 		log.info("Vous avez édité le livre : " + livre + " en " + livreUpdate);
 		livreService.save(livreUpdate);
 
-		return "/utilisateur/index";
+		return "redirect:/index";
 	}
 }
