@@ -16,7 +16,6 @@ function bindButtonClick() {
 					label : "Annuler",
 					className : 'btn',
 					callback : function() {
-						window.location = 'index';
 					}
 				},
 

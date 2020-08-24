@@ -2,8 +2,7 @@
 	<ul class="pagination justify-content-center">
 		<c:choose>
 		<c:when test="${page.number ==0}">
-		<li class="page-item">
-		<a class="page-link" tabindex="-1" aria-disabled="true">Page précédente</a></li>
+		
 		</c:when>
 		<c:when test="${page.number !=0}">
 		<li class="page-item">
@@ -15,7 +14,6 @@
 		
 		<c:choose>
 		<c:when test="${page.number == page.totalPages-1}">
-		<a class="page-link" tabindex="-1" aria-disabled="true">Page suivante</a></li>
 		</c:when>
 		<c:otherwise>
 		<li class="page-item"><a class="page-link"
