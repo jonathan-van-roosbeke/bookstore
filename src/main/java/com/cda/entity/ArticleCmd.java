@@ -52,5 +52,6 @@ public class ArticleCmd implements Serializable {
 	@JoinColumn(name = "reference_livre", referencedColumnName = "reference_livre", nullable = false, insertable = false, updatable = false)
 	private Livre livre;
 
-	private int reference_livre;
+	@Column(name = "reference_livre")
+	private int referenceLivre;
 }

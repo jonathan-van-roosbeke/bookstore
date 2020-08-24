@@ -26,4 +26,9 @@ public class ArticleCmdServiceImpl implements IArticleCmdService {
 		articleCmdDao.saveAll(articleCmd);
 	}
 
+	@Override
+	public ArticleCmd findByReferenceLivre(int ref) {
+		return articleCmdDao.findByReferenceLivre(ref);
+	}
+
 }

@@ -44,8 +44,8 @@ public class ApplicationConfig implements WebMvcConfigurer {
 
 		dataSource.setDriverClassName("com.mysql.jdbc.Driver");
 		dataSource.setUrl("jdbc:mysql://localhost:3306/bookstore?serverTimezone=Europe/Paris");
-		dataSource.setUsername("bookstore");
-		dataSource.setPassword("bookstore");
+		dataSource.setUsername("root");
+		dataSource.setPassword("");
 		return dataSource;
 	}
 
