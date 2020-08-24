@@ -41,7 +41,7 @@ public class AdminEditerUnLivre {
 	}
 
 	@PostMapping(value = "/editer-livre")
-	public String editerLivre(@RequestParam(value = "titre") String titre, @RequestParam(value = "nom") String nom,
+	public ModelAndView editerLivre(@RequestParam(value = "titre") String titre, @RequestParam(value = "nom") String nom,
 			@RequestParam(value = "prenom") String prenom, @RequestParam(value = "synopsis") String synopsis,
 			@RequestParam(value = "nombre-page") String nombrePage,
 			@RequestParam(value = "quantitee-stock") String quantiteStock, @RequestParam(value = "prix") String prix) {
@@ -65,6 +65,6 @@ public class AdminEditerUnLivre {
 		log.info("Vous avez édité le livre : " + livre + " en " + livreUpdate);
 		livreService.save(livreUpdate);
 
-		return "/utilisateur/index";
+		return new ModelAndView("redirect:/index");
 	}
 }
