@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.cda.service.IArticleCmdService;
 import com.cda.service.ILivreService;
@@ -27,7 +26,6 @@ public class AdminSupprimerLivre {
 
 	@GetMapping(value = "/supprimer-livre")
 	void getLivre(@RequestParam(value = "id") int id, HttpServletResponse response) throws IOException {
-		ModelAndView model = new ModelAndView();
 		if (articleCmdService.findByReferenceLivre(id) == null) {
 			livreService.deleteById(id);
 			log.info("Livre " + id + " supprimé");
@@ -37,6 +35,5 @@ public class AdminSupprimerLivre {
 			response.setContentType("text/plain");
 			response.getWriter().write("Imposible de supprimer le  livre");
 		}
-//		return new ModelAndView("redirect:/index");
 	}
 }
